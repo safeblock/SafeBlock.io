@@ -82,6 +82,7 @@ namespace SafeBlock.Io.Controllers
             return RedirectToAction("TorFriendly");
         }
 
+        [Route("tor-friendly")]
         public IActionResult TorFriendly()
         {
             return View();

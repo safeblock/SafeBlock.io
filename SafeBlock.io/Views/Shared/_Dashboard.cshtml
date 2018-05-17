@@ -15,38 +15,8 @@
     <link rel="shortcut icon" href="~/favicon.ico" />
 </head>
 <body>
-<div id="left-menu">
-    <a asp-controller="Dashboard" asp-action="Index"><img src="~/static/og-white.png" class="logo"/></a>
-    <nav class="nav flex-column">
-        <a asp-controller="Dashboard" asp-action="Index" class="nav-link active">
-            <img src="~/static/icons8-portefeuille-64.png" alt="wallet"/>
-            <span>Wallet</span>
-        </a>
-        @*<a asp-controller="Dashboard" asp-action="Security" class="nav-link">
-            <img src="~/static/icons8-sécurité-vérifiée-64.png" alt="security"/>
-            <span>Security</span>
-        </a>*@
-        <a asp-controller="Dashboard" asp-action="Exchange" class="nav-link">
-            <img src="~/static/icons8-synchroniser-64.png" alt="exchange"/>
-            <span>Exchange</span>
-        </a>
-        <a asp-controller="Dashboard" asp-action="Development" class="nav-link">
-            <img src="~/static/icons8-code-source-64.png" alt="development"/>
-            <span>Development</span>
-        </a>
-        <a asp-controller="Dashboard" asp-action="Support" class="nav-link">
-            <img src="~/static/icons8-aide-64.png" alt="support"/>
-            <span>Support</span>
-        </a>
-    </nav>
-    <div class="user">
-        <img gravatar-email="@User.Identity.Name" gravatar-default-image="mm" gravatar-size="50" />
-        <div class="status green"></div>
-    </div>
-</div>
-<main id="main">
-    @RenderBody()
-</main>
+
+@RenderBody()
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>

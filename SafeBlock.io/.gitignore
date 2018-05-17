@@ -253,3 +253,8 @@ fabric.properties
 # *.iml
 # modules.xml
 
+*wwwroot/lib/*
+wwwroot/lib/*
+wwwroot\lib\
+wwwroot\lib\*
+*wwwroot\lib\*

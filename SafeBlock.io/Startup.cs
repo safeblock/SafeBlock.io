@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using NetEscapades.AspNetCore.SecurityHeaders;
+using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using SafeBlock.Io.Models;
 using SafeBlock.Io.Settings;
@@ -91,6 +94,21 @@ namespace SafeBlock.Io
             {
                 app.UseExceptionHandler("/home/error");
             }
+
+            app.UseSecurityHeaders(new HeaderPolicyCollection()
+                .AddFrameOptionsDeny()
+                .AddContentTypeOptionsNoSniff()
+                .AddXssProtectionBlock()
+                .AddContentTypeOptionsNoSniff()
+                .AddXssProtectionEnabled()
+                .AddReferrerPolicyStrictOriginWhenCrossOrigin()
+                .RemoveServerHeader()
+                .AddContentSecurityPolicy(builder =>
+                {
+                    builder.AddObjectSrc().None();
+                    builder.AddFormAction().Self();
+                    builder.AddFrameAncestors().None();
+                }));
 
             app.UseStaticFiles();
 

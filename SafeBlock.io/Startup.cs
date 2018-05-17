@@ -58,6 +58,12 @@ namespace SafeBlock.Io
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
             
+            services.AddDistributedRedisCache(options =>
+            {
+                options.InstanceName = "SecuredSession";
+                options.Configuration = Configuration.GetConnectionString("Redis");
+            });
+            
             services.AddMvc();
 
             services.AddWebMarkupMin(options =>

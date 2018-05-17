@@ -15,9 +15,11 @@ using Newtonsoft.Json;
 using SafeBlock.Io.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
+using NBitcoin;
 using SafeBlock.Io.Services;
 using SafeBlock.Io.Settings;
-using Vault;
+using VaultSharp;
+using VaultSharp.Backends.Authentication.Models.Token;
 
 namespace SafeBlock.Io.Controllers
 {
@@ -25,18 +27,14 @@ namespace SafeBlock.Io.Controllers
     {
         private SafeBlockContext _context;
         private IHostingEnvironment _env;
-        private VaultClient _vaultClient;
+        private IVaultClient _vaultClient;
 
         public AccountController(IHostingEnvironment env, IOptions<VaultSettings> _vaultSettings, SafeBlockContext context)
         {
             _env = env;
             _context = context;
             
-            _vaultClient = new VaultClient()
-            {
-                Address = new Uri(_vaultSettings.Value.ConnectionString),
-                Token = _vaultSettings.Value.Token
-            };
+            _vaultClient = VaultClientFactory.CreateVaultClient(new Uri(_vaultSettings.Value.ConnectionString), new TokenAuthenticationInfo(_vaultSettings.Value.Token));
         }
 
         [Route("account/getting-started/{section?}")]
@@ -97,7 +95,7 @@ namespace SafeBlock.Io.Controllers
                             firstCrypt));
                         
                         // Création du token dans le vault (double chiffré)
-                        await _vaultClient.Secret.Write(Path.Combine("secret", "accounts", SecurityUsing.Sha1(handleLoginModel.Mail.ToLower())), new Dictionary<string, string>
+                        await _vaultClient.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}", new Dictionary<string, object>
                         {
                             {"token", secondCrypt}
                         });
@@ -137,7 +135,7 @@ namespace SafeBlock.Io.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("account/getting-started/login")]
-        public IActionResult Login(HandleLoginModel handleLoginModel)
+        public async Task<IActionResult> Login(HandleLoginModel handleLoginModel)
         {
             ViewBag.Section = "login";
             ModelState.Remove("VerifyPassword");
@@ -147,23 +145,17 @@ namespace SafeBlock.Io.Controllers
                 var userPresence = _context.Users.Where(x => x.Mail.Equals(handleLoginModel.Mail.ToLower()));
                 if (userPresence.Any())
                 {
-                    try
-                    {
-                        var fullyCryptedToken = _vaultClient.Secret.Read<Dictionary<string, string>>(Path.Combine("secret", "accounts", SecurityUsing.Sha1(handleLoginModel.Mail.ToLower())));
-                        var halfCryptedToken = Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Result.Data.First(x => x.Key == "token").Value));
-                        var token = Aes.Decrypt("8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba", SecurityUsing.HexToBytes(halfCryptedToken));
+                    
+                    var fullyCryptedToken = await _vaultClient.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
+                    var halfCryptedToken = Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data["token"].ToString()));
+                    var token = Aes.Decrypt("8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba", SecurityUsing.HexToBytes(halfCryptedToken));
 
-                        var user = userPresence.First();
-                        if (token.ToLower().Equals(user.Token))
-                        {
-                            SignInUser(user.Mail, user.Role, handleLoginModel.KeepSession);
-
-                            return RedirectToAction("Index", "Dashboard");
-                        }
-                    }
-                    catch
+                    var user = userPresence.First();
+                    if (token.ToLower().Equals(user.Token))
                     {
-                        ModelState.AddModelError("Mail", "Unable to decrypt your account.");
+                        SignInUser(user.Mail, user.Role, handleLoginModel.KeepSession);
+
+                        return RedirectToAction("Index", "Dashboard");
                     }
                 }
                 else

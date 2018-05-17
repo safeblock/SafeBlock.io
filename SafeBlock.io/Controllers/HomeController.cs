@@ -6,17 +6,28 @@ using System.Net;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SafeBlock.Io.Models;
 using SafeBlock.Io.Services;
+using VaultSharp;
+using VaultSharp.Backends.Authentication.Models.AppId;
+using VaultSharp.Backends.Authentication.Models.Custom;
+using VaultSharp.Backends.Authentication.Models.Token;
 
 namespace SafeBlock.Io.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
+        }
+
+        [Route("pute")]
+        public IActionResult pute()
+        {
+            return Content(HttpContext.Session.GetString("name"));
         }
 
         [Route("change-language/{lang}")]

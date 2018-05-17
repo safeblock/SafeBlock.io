@@ -13,7 +13,7 @@ namespace SafeBlock.Io.Services
             {
                 Port = 587,
                 Credentials = new System.Net.NetworkCredential("contact@safeblock.io", "zzncfvx0"),
-                EnableSsl = true
+                EnableSsl = true,
             };
             var mail = new MailMessage()
             {
@@ -21,12 +21,7 @@ namespace SafeBlock.Io.Services
                 Subject = "🔑 [SafeBlock.io] Confirmate your wallet creation.",
                 Body = System.IO.File.ReadAllText(templateFile)
                     .Replace("{link}", "http://pute.com"),
-                IsBodyHtml = true,
-                Priority = MailPriority.High,
-                /*Attachments =
-                {
-                    new Attachment(certificateFile, "safeblock-certificate.asc")
-                }*/
+                IsBodyHtml = true
                 
             };
             mail.To.Add(mailAddress);

@@ -39,6 +39,58 @@ $ wget https://releases.hashicorp.com/vault/0.10.1/vault_0.10.1_linux_amd64.zip
 $ unzip vault_0.10.1_linux_amd64.zip
 ```
 
+#### First Launch
+```console
+$ mkdir ~/vault-config
+$ nano ~/vault-config/config.json
+```
+
+```json
+storage "file" {
+  path = "/mnt/vault/data"
+}
+
+listener "tcp" {
+  address     = "127.0.0.1:8200"
+  tls_disable = 1
+}
+```
+
+```console
+$ tmux
+$ ctrl+b, $ vault
+$ vault server -config ~/vault-config/config.json
+$ ctrl+b, d
+```
+
+For unseal the vault :
+```console
+$ export VAULT_ADDR='http://127.0.0.1:8200'
+$ vault operator init
+Unseal Key 1: llxrVcY3AeA4TPCSKVMGJ8a7MFIjJw5OhM8QEPKP0aEo
+Unseal Key 2: HjFj7s+T9EqyMDtEfXtuFlgoxNXbn4N0XVhQTRBjIpEg
+Unseal Key 3: r0BkaBpTrBEEsUnxzGk6ZkEs7XixV8KE8CaffFJWyMwC
+Unseal Key 4: NHfjyWvmgdPnb514dRElJOxYlBjtcjgLOTEgH8yQXLowt
+Unseal Key 5: HpNLzunPprMuvdJFVyBwPEwroe21dJvPTsDxle6s3Rvu
+
+Initial Root Token: 6d0296b8-643f-6ff4-4028-ecd442fa3ce6
+
+$ vault operator unseal
+> first unseal key
+$ vault operator unseal
+> second unseal key
+$ vault operator unseal
+> third unseal key
+
+$ vault login
+Token (will be hidden):
+Success! You are now authenticated. The token information displayed below
+is already stored in the token helper. You do NOT need to run "vault login"
+again. Future Vault requests will automatically use this token.
+```
+
+And the vault is ready to use, please keep in safety the keys and token
+
 ### Redis Installation
 ![](https://img.shields.io/badge/redis-3.2.11-lightgray.svg?longCache=true)  Redis is used for session distributed cache for storing sessions datas in a secured environnement.
 

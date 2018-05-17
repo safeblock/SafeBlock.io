@@ -52,6 +52,22 @@ $ cd redis-3.2.11
 $ make
 ```
 
+### Bower Installation
+Bower is required for install the dependencies like bootstrap or font-awesome.
+
+```console
+$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+$ sudo apt-get install -y nodejs
+$ npm install -g bower
+```
+
+### SafeBlock Installation
+```console
+$ git clone http://git.safeblock.io/SafeBlock.io/SafeBlock.io.git
+$ cd SafeBlock.io/SafeBlock.io
+$ bower update --allow-root
+```
+
 ### Security Requirements
 It's important that nobody can to connect to the server without an RSA key.
 

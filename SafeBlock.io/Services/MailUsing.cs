@@ -6,7 +6,7 @@ namespace SafeBlock.Io.Services
 {
     public static class MailUsing
     {
-        public static void SendConfirmationMail(string mailAddress, string templateFile, string certificateFile)
+        public static void SendConfirmationMail(string mailAddress, string templateFile, string activationLink, string certificateFile)
         {
             //TODO : put password in configuration file
             var smtpServer = new SmtpClient("mail.privateemail.com")
@@ -20,7 +20,7 @@ namespace SafeBlock.Io.Services
                 From = new MailAddress("contact@safeblock.io"),
                 Subject = "🔑 [SafeBlock.io] Confirmate your wallet creation.",
                 Body = System.IO.File.ReadAllText(templateFile)
-                    .Replace("{link}", "http://pute.com"),
+                    .Replace("{link}", activationLink),
                 IsBodyHtml = true
                 
             };

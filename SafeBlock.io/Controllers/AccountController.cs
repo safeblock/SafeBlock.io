@@ -85,7 +85,6 @@ namespace SafeBlock.Io.Controllers
                         sb.SaveChanges();
                         
                         //TODO : store in secret
-                        
                         // Chiffrement du token
                         var firstCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(
                             "8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba",
@@ -94,7 +93,7 @@ namespace SafeBlock.Io.Controllers
                             handleLoginModel.Password,
                             firstCrypt));
                         
-                        // Création du token dans le vault (double chiffré)
+                        // Création du token dans le vault (doublement chiffré)
                         await _vaultClient.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}", new Dictionary<string, object>
                         {
                             {"token", secondCrypt}
@@ -105,7 +104,8 @@ namespace SafeBlock.Io.Controllers
                         
                         //TODO : send mail if it's good
                         // Envoi du mail de confirmation
-                        MailUsing.SendConfirmationMail(handleLoginModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), @"F:\SafeBlock.io\Backup\unx\SafeBlock.Io\robots.txt");
+                        
+                        MailUsing.SendConfirmationMail(handleLoginModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.Io\robots.txt");
                         
                         return RedirectToAction("ChooseWallet", "Dashboard");
                     }
@@ -164,6 +164,15 @@ namespace SafeBlock.Io.Controllers
                 }
             }
             return View("GettingStarted", handleLoginModel);
+        }
+
+        [Route("account/activate/{token}")]
+        public async Task<IActionResult> Activate(string token)
+        {
+            //todo : add expiration date
+            /*_context.Users.First(x => SecurityUsing.Sha512(x.Token).Equals(token)).IsMailChecked = true;
+            await _context.SaveChangesAsync();*/
+            return View();
         }
         
         [Route("account/logout")]

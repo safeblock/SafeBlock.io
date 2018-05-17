@@ -269,7 +269,7 @@ footer .sub-footer {
     margin-bottom: 0px;
 }
 
-.dialog-window p {
+.dialog-window p:not(.lead) {
     font-family: 'PT Sans', sans-serif;
     margin-top: 10px;
     font-size: 13pt;

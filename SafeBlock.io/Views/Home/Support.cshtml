@@ -1,0 +1,30 @@
+﻿@model KnowledgeBase
+@{
+    ViewData["Title"] = "Knowledge Base";
+}
+<div id="particle-background" class="simple"></div>
+<div id="support">
+    <div class="container">
+        <div class="offset-md-2 col-md-8 text-center">
+            <h1 class="text-white mb-4 pb-2">Search in KnowledgeBase</h1>
+            <form method="post" asp-controller="Home" asp-action="SearchKnowledgebase">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control form-control-lg search" asp-for="Query" placeholder="Search help on our knowledge database." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-transparent" type="submit"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <p class="text-white-50 m-0 pt-3">Live Support is available on your account.</p>
+        </div>
+    </div>
+</div>
+<div id="wrapper">
+    <main id="main">
+        <section class="pt-5">
+            <div class="container">
+                <img src="~/static/Sans titre-4.jpg" style="width: 100%;"/>
+            </div>
+        </section>
+    </main>
+</div>

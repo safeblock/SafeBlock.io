@@ -1,0 +1,28 @@
+{
+  "name": "SafeBlock.Io",
+  "authors": [
+    "Clint Mourlevat <clint.mourlevat@gmail.com>"
+  ],
+  "description": "A secure multi-currencies wallet.",
+  "main": "",
+  "keywords": [
+    "safeblock"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "^5.0.13",
+    "bootstrap": "^4.1.1",
+    "jquery": "^3.3.1",
+    "particles.js": "^2.0.0",
+    "pixeden-stroke-7-icon": "^1.2.3",
+    "nprogress": "^0.2.0"
+  }
+}

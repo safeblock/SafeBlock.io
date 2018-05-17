@@ -1,0 +1,98 @@
+body {
+    background-color: rgba(44, 47, 57, 1);
+    color: #EEEEEE;
+}
+
+#left-menu {
+    position: fixed;
+    background-color: rgba(40, 43, 53, 1);
+    /*border-right: 2px solid #151515;*/
+    width: 136px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+#left-menu img.logo {
+    position: absolute;
+    top: 0px;
+    width: 50px;
+    margin: 43px;
+}
+
+#left-menu .user {
+    position: absolute;
+    bottom: 0px;
+    margin: 43px;
+    cursor: pointer;
+}
+
+#left-menu .user img {
+    border-radius: 50%;
+    width: 50px;
+}
+
+#left-menu .user .status {
+    background-color: darkgray;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 35px;
+    right: 0px;
+    border-radius: 50%;
+    border: 2px solid #131a20;
+}
+
+#left-menu .user .status.green {
+    background-color: mediumseagreen;
+}
+
+#left-menu .user .status.red {
+    background-color: orangered;
+}
+
+#left-menu nav {
+    text-align: center;
+    width: 100%;
+}
+
+#left-menu nav a {
+    border-left: 4px solid transparent;
+    padding: 10px 0px;
+    margin: 7px 0px;
+    transition: border 0.5s ease;
+}
+
+#left-menu nav a span {
+    margin-top: 5px;
+    display: block;
+    color: #DDDDDD;
+    font-size: 11pt;
+}
+
+#left-menu nav a.active /*,
+#left-menu nav a:hover*/
+{
+    border-left-color: #39f;
+}
+
+#left-menu nav a img {
+    width: 36px;
+    opacity: 0.9;
+}
+
+#main {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 136px;
+    right: 0px;
+    padding: 50px 70px;
+}
+
+h1 {
+    font-size: 21pt;
+}

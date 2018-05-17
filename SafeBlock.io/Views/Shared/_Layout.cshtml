@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeBlock.Io | @ViewData["Title"]</title>
+    @*META*@
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="~/lib/nprogress/nprogress.css" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    <script>
+        window.intercomSettings = {
+            app_id: "w0r7nx0w"
+        };
+    </script>
+    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic("reattach_activator");ic("update",intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement("script");s.type="text/javascript";s.async=true;s.src="https://widget.intercom.io/widget/w0r7nx0w";var x=d.getElementsByTagName("script")[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent("onload",l);}else{w.addEventListener("load",l,false);}}})()</script>
+
+</head>
+<body>
+    <a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
+        <i class="fab fa-twitter"></i>
+    </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent zi-top">
+        <div class="container py-4">
+            <a asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <img src="~/static/logo.png" alt="SafeBlock.io" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown mr-4 ml-2 language-switcher">
+                        <a class="nav-link nav-dropdown dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            EN
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="en" class="dropdown-item">English</a>
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="fr" class="dropdown-item">French</a>
+                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="ru" class="dropdown-item">Russian</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="VisitTor" class="nav-link"><i class="fas fa-link"></i> safeblockcjm5jbf.onion</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a asp-controller="Home" asp-action="Services" class="nav-link">Services</a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a asp-controller="ICO" asp-action="Index" class="nav-link">ICO
+                            <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+                        </a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a class="nav-link" href="#">Documentation</a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a class="nav-link" href="#">API</a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a asp-controller="Blog" asp-action="Index" class="nav-link">Blog</a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a asp-controller="Home" asp-action="Support" class="nav-link">Support</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+    @if (ViewBag.HideFooter != true)
+    {
+        <footer class="pt-4">
+          <div class="container text-center text-md-left">
+              <div class="row text-center text-md-left mt-3 pb-5">
+                  <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                      <div></div>
+                      <img src="/static/logo.png" class="mb-3"/>
+                      <p>Here you can use rows and columns here to organize your footer content. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                  </div>
+                  <hr class="w-100 clearfix d-md-none">
+                  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                      <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
+                      <p><a href="#!">MDBootstrap</a></p>
+                      <p><a href="#!">MDWordPress</a></p>
+                      <p><a href="#!">BrandFlow</a></p>
+                      <p><a href="#!">Bootstrap Angular</a></p>
+                  </div>
+                  <hr class="w-100 clearfix d-md-none">
+                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                      <h6 class="text-uppercase mb-4 font-weight-bold">Liens Utiles</h6>
+                      <p><a href="/Freelance/Account">Mon Compte</a></p>
+                      <p><a href="#!">Devenir un Affilié</a></p>
+                      <p><a href="https://git.insane-agency.io/" target="_blank"><i class="fas fa-code-branch"></i> Dépôt Git</a></p>
+                      <p><a href="/blog">Voir le Blog</a></p>
+                  </div>
+                  <hr class="w-100 clearfix d-md-none">
+                  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                      <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                      <p class="text-muted"><i class="fas fa-envelope mr-2"></i> <a href="mailto:contact@insane-agency.io">contact@insane-agency.io</a> <sup><a href="/Home/PGP" target="_blank" class="text-muted"><i data-toggle="tooltip" data-placement="top" title="Obtenir notre clé PGP." class="fas fa-key"></i></a></sup></p>
+                      <p class="text-muted"><i class="fas fa-phone mr-2"></i> +33 7 52 67 97 75</p> 
+                      <p class="text-muted">
+                        <a href="" target="_blank" class="mr-3"><i class="fab fa-facebook"></i></a> 
+                        <a href="" target="_blank" class="mr-3"><i class="fab fa-twitter"></i></a>  
+                        <a href="" target="_blank"><i class="fab fa-instagram"></i></a> 
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <div class="py-3 pt-4 d-flex align-items-center sub-footer">
+              <div class="col-md-12 col-lg-12">
+                  <p class="text-center">Copyright &copy; @DateTime.Now.Year SafeBlock.io - <i class="fab fa-github"></i>
+                      <a href="https://git.insane-agency.io/insane-agency/showcase" class="inherit" target="_blank">Source Disponible</a> - Créer par ❤ par Clint Mourlevat.</p>
+              </div>
+          </div>
+        </footer>
+    }
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/particles.js/particles.min.js"></script>
+    <script src="~/lib/nprogress/nprogress.js"></script>
+    <environment include="Development">
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    @Html.Partial("_ValidationScriptsPartial")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

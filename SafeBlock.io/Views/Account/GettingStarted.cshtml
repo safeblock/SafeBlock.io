@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Getting Started";
+    ViewBag.HideFooter = true;
+    if (ViewBag.Section == null)
+    {
+        ViewBag.Section = "register";
+    }
+}
+<div id="particle-background"></div>
+<div class="dialog-window">
+    <h1 class="text-center">SafeBlock.io</h1>
+    <p class="text-center">The Most Secure Cryptos Wallet on the Earth.</p>
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Section == "register" ? "active":"")" href="#create-wallet" data-toggle="tab" role="tab" aria-controls="create-wallet" aria-selected="true">Create a Wallet</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link @(ViewBag.Section == "login" ? "active":"")" href="#login" id="home-tab" data-toggle="tab" role="tab" aria-controls="login" aria-selected="true">Sign In</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#"><i class="fas fa-lock-open"></i> Forgotten Password</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade @(ViewBag.Section == "register" ? "show active":"")" id="create-wallet" role="tabpanel" aria-labelledby="create-wallet">
+            @Html.Partial("CreateWallet")
+        </div>
+        <div class="tab-pane fade @(ViewBag.Section == "login" ? "show active":"")" id="login" role="tabpanel" aria-labelledby="login">
+            @Html.Partial("Login")
+        </div>
+        <div class="tab-pane fade @(ViewBag.Section == "ds" ? "show active":"")" id="contact" role="tabpanel" aria-labelledby="contact-tab">...3</div>
+    </div>
+</div>
+@section Scripts
+{
+}

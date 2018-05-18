@@ -10,6 +10,7 @@
         <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.0-rc1-final"/>
         <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="1.0.0-rc1-final"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.0.3"/>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3"/>
         <PackageReference Include="NBitcoin" Version="4.1.1.7"/>
         <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="0.7.0"/>
         <PackageReference Include="Newtonsoft.Json" Version="11.0.2"/>

@@ -24,15 +24,10 @@ namespace SafeBlock.Io.Controllers
             return View();
         }
 
-        [Route("pute")]
-        public IActionResult pute()
-        {
-            return Content(HttpContext.Session.GetString("name"));
-        }
-
         [Route("change-language/{lang}")]
         public IActionResult ChangeLanguage(string lang)
         {
+            //TODO : adding localization
             return RedirectToAction("Index");
         }
         

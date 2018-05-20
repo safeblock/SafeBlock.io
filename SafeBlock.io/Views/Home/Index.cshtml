@@ -1,10 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Keep your Cryptos. Safely.";
 }
+<style>
+    
+    span {
+        border-right: .05em solid;
+        animation: caret 1s steps(1) infinite;
+    }
+
+    @@keyframes caret {
+    50% {
+        border-color: transparent;
+    }
+    }
+</style>
 <div id="particle-background"></div>
 <div class="container">
     <div class="jumbotron bg-transparent text-center m-0">
-        <h2>Keep your Cryptos. Safely.</h2>
+        <h1>Keep your Cryptos. Safely.</h1>
         <p class="lead">Spend your Cryptocurrencies with Safety and Keep your Privacy with SafeBlock.</p>
         <div class="form-group mt-5">
             <a asp-controller="Account" asp-action="GettingStarted" asp-route-section="register" class="btn btn-primary btn-lg"><i class="fas fa-user-plus"></i> Create a Wallet</a>

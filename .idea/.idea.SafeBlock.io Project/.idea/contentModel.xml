@@ -94,6 +94,7 @@
             <e p="_Dashboard.cshtml" t="Include" />
             <e p="_Layout.cshtml" t="Include" />
             <e p="_ValidationScriptsPartial.cshtml" t="Include" />
+            <e p="Metas.cshtml" t="Include" />
           </e>
         </e>
         <e p="wwwroot" t="Include">

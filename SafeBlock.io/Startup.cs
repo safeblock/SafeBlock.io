@@ -17,7 +17,6 @@ using SafeBlock.Io.Models;
 using SafeBlock.Io.Settings;
 using SignalRChat.Hubs;
 using WebMarkupMin.AspNetCore2;
-using SafeBlock.io.Models;
 
 namespace SafeBlock.Io
 {
@@ -84,7 +83,7 @@ namespace SafeBlock.Io
             .AddHttpCompression();
 
             services.AddDbContext<SafeBlockContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SafeBlockioContext")));
+                    options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

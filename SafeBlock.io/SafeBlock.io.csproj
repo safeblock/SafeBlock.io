@@ -25,22 +25,4 @@
         <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0"/>
         <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0"/>
     </ItemGroup>
-    <ItemGroup>
-        <Compile Remove="Resources\**"/>
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Remove="Resources\**"/>
-    </ItemGroup>
-    <ItemGroup>
-        <None Remove="Resources\**"/>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Remove="Idea\**"/>
-    </ItemGroup>
-    <ItemGroup>
-        <EmbeddedResource Remove="Idea\**"/>
-    </ItemGroup>
-    <ItemGroup>
-        <None Remove="Idea\**"/>
-    </ItemGroup>
 </Project>

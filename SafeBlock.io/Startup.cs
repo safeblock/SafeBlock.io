@@ -83,7 +83,7 @@ namespace SafeBlock.Io
             })
             .AddHttpCompression();
 
-            services.AddDbContext<SafeBlockioContext>(options =>
+            services.AddDbContext<SafeBlockContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SafeBlockioContext")));
         }
 

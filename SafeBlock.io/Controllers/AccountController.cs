@@ -145,10 +145,18 @@ namespace SafeBlock.Io.Controllers
                 var userPresence = _context.Users.Where(x => x.Mail.Equals(handleLoginModel.Mail.ToLower()));
                 if (userPresence.Any())
                 {
+                    var token = string.Empty;
                     
-                    var fullyCryptedToken = await _vaultClient.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
-                    var halfCryptedToken = Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data["token"].ToString()));
-                    var token = Aes.Decrypt("8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba", SecurityUsing.HexToBytes(halfCryptedToken));
+                    try
+                    {
+                        var fullyCryptedToken = await _vaultClient.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
+                        var halfCryptedToken = Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data["token"].ToString()));
+                        token = Aes.Decrypt("8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba", SecurityUsing.HexToBytes(halfCryptedToken));
+                    }
+                    catch
+                    {
+                        ModelState.AddModelError("Mail", "Unable to decrypt your account.");
+                    }
 
                     var user = userPresence.First();
                     if (token.ToLower().Equals(user.Token))

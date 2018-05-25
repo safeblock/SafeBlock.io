@@ -7,21 +7,18 @@
     @*META*@
     @Html.Partial("Metas")
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/pixeden-stroke-7-icon/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="~/lib/nprogress/nprogress.css" />
+    <link rel="stylesheet" href="/lib/master-slider/css/masterslider.main.css" />
     <environment include="Development">
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/slider.css"/>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     <link rel="shortcut icon" href="~/favicon.ico" />
-    <script>
-        window.intercomSettings = {
-            app_id: "uj20nacs"
-        };
-    </script>
-    <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/uj20nacs';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
     @RenderSection("Head", required: false)
 </head>
 <body>
@@ -29,7 +26,7 @@
         <i class="fab fa-twitter"></i>
     </a>
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent zi-top">
-        <div class="container py-4">
+        <div class="container-fluid py-4">
             <a asp-controller="Home" asp-action="Index" class="navbar-brand">
                 <img src="~/static/logo.png" alt="SafeBlock.io" />
             </a>
@@ -39,7 +36,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item dropdown mr-4 ml-2 language-switcher">
+                    @*<li class="nav-item dropdown mr-4 ml-2 language-switcher">
                         <a class="nav-link nav-dropdown dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             EN
                         </a>
@@ -48,12 +45,12 @@
                             <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="fr" class="dropdown-item">French</a>
                             <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="ru" class="dropdown-item">Russian</a>
                         </div>
-                    </li>
-                    <li class="nav-item">
+                    </li>*@
+                    <li class="nav-item ml-4">
                         <a asp-controller="Home" asp-action="VisitTor" class="nav-link"><i class="fas fa-link"></i> safeblockcjm5jbf.onion</a>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav ml-auto">
+                <ul class="nav navbar-nav ml-auto m-auto">
                     <li class="nav-item">
                         <a asp-controller="Home" asp-action="Services" class="nav-link">Services</a>
                     </li>
@@ -73,6 +70,19 @@
                     </li>
                     <li class="nav-item ml-3">
                         <a asp-controller="Home" asp-action="Support" class="nav-link">Support</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item ml-3">
+                        <a asp-controller="Account" asp-action="Register" class="btn btn-success small">Register</a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item ml-3">
+                        <a asp-controller="Home" asp-action="Support" class="nav-link nav-dropdown language-switch">
+                            <img src="~/static/1.png"/>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -127,10 +137,12 @@
         </footer>
     }
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/jquery.easing/js/jquery.easing.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/lib/particles.js/particles.min.js"></script>
     <script src="~/lib/nprogress/nprogress.js"></script>
+    <script type="text/javascript" src="~/lib/master-slider/js/masterslider.min.js"></script>
     <environment include="Development">
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
@@ -144,8 +156,9 @@
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-    
+        
         gtag('config', 'UA-97451022-1');
     </script>
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="015b29c5-d995-4502-8940-80dcf48101c9";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
 </body>
 </html>

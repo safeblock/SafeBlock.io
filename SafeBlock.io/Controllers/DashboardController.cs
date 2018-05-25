@@ -17,5 +17,23 @@ namespace SafeBlock.Io.Controllers
         {
             return View();
         }
+
+        [Route("dashboard/security")]
+        public IActionResult Security()
+        {
+            return View();
+        }
+
+        [Route("dashboard/exchange")]
+        public IActionResult Exchange()
+        {
+            return View();
+        }
+
+        [Route("dashboard/support")]
+        public IActionResult Support()
+        {
+            return View();
+        }
     }
 }

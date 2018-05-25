@@ -6,11 +6,12 @@
         ViewBag.Section = "register";
     }
 }
-<div id="particle-background"></div>
-<div class="dialog-window">
+<div id="edge-background"></div>
+<div class="loader"></div> 
+<div class="dialog-window loaded hide">
     <h1 class="text-center">SafeBlock.io</h1>
     <p class="text-center">The Most Secure Cryptos Wallet on the Earth.</p>
-    <ul class="nav justify-content-center">
+    <ul class="nav tabs justify-content-center">
         <li class="nav-item">
             <a class="nav-link @(ViewBag.Section == "register" ? "active":"")" href="#create-wallet" data-toggle="tab" role="tab" aria-controls="create-wallet" aria-selected="true">Create a Wallet</a>
         </li>
@@ -41,4 +42,13 @@
 </div>
 @section Scripts
 {
+    <script type="text/javascript">
+        $(document).ready(function() {
+            setTimeout(function() {
+                    $(".loader").fadeOut();
+                    $(".loaded").fadeIn();
+                },
+                1000);
+        });
+    </script>
 }

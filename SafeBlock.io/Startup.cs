@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Options;
 using NetEscapades.AspNetCore.SecurityHeaders;
 using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
@@ -56,6 +58,8 @@ namespace SafeBlock.Io
             
             services.AddDistributedMemoryCache();
             
+            services.AddDirectoryBrowser();
+            
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -92,6 +96,7 @@ namespace SafeBlock.Io
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseBrowserLink();
             }
             else
             {
@@ -114,6 +119,13 @@ namespace SafeBlock.Io
                 }));
 
             app.UseStaticFiles();
+            
+            /*app.UseDirectoryBrowser(new DirectoryBrowserOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "static")),
+                RequestPath = "/static"
+            });*/
 
             app.UseSession();
 

@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Knowledge Base";
 }
-<div id="particle-background" class="simple"></div>
+<div id="edge-background" class="simple"></div>
 <div id="support">
     <div class="container">
         <div class="offset-md-2 col-md-8 text-center">
@@ -21,9 +21,74 @@
 </div>
 <div id="wrapper">
     <main id="main">
-        <section class="pt-5">
+        <section class="pt-3">
             <div class="container">
-                <img src="~/static/Sans titre-4.jpg" style="width: 100%;"/>
+                
+                <ul class="nav tabs justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active @(ViewBag.Section == "register" ? "active":"")" href="#create-wallet" data-toggle="tab" role="tab" aria-controls="create-wallet" aria-selected="true">Create a Wallet</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewBag.Section == "login" ? "active":"")" href="#login" id="home-tab" data-toggle="tab" role="tab" aria-controls="login" aria-selected="true">Sign In</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#"><i class="fas fa-lock-open"></i> Forgotten Password</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </li>
+                </ul>
+                <br/>
+                <br/>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <i class="pe pe-7s-users" style="float: left; height: 50px; font-size: 60px; line-height: 50px; margin-right: 15px;"></i>
+                        <h5>Your Account</h5>
+                        <p class="small">View Articles &rarr;</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <i class="pe pe-7s-cash" style="float: left; height: 50px; font-size: 60px; line-height: 50px; margin-right: 15px;"></i>
+                        <h5>Billing & Payments</h5>
+                        <p class="small">View Articles &rarr;</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <i class="pe pe-7s-shield" style="float: left; height: 50px; font-size: 60px; line-height: 50px; margin-right: 15px;"></i>
+                        <h5>System Security</h5>
+                        <p class="small">View Articles &rarr;</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <i class="pe pe-7s-credit" style="float: left; height: 50px; font-size: 60px; line-height: 50px; margin-right: 15px;"></i>
+                        <h5>Debit Card</h5>
+                        <p class="small">View Articles &rarr;</p>
+                    </div>
+                </div>
+                <div class="row mt-4 pt-4">
+                    <div class="col-lg-3">
+                        <i class="pe pe-7s-like" style="float: left; height: 50px; font-size: 60px; line-height: 50px; margin-right: 15px;"></i>
+                        <h5>Your Account</h5>
+                        <p class="small">View Articles &rarr;</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <i class="pe pe-7s-key" style="float: left; height: 50px; font-size: 60px; line-height: 50px; margin-right: 15px;"></i>
+                        <h5>Billing & Payments</h5>
+                        <p class="small">View Articles &rarr;</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <i class="pe pe-7s-config" style="float: left; height: 50px; font-size: 60px; line-height: 50px; margin-right: 15px;"></i>
+                        <h5>System Security</h5>
+                        <p class="small">View Articles &rarr;</p>
+                    </div>
+                    <div class="col-lg-3">
+                        <i class="pe pe-7s-help2" style="float: left; height: 50px; font-size: 60px; line-height: 50px; margin-right: 15px;"></i>
+                        <h5>Debit Card</h5>
+                        <p class="small">View Articles &rarr;</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

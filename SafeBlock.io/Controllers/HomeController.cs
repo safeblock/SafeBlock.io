@@ -42,23 +42,6 @@ namespace SafeBlock.Io.Controllers
         {
             return View();
         }
-        
-        [Route("support")]
-        public IActionResult Support()
-        {
-            return View();
-        }
-
-        [Route("support/search")]
-        public IActionResult SearchKnowledgebase(KnowledgeBase knowledgeBase)
-        {
-            if (ModelState.IsValid)
-            {
-                
-            }
-            
-            return View("Support", knowledgeBase);
-        }
 
         [Route("redirect/tor-service")]
         public async Task<IActionResult> VisitTor()

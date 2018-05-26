@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #20335e;
+    background-color: #444d6e;
     margin: 0px;
 }
 
@@ -67,13 +67,17 @@ canvas {
     position: absolute;
     /*background: url(/static/section-background.svg) 50% 17vh no-repeat,linear-gradient(to left top, #28a5f5, #1556c8) 0 0 no-repeat;*/
     /*background: url("/static/header-overlay.png") 0 0 no-repeat, url("/static/section-background.svg") 50% 17vh no-repeat, url("/static/header-bg-azure.png") 50% 100% no-repeat;*/
-    background: url("/static/section-background.svg") 50% 17vh no-repeat, url("/static/girl.png") center no-repeat;
-
-    background-size: auto, cover;
+    background: url("/static/section-background.svg") 50% 17vh no-repeat;
+    background-size: auto;
     top: 0px;
     height: 994px;
     width: 100%;
     z-index: -1;
+}
+
+#edge-background.girl {
+    background: url("/static/section-background.svg") 50% 17vh no-repeat, url("/static/girl.png") center no-repeat;
+    background-size: auto, cover;
 }
 
 #particle-background.simple {
@@ -285,6 +289,17 @@ section h2 {
     font-size: 26pt;
     text-align: center;
     color: #444444;
+}
+
+section h5 {
+    font-weight: 100;
+}
+
+.icon {
+    float: left;
+    font-size: 60px;
+    line-height: 50px;
+    margin-right: 15px;
 }
 
 section p.lead {

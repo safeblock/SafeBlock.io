@@ -1,5 +1,23 @@
-﻿NProgress.start();
-NProgress.done();
+﻿$(document).ready(function () {
+    NProgress.start();
+    NProgress.done();
+
+    var items = document.querySelectorAll(".accordion a");
+
+    function toggleAccordion() {
+        this.classList.toggle('active');
+        this.nextElementSibling.classList.toggle('active');
+    }
+
+    items.forEach(item = > item.addEventListener('click', toggleAccordion)
+)
+    ;
+
+    $('.open-popup-link').magnificPopup({
+        type: 'inline',
+        midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
+    });
+});
 
 /*document.addEventListener('DOMContentLoaded',function(event){
     // array with texts to type in typewriter

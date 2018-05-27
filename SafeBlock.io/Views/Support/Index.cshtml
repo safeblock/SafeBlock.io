@@ -11,7 +11,7 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control form-control-lg search" asp-for="Query" placeholder="Search help on our knowledge database." aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-transparent" type="submit"><i class="fas fa-search"></i></button>
+                        <button class="btn btn-transparent normal pl-4 pr-4" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </form>
@@ -23,70 +23,135 @@
     <main id="main">
         <section class="pt-3">
             <div class="container">
-                
-                <ul class="nav tabs justify-content-center">
+                <ul class="nav tabs justify-content-center" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active @(ViewBag.Section == "register" ? "active":"")" href="#create-wallet" data-toggle="tab" role="tab" aria-controls="create-wallet" aria-selected="true">Create a Wallet</a>
+                        <a class="nav-link active" id="nowledgebase-tab" data-toggle="tab" href="#nowledgebase" role="tab" aria-controls="nowledgebase" aria-selected="true">KnowledgeBase</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ViewBag.Section == "login" ? "active":"")" href="#login" id="home-tab" data-toggle="tab" role="tab" aria-controls="login" aria-selected="true">Sign In</a>
+                        <a class="nav-link" id="faq-tab" data-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false">FAQ</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#"><i class="fas fa-lock-open"></i> Forgotten Password</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
-                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact Us</a>
                     </li>
                 </ul>
-                <br/>
-                <br/>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <img src="~/static/icons/icons8-utilisateur-50.png" class="icon"/>
-                        <h5>My Account</h5>
-                        <p class="small">View Articles &rarr;</p>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="nowledgebase" role="tabpanel" aria-labelledby="nowledgebase-tab">
+                        <div class="row mt-5">
+                            <div class="col-lg-3">
+                                <img src="~/static/icons/icons8-utilisateur-50.png" class="icon"/>
+                                <h5>My Account</h5>
+                                <p class="small"><a asp-controller="Support" asp-action="ViewCategory" asp-route-category="account" class="inherit">View Articles &rarr;</a></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="~/static/icons/icons8-protection-des-données-50.png" class="icon"/>
+                                <h5>Privacy Policy</h5>
+                                <p class="small"><a asp-controller="Support" asp-action="ViewCategory" asp-route-category="privacy" class="inherit">View Articles &rarr;</a></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="~/static/icons/icons8-paramètres-de-l'api-50.png" class="icon"/>
+                                <h5>API Using</h5>
+                                <p class="small"><a asp-controller="Support" asp-action="ViewCategory" asp-route-category="api" class="inherit">View Articles &rarr;</a></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="~/static/icons/icons8-lien-50.png" class="icon"/>
+                                <h5>Affiliation</h5>
+                                <p class="small"><a asp-controller="Support" asp-action="ViewCategory" asp-route-category="affiliation" class="inherit">View Articles &rarr;</a></p>
+                            </div>
+                        </div>
+                        <div class="row mt-4 pt-4">
+                            <div class="col-lg-3">
+                                <img src="~/static/icons/icons8-stockage-en-ligne-50.png" class="icon"/>
+                                <h5>Full Node Hosting</h5>
+                                <p class="small"><a asp-controller="Support" asp-action="ViewCategory" asp-route-category="hosting" class="inherit">View Articles &rarr;</a></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="~/static/icons/icons8-espion-homme-50.png" class="icon"/>
+                                <h5>Anonymity</h5>
+                                <p class="small"><a asp-controller="Support" asp-action="ViewCategory" asp-route-category="anonymity" class="inherit">View Articles &rarr;</a></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="~/static/icons/icons8-argent-50.png" class="icon"/>
+                                <h5>Billing & Payment</h5>
+                                <p class="small"><a asp-controller="Support" asp-action="ViewCategory" asp-route-category="payment" class="inherit">View Articles &rarr;</a></p>
+                            </div>
+                            <div class="col-lg-3">
+                                <img src="~/static/icons/icons8-empreinte-digitale-50.png" class="icon"/>
+                                <h5>Identification</h5>
+                                <p class="small"><a asp-controller="Support" asp-action="ViewCategory" asp-route-category="identification" class="inherit">View Articles &rarr;</a></p>
+                            </div>
+                        </div>
+                        <p class="text-center mt-5 text-muted small">Get a reward by participating in writing articles, join our <a href="https://discord.gg/9BW8wHH" target="_blank">discord</a>.</p>
                     </div>
-                    <div class="col-lg-3">
-                        <img src="~/static/icons/icons8-protection-des-données-50.png" class="icon"/>
-                        <h5>Privacy Policy</h5>
-                        <p class="small">View Articles &rarr;</p>
+                    <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
+                        <div class="row mt-5">
+                            <div class="col-lg-12">
+                                <div class="accordion">
+                                    <div class="accordion-item">
+                                        <a>Why is the moon sometimes out during the day?</a>
+                                        <div class="content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <a>Why is the sky blue?</a>
+                                        <div class="content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <a>Will we ever discover aliens?</a>
+                                        <div class="content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <a>How much does the Earth weigh?</a>
+                                        <div class="content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item">
+                                        <a>How do airplanes stay up?</a>
+                                        <div class="content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-3">
-                        <img src="~/static/icons/icons8-paramètres-de-l'api-50.png" class="icon"/>
-                        <h5>API Using</h5>
-                        <p class="small">View Articles &rarr;</p>
-                    </div>
-                    <div class="col-lg-3">
-                        <img src="~/static/icons/icons8-lien-50.png" class="icon"/>
-                        <h5>Affiliation</h5>
-                        <p class="small">View Articles &rarr;</p>
-                    </div>
-                </div>
-                <div class="row mt-4 pt-4">
-                    <div class="col-lg-3">
-                        <img src="~/static/icons/icons8-stockage-en-ligne-50.png" class="icon"/>
-                        <h5>Full Node Hosting</h5>
-                        <p class="small">View Articles &rarr;</p>
-                    </div>
-                    <div class="col-lg-3">
-                        <img src="~/static/icons/icons8-espion-homme-50.png" class="icon"/>
-                        <h5>Anonymity</h5>
-                        <p class="small">View Articles &rarr;</p>
-                    </div>
-                    <div class="col-lg-3">
-                        <img src="~/static/icons/icons8-argent-50.png" class="icon"/>
-                        <h5>Billing & Payment</h5>
-                        <p class="small">View Articles &rarr;</p>
-                    </div>
-                    <div class="col-lg-3">
-                        <img src="~/static/icons/icons8-empreinte-digitale-50.png" class="icon"/>
-                        <h5>Identification</h5>
-                        <p class="small">View Articles &rarr;</p>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="row justify-content-md-center mt-5">
+                            <div class="col-lg-9">
+                                <form method="post" asp-controller="Support" asp-action="SendMessage" asp-antiforgery="true">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="contactSubject">Subject</label>
+                                                <input type="email" class="form-control" id="contactSubject" aria-describedby="contactSubjectHelp" placeholder="Enter subject">
+                                                <small id="contactSubjectHelp" class="form-text text-muted pl-1">Specify why do you contact us.</small>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="form-group">
+                                                <label for="contactMail">Email address</label>
+                                                <input type="email" class="form-control" id="contactMail" aria-describedby="contactMailHelp" placeholder="Enter email address">
+                                                <small id="contactMailHelp" class="form-text text-muted pl-1">Get more by watching our <a asp-controller="Home" asp-action="PrivacyPolicy">Privacy Policy</a>.</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="contactMessage">Message content</label>
+                                        <textarea class="form-control" rows="7" id="contactMessage" aria-describedby="contactMessage" placeholder="Enter your message .."></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <recaptcha/>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary btn-sm"> Send Message</button>
+                                    <button type="reset" class="btn btn-dark btn-sm"> Cancel</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

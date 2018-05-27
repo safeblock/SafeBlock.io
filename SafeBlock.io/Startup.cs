@@ -15,6 +15,7 @@ using Microsoft.Extensions.Options;
 using NetEscapades.AspNetCore.SecurityHeaders;
 using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using SafeBlock.Io.Models;
 using SafeBlock.Io.Settings;
 using SignalRChat.Hubs;
@@ -72,6 +73,12 @@ namespace SafeBlock.Io
             });
             
             services.AddMvc();
+            
+            services.AddRecaptcha(new RecaptchaOptions
+            {
+                SiteKey = Configuration["Recaptcha:SiteKey"],
+                SecretKey = Configuration["Recaptcha:SecretKey"]
+            });
 
             services.AddWebMarkupMin(options =>
             {

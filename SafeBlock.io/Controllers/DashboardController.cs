@@ -35,5 +35,9 @@ namespace SafeBlock.Io.Controllers
         {
             return View();
         }
+
+        public IActionResult MyAccount()
+        {
+        }
     }
 }

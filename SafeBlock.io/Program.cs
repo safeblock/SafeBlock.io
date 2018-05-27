@@ -20,6 +20,7 @@ namespace SafeBlock.Io
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseUrls("http://localhost:1989/")
                 .Build();
     }
 }

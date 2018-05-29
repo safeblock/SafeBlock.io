@@ -24,6 +24,12 @@ namespace SafeBlock.Io.Controllers
             return View();
         }
 
+        [Route("error/{errorCode?}")]
+        public IActionResult Error(int errorCode = 404) 
+        {
+            return View(errorCode);
+        }
+
         [Route("change-language/{lang}")]
         public IActionResult ChangeLanguage(string lang)
         {

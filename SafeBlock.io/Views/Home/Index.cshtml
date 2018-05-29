@@ -1,6 +1,9 @@
 ﻿@{
     ViewData["Title"] = "Keep your Cryptos. Safely.";
 }
+<a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
+    <i class="fab fa-twitter"></i>
+</a>
 <audio id="carteSoudCtrl">
     <source src="~/sounds/beep-22.mp3" type="audio/mpeg">
 </audio>
@@ -250,6 +253,7 @@
                          data-position="normal">
                         <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Create a Wallet</a>
                     </div>
+                    @*http://www.mhapps.com/uploads/mhapps/images/blog/ingenicoipp350.png*@
                     <img class="ms-layer"
                          src="static/blank.gif"
                          data-src="/static/vault_door.png"
@@ -336,10 +340,53 @@
         </section>
         <section class="bg-white">
             <div class="container">
-                <h2>Why you should get it now</h2>
-                <p class="lead">Lorem Ipsum is simply dummy texte of the printing and typesetting industry.</p>
+                <h2>Which Currencies are supported ?</h2>
+                <p class="lead">Actually SafeBlock.io supports this seven following currencies.</p>
                 <div class="separator"></div>
-                
+                <div class="row">
+                    <div class="col-lg text-center">
+                        <a href="https://bitcoin.org/fr/" target="_blank">
+                            <img src="~/static/btc.png" alt="bitcoin" class="coin" />
+                        </a>
+                        <h4 class="mt-3 text-muted">Bitcoin</h4>
+                    </div>
+                    <div class="col-lg text-center">
+                        <a href="https://ethereum.org/" target="_blank">
+                            <img src="~/static/eth.png" alt="ethereum" class="coin" />
+                        </a>
+                        <h4 class="mt-3 text-muted">Ethereum</h4>
+                    </div>
+                    <div class="col-lg text-center">
+                        <a href="https://litecoin.org/" target="_blank">
+                            <img src="~/static/ltc.png" alt="litecoin" class="coin" />
+                        </a>
+                        <h4 class="mt-3 text-muted">Litecoin</h4>
+                    </div>
+                    <div class="col-lg text-center">
+                        <a href="https://stratisplatform.com/" target="_blank">
+                            <img src="~/static/strat.png" alt="stratis" class="coin" />
+                        </a>
+                        <h4 class="mt-3 text-muted">Stratis</h4>
+                    </div>
+                    <div class="col-lg text-center">
+                        <a href="https://www.bitcoincash.org/" target="_blank">
+                            <img src="~/static/bch.png" alt="bch" class="coin" />
+                        </a>
+                        <h4 class="mt-3 text-muted">Bitcoin Cash</h4>
+                    </div>
+                    <div class="col-lg text-center">
+                        <a href="https://www.dash.org/" target="_blank">
+                            <img src="~/static/dash.png" alt="dash" class="coin" />
+                        </a>
+                        <h4 class="mt-3 text-muted">Dash</h4>
+                    </div>
+                    <div class="col-lg text-center">
+                        <a href="https://z.cash/" target="_blank">
+                            <img src="~/static/zec.png" alt="zcash" class="coin" />
+                        </a>
+                        <h4 class="mt-3 text-muted">ZCash</h4>
+                    </div>
+                </div>
             </div>
         </section>
         <section>

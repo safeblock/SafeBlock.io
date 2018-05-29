@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #444d6e;
+    background-color: #2e4060;
     margin: 0px;
 }
 
@@ -19,6 +19,29 @@ body {
     .container-fluid {
         max-width: 95%;
     }
+}
+
+.text-success {
+    color: #43c1a8 !important;
+}
+
+.shadow {
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.03) !important;
+}
+
+.bg-light .shadow {
+    box-shadow: 0 6px 50px rgba(0, 0, 0, .05) !important;
+}
+
+.coin {
+    width: 100px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.7s ease;
+}
+
+.coin:hover {
+    opacity: 1;
 }
 
 .zi-top {
@@ -126,6 +149,10 @@ canvas {
     background-color: #43c1a8;
 }
 
+.btn-success:hover {
+    background-color: #54d2b9;
+}
+
 .btn-success.small {
     background-color: #43c1a8;
     box-shadow: inherit;
@@ -135,6 +162,10 @@ canvas {
 
 .btn-primary {
     background-color: #00acfe;
+}
+
+.btn-primary:hover {
+    background-color: #11bdff !important;
 }
 
 .btn-border {
@@ -286,8 +317,8 @@ canvas {
 
 #wrapper {
     padding-top: 114px;
-    background-image: url(/static/wave.png);
-    background-repeat: no-repeat;
+    background-image: url("/static/wave.png");
+    background-repeat: repeat-x;
 }
 
 #wrapper #main {
@@ -640,4 +671,47 @@ nav.navbar-expand-lg .nav-link.active::after {
     -webkit-transition: all 0.35s ease 0.15s;
     -o-transition: all 0.35s ease 0.15s;
     transition: all 0.35s ease 0.15s;
+}
+
+#blog .head.title {
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 12px 12px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 10pt;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 15px;
+}
+
+#blog .article h1 {
+    font-weight: 700;
+}
+
+#blog h2 {
+    font-size: 30px !important;
+    line-height: 1.4;
+    font-weight: 300;
+}
+
+#blog .article p:not(.lead) {
+    font-family: serif;
+    font-size: 13pt;
+    color: #555555;
+}
+
+#blog .user-avatar {
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;
+    height: 60px;
+}
+
+#blog p {
+    color: #888888;
+    font-size: 15px;
+    line-height: 1.6;
 }

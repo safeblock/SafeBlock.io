@@ -35,5 +35,10 @@ namespace SafeBlock.Io.Controllers
         {
             return View();
         }
+
+        public IActionResult SendMessage()
+        {
+            return Content("salut");
+        }
     }
 }

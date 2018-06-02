@@ -26,11 +26,11 @@ body {
 }
 
 .shadow {
-    box-shadow: 0 0 35px rgba(0, 0, 0, 0.03) !important;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.05) !important;
 }
 
 .bg-light .shadow {
-    box-shadow: 0 6px 50px rgba(0, 0, 0, .05) !important;
+    box-shadow: 0 6px 50px rgba(0, 0, 0, .07) !important;
 }
 
 .coin {

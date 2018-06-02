@@ -1,0 +1,27 @@
+{
+  "name": "safeblock.io",
+  "version": "1.0.0",
+  "description": "A multicurrencies and secure wallet.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.safeblock.io"
+  },
+  "keywords": [
+    "bitcoin",
+    "cryptocurrencies",
+    "stratis",
+    "litecoin",
+    "dash",
+    "zclassic",
+    "ltc",
+    "btc",
+    "strat",
+    "zec"
+  ],
+  "author": "Clint Mourlevat",
+  "license": "ISC"
+}

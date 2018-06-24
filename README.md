@@ -45,7 +45,7 @@ $ mkdir ~/vault-config
 $ nano ~/vault-config/config.json
 ```
 
-```json
+```
 storage "file" {
   path = "/mnt/vault/data"
 }

@@ -7,7 +7,7 @@ This is the official repository of safeblock.io a multicurrencies wallet with lo
 This is the manifest for the installation in a production environment.
 > This manifest is for a debian 9 installation
 
-### Dotnet Framework installation
+### .Net Core Framework installation
 ![](https://img.shields.io/badge/netcore-2.0-blue.svg?longCache=true) SafeBlock is coded in ASP.Net Core.
 
 ```console
@@ -23,12 +23,12 @@ $ sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
 ```console
 $ sudo apt-get update
 $ sudo apt-get install postgresql postgresql-client
-#testing installation
+# testing installation
 $ su - postgres
 $ psql
 ```
 #### Creating Users/Roles and Importing Database
-lorem ipsum
+To do
 
 ### Vault Installation
 ![](https://img.shields.io/badge/vault-0.10-lightgray.svg?longCache=true) Vault protect sensitive data in a secure vault, with sealing capabilities.
@@ -113,7 +113,7 @@ $ sudo apt-get install -y nodejs
 $ npm install -g bower
 ```
 
-### SafeBlock Installation
+### SafeBlock Deployment
 ```console
 $ git clone http://git.safeblock.io/SafeBlock.io/SafeBlock.io.git
 $ cd SafeBlock.io/SafeBlock.io

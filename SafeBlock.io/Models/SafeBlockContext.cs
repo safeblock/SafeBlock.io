@@ -51,5 +51,7 @@ namespace SafeBlock.io.Models
                 entity.Property(e => e.RegisterIp).HasColumnName("RegisterIP");
             });
         }
+
+        public DbSet<Users> Utilisateurs { get; set; }  
     }
 }

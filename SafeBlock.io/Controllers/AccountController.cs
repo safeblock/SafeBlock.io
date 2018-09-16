@@ -25,13 +25,17 @@ namespace SafeBlock.io.Controllers
         private SafeBlockContext _context;
         private IHostingEnvironment _env;
         private IVaultClient _vaultClient;
+        
+        private readonly IUtilisateurs _utilisateurs;
 
-        public AccountController(IHostingEnvironment env, IOptions<VaultSettings> _vaultSettings, SafeBlockContext context)
+        public AccountController(IHostingEnvironment env, IOptions<VaultSettings> _vaultSettings, SafeBlockContext context, IUtilisateurs utilisateurs)
         {
             _env = env;
             _context = context;
 
             _vaultClient = VaultClientFactory.CreateVaultClient(new Uri(_vaultSettings.Value.ConnectionString), new TokenAuthenticationInfo(_vaultSettings.Value.Token));
+
+            _utilisateurs = utilisateurs;
         }
 
         [Route("account/getting-started/{section?}")]
@@ -134,6 +138,8 @@ namespace SafeBlock.io.Controllers
         {
             ViewBag.Section = "login";
             ModelState.Remove("VerifyPassword");
+
+            return Content(_utilisateurs.GetUsers().Count.ToString());
 
             if (ModelState.IsValid)
             {

@@ -1,13 +1,15 @@
 # SafeBlock Repository
-This is the official repository of SafeBlock.io a multicurrencies wallet with lots off features.
+This is the official repository of safeblock.io a multicurrencies wallet with lots off features.
 
 ![](https://img.shields.io/badge/safeblock-v2.0.0-brightgreen.svg?longCache=true) ![](https://img.shields.io/badge/bootstrap-4.1.1-blue.svg?longCache=true) ![](https://img.shields.io/badge/nbitcoin-4.1.1.7-lightgray.svg?longCache=true) ![](https://img.shields.io/badge/BCrypt.Net--Next-2.1.3-lightgray.svg?longCache=true)
+
+![](https://pix.watch/_NDYc1/L2lmib.png)
 
 ## Installation on Debian Stretch
 This is the manifest for the installation in a production environment.
 > This manifest is for a debian 9 installation
 
-### Dotnet Framework installation
+### .Net Core Framework installation
 ![](https://img.shields.io/badge/netcore-2.0-blue.svg?longCache=true) SafeBlock is coded in ASP.Net Core.
 
 ```console
@@ -23,12 +25,12 @@ $ sudo mv prod.list /etc/apt/sources.list.d/microsoft-prod.list
 ```console
 $ sudo apt-get update
 $ sudo apt-get install postgresql postgresql-client
-#testing installation
+# testing installation
 $ su - postgres
 $ psql
 ```
 #### Creating Users/Roles and Importing Database
-lorem ipsum
+To do
 
 ### Vault Installation
 ![](https://img.shields.io/badge/vault-0.10-lightgray.svg?longCache=true) Vault protect sensitive data in a secure vault, with sealing capabilities.
@@ -45,7 +47,7 @@ $ mkdir ~/vault-config
 $ nano ~/vault-config/config.json
 ```
 
-```json
+```
 storage "file" {
   path = "/mnt/vault/data"
 }
@@ -113,9 +115,9 @@ $ sudo apt-get install -y nodejs
 $ npm install -g bower
 ```
 
-### SafeBlock Installation
+### SafeBlock Deployment
 ```console
-$ git clone http://git.SafeBlock.io/SafeBlock.io/SafeBlock.io.git
+$ git clone http://git.safeblock.io/SafeBlock.io/SafeBlock.io.git
 $ cd SafeBlock.io/SafeBlock.io
 $ bower update --allow-root
 ```

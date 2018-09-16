@@ -1,53 +1,107 @@
 ﻿@{
-    ViewData["Title"] = "Home";
+    ViewBag.Title = "Wallet Overview";
     Layout = "_Dashboard";
 }
-<h1><strong>Wallet</strong> Overview</h1>
+<div class="float-right text-right mt-1">
+    <h3>Total Balance</h3>
+    <h5>1 042,00 €</h5>
+</div>
+<h1 class="mb-1">Welcome to <strong>SafeBlock.io</strong></h1>
+<p class="lead" style="margin-bottom: 40px;">Hello Clint, welcome back on SafeBlock.io.</p>
 <div class="row">
-    <div class="col-lg-5">
-        <div class="pute">
-            <h3><strong>Cumulative</strong> Balance</h3>
+    <div class="col-md-6">
+        <div class="block big">
+            <h3><strong>Wallet</strong> Overview</h3>
         </div>
     </div>
-    <div class="col-lg-7">
-        <div class="pute">
-            <h3><strong>Cumulative</strong> Balance</h3>
+    <div class="col-md-6">
+        <div class="block big">
+            <h3><strong>Prices</strong> Charts</h3>
+            <div class="" style="height: 190px;">
+                <canvas id="myChart" style="" width="630" height="190"></canvas>
+            </div>
         </div>
     </div>
 </div>
-<div class="row mt-4">
-    <div class="col-lg-5">
-        <div class="pute">
-            <h3><strong>Cumulative</strong> Balance</h3>
+<div class="row pl-1 pr-1" style="margin-top: 25px;">
+    <div class="col-lg-12">
+        <h6 class="float-right">
+            <a class="nav-link inherit dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort by <strong>Total Balance</strong>
+            </a>
+        </h6>
+        <h4>Accounts</h4>
+    </div>
+</div>
+<div class="row mt-3 mb-4 pl-1 pr-1">
+    <div class="col">
+        <div class="block">
+            <div class="headline">
+                <img src="~/static/btc.png" />
+                <h4>Bitcoin</h4>
+                <h5>Bitcoin Account 1</h5>
+            </div>
+            <div class="body">
+                <h4>BTC 0.70538945</h4>
+                <h6>EUR 2574,79 € <span class="green">+9.25%</span></h6>
+            </div>
         </div>
     </div>
-    <div class="col-lg-7">
-        <div class="pute">
-            <h3><strong>Cumulative</strong> Balance</h3>
+    <div class="col">
+        <div class="block">
+            <div class="headline">
+                <img src="~/static/eth.png" />
+                <h4>Ethereum</h4>
+                <h5>Ethereum Account 1</h5>
+            </div>
+            <div class="body">
+                <h4>ETH 0.01269135024</h4>
+                <h6>EUR 270,40 € <span class="green">+2.42%</span></h6>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="block">
+            <div class="headline">
+                <img src="~/static/strat.png" />
+                <h4>Stratis</h4>
+                <h5>Stratis Account 1</h5>
+            </div>
+            <div class="body">
+                <h4>STRAT 150.47</h4>
+                <h6>EUR 457,88 € <span class="red">-3.20%</span></h6>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="block">
+            <div class="headline">
+                <img src="~/static/bch.png" />
+                <h4>Bitcoin Cash</h4>
+                <h5>Bitcoin Cash 1</h5>
+            </div>
+            <div class="body">
+                <h4>BCH 0.70538945</h4>
+                <h6>EUR 2574,79 € <span class="green">+1.12%</span></h6>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="block">
+            <div class="headline">
+                <img src="~/static/zec.png" />
+                <h4>ZCash</h4>
+                <h5>ZCash Account 1</h5>
+            </div>
+            <div class="body">
+                <h4>ZEC 3.290</h4>
+                <h6>EUR 1029,46 € <span class="green">+4.25%</span></h6>
+            </div>
         </div>
     </div>
 </div>
 @section Scripts
 {
     <script type="text/javascript">
-        /*$(document).ready(function() {
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": false,
-                "positionClass": "toast-bottom-right",
-                "preventDuplicates": true,
-                "showDuration": "30000",
-                "hideDuration": "1000",
-                "timeOut": "5000",
-                "extendedTimeOut": "10100000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            };
-            toastr["info"]("<figure class='user-avatar'><img src='http://odindesign-themes.com/emerald-dragon/images/avatars/avatar_02.jpg' alt='user-image'></figure><p class='info'>Title</p><p class='timestamp'>X hours ago</p>    						 <span class='sl-icon icon-heart'></span>    						 <img class='close-btn' src='images/dashboard/notif-close-icon.png' alt='close-icon'>						")
-        });*/
     </script>
 }

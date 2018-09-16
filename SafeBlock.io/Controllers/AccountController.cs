@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -9,19 +8,17 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
-using SafeBlock.Io.Models;
+using SafeBlock.io.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Options;
-using NBitcoin;
-using SafeBlock.Io.Services;
-using SafeBlock.Io.Settings;
+using SafeBlock.io.Services;
+using SafeBlock.io.Settings;
 using VaultSharp;
 using VaultSharp.Backends.Authentication.Models.Token;
 
-namespace SafeBlock.Io.Controllers
+namespace SafeBlock.io.Controllers
 {
     public class AccountController : Controller
     {
@@ -33,7 +30,7 @@ namespace SafeBlock.Io.Controllers
         {
             _env = env;
             _context = context;
-            
+
             _vaultClient = VaultClientFactory.CreateVaultClient(new Uri(_vaultSettings.Value.ConnectionString), new TokenAuthenticationInfo(_vaultSettings.Value.Token));
         }
 
@@ -45,7 +42,7 @@ namespace SafeBlock.Io.Controllers
             {
                 return RedirectToAction("Index", "Dashboard");
             }
-            
+
             ViewBag.Section = section;
             return View();
         }
@@ -56,16 +53,16 @@ namespace SafeBlock.Io.Controllers
         public async Task<IActionResult> Register(HandleLoginModel handleLoginModel)
         {
             //TODO : remove user if not confirmed after 1 day
-            
+
             ViewBag.Section = "register";
             ModelState.Remove("KeepSession");
-            
+
             if(ModelState.IsValid)
             {
                 using (var sb = new SafeBlockContext())
                 {
                     var SecurityToken = SecurityUsing.CreateCryptographicallySecureGuid().ToString();
-                    
+
                     var newUser = new Users
                     {
                         Mail = handleLoginModel.Mail.ToLower(),
@@ -83,7 +80,7 @@ namespace SafeBlock.Io.Controllers
                     try
                     {
                         sb.SaveChanges();
-                        
+
                         //TODO : store in secret
                         // Chiffrement du token
                         var firstCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(
@@ -92,21 +89,19 @@ namespace SafeBlock.Io.Controllers
                         var secondCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(
                             handleLoginModel.Password,
                             firstCrypt));
-                        
+
                         // Création du token dans le vault (doublement chiffré)
                         await _vaultClient.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}", new Dictionary<string, object>
                         {
                             {"token", secondCrypt}
                         });
-                        
-                        // Connexion de l'utilisateur 
+
+                        // Connexion de l'utilisateur
                         SignInUser(handleLoginModel.Mail);
-                        
-                        //TODO : send mail if it's good
+
                         // Envoi du mail de confirmation
-                        
-                        MailUsing.SendConfirmationMail(handleLoginModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.Io\robots.txt");
-                        
+                        MailUsing.SendConfirmationMail(handleLoginModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.io\robots.txt");
+
                         return RedirectToAction("ChooseWallet", "Dashboard");
                     }
                     catch (DbUpdateException e)
@@ -115,7 +110,7 @@ namespace SafeBlock.Io.Controllers
                     }
                 }
             }
-            
+
             return View("GettingStarted", handleLoginModel);
         }
 
@@ -139,14 +134,14 @@ namespace SafeBlock.Io.Controllers
         {
             ViewBag.Section = "login";
             ModelState.Remove("VerifyPassword");
-            
+
             if (ModelState.IsValid)
             {
                 var userPresence = _context.Users.Where(x => x.Mail.Equals(handleLoginModel.Mail.ToLower()));
                 if (userPresence.Any())
                 {
                     var token = string.Empty;
-                    
+
                     try
                     {
                         var fullyCryptedToken = await _vaultClient.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
@@ -168,7 +163,7 @@ namespace SafeBlock.Io.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Mail", "This account does not exists.");   
+                    ModelState.AddModelError("Mail", "This account does not exists.");
                 }
             }
             return View("GettingStarted", handleLoginModel);
@@ -182,7 +177,7 @@ namespace SafeBlock.Io.Controllers
             await _context.SaveChangesAsync();*/
             return View();
         }
-        
+
         [Route("account/logout")]
         public IActionResult Logout()
         {
@@ -191,7 +186,7 @@ namespace SafeBlock.Io.Controllers
 
             return RedirectToAction("Index", "Home");
         }
-        
+
         public IActionResult ValidateEmailAddress(string mail)
         {
             return Json(!MailUsing.IsBannedMail(mail) ? "true" : $"This email address is not allowed.");

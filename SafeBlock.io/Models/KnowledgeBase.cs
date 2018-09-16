@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace SafeBlock.Io.Models
+namespace SafeBlock.io.Models
 {
     public class KnowledgeBase
     {

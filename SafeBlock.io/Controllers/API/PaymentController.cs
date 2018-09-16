@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using NBitcoin;
 using Newtonsoft.Json;
 using SafeBlock.io.Models.API;
-using SafeBlock.Io.Models;
-using SafeBlock.Io.Services;
+using SafeBlock.io.Models;
+using SafeBlock.io.Services;
 
 namespace SafeBlock.io.Controllers.API
 {

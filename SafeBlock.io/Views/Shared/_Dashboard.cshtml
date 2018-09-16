@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SafeBlock.Io Wallet</title>
+    <title>SafeBlock.io | @ViewBag.Title</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css" />
     <link rel="stylesheet" href="~/lib/mdi/css/materialdesignicons.min.css" />
@@ -21,27 +21,39 @@
     <link rel="shortcut icon" href="~/favicon.ico" />
 </head>
 <body class="bg-light">
+    @*<div class="bg-dark" id="loader" style="position: fixed;top: 0px;left: 0px;right: 0px;bottom: 0px;z-index: 9999;"> 
+        <div class="sk-folding-cube" style="top: calc(50% - 80px);">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>*@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
         <a class="navbar-brand" href="#">&nbsp;</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation">
+                aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse account-nav">
-            <span class="navbar-text pl-3"> With
-                <strong>SafeBlock.io</strong> Keep all your Cryptos in a Perfect Security 💪 </span>
+            <span class="navbar-text pl-3">
+                With
+                <strong>SafeBlock.io</strong> Keep all your Cryptos in a Perfect Security 💪
+            </span>
             <ul class="navbar-nav ml-auto pr-4">
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="fas fa-bell"></i> Notifications</a>
+                        <i class="fas fa-bell"></i> Notifications
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="fas fa-comments"></i> Messaging</a>
+                        <i class="fas fa-comments"></i> Messaging
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="avatar" gravatar-email="@User.Identity.Name" gravatar-force-https="true" gravatar-size="30" gravatar-default-image="mm" />
+                        <img class="avatar" gravatar-email="@User.Identity.Name" gravatar-force-https="true" gravatar-size="26" gravatar-default-image="mm" />
                         <span class="vam">Clint Mourlevat</span>
                     </a>
                 </li>
@@ -59,20 +71,23 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="fas fa-coins"></i> Buy Cryptos</a>
+                        <i class="mdi mdi-file-document"></i> API Documentation
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="fas fa-cube"></i> Blockchain As A Service</a>
+                        <i class="mdi mdi-code-braces"></i> Development Platform
+                    </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="fas fa-cog"></i> Settings</a>
+                        <i class="mdi mdi-settings"></i> Settings
+                    </a>
                 </li>
             </ul>
-            <span class="navbar-text ml-auto mr-3">
-                <small>Version 2.1.0</small>
-            </span>
+            <a asp-action="Version" class="navbar-text ml-auto mr-3 inherit text-muted small" data-toggle="tooltip" data-placement="left" title="Tooltip on top">
+                <i class="fas fa-info-circle"></i> Version 2.1.0
+            </a>
         </div>
     </nav>
     <ul class="nav flex-column pt-1" id="side">
@@ -82,32 +97,44 @@
             </a>
         </li>
         <li class="nav-item mt-4">
-            <a class="nav-link active" href="#">
-                <img src="/static/icons/icons8-portefeuille-32.png"> </a>
+            <a class="nav-link active" asp-action="Index" data-toggle="tooltip" data-placement="right" title="Wallet Overview">
+                <img src="/static/icons/icons8-portefeuille-32.png">
+            </a>
         </li>
         <li class="nav-item mt-3">
-            <a class="nav-link" href="#">
-                <img src="/static/icons/icons8-sécurité-vérifiée-32.png"> </a>
+            <a class="nav-link" asp-action="Security" data-toggle="tooltip" data-placement="right" title="Security Center">
+                <img src="/static/icons/icons8-sécurité-vérifiée-32.png">
+            </a>
         </li>
         <li class="nav-item mt-3">
-            <a class="nav-link" href="#">
-                <img src="/static/icons/icons8-remplacer-32.png"> </a>
+            <a class="nav-link" asp-action="Exchange" data-toggle="tooltip" data-placement="right" title="Currencies Exchanging">
+                <img src="/static/icons/icons8-remplacer-32.png">
+            </a>
         </li>
         <li class="nav-item mt-3">
-            <a class="nav-link" href="#">
-                <img src="/static/icons/icons8-coffre-fort-32.png"> </a>
+            <a class="nav-link" asp-action="Vault" data-toggle="tooltip" data-placement="right" title="Vault Management">
+                <img src="/static/icons/icons8-coffre-fort-32.png">
+            </a>
         </li>
         <li class="nav-item mt-3">
-            <a class="nav-link" href="#">
-                <img src="/static/icons/icons8-réunion-32.png"> </a>
+            <a class="nav-link" asp-action="Escrow" data-toggle="tooltip" data-placement="right" title="Escrow Platform">
+                <img src="/static/icons/icons8-réunion-32.png">
+            </a>
         </li>
         <li class="nav-item mt-3">
-            <a class="nav-link" href="/dashboard/support">
-                <img src="/static/icons/icons8-support-en-ligne-32.png"> </a>
+            <a class="nav-link" asp-action="FullNode" data-toggle="tooltip" data-placement="right" title="Full Node Hosting">
+                <img src="~/static/icons/icons8-cube-32.png">
+            </a>
         </li>
-        <li class="nav-item mt-3 logout">
-            <a class="nav-link" href="/account/logout">
-                <img src="/static/icons/icons8-fermer-32.png"> </a>
+        <li class="nav-item mt-3">
+            <a class="nav-link" asp-action="Support" data-toggle="tooltip" data-placement="right" title="Support Center">
+                <img src="/static/icons/icons8-support-en-ligne-32.png">
+            </a>
+        </li>
+        <li class="nav-item mt-3 logout" data-toggle="tooltip" data-placement="right" title="Logout Account">
+            <a class="nav-link" asp-controller="Account" asp-action="Logout">
+                <img src="/static/icons/icons8-fermer-32.png">
+            </a>
         </li>
     </ul>
     <div id="wrapper">

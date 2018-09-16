@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SafeBlock.Io.Models
+namespace SafeBlock.io.Models
 {
     public class HandleLoginModel
     {

@@ -1,4 +1,5 @@
-﻿@{
+﻿@inject IViewLocalizer Localizer
+@{
     ViewData["Title"] = "Keep your Cryptos. Safely.";
 }
 <a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
@@ -11,50 +12,50 @@
 <div id="landing">
     <div class="container">
         <div id="P_masterslider" class="master-slider-parent ms-parent-id-62">
-            <div id="masterslider" class="master-slider ms-skin-default" >
-                <div class="ms-slide" data-delay="1" data-fill-mode="fill" >
+            <div id="masterslider" class="master-slider ms-skin-default">
+                <div class="ms-slide" data-delay="1" data-fill-mode="fill">
                     <div class="ms-layer ms-title"
                          style=""
-                         data-effect="top(long,false)" 
-                         data-duration="1000" 
-                         data-delay="0" 
-                         data-hide-effect="fade" 
+                         data-effect="top(long,false)"
+                         data-duration="1000"
+                         data-delay="0"
+                         data-hide-effect="fade"
                          data-ease="easeOutQuint"
                          data-parallax="1"
                          data-offset-x="0"
                          data-offset-y="-150"
                          data-origin="ml"
-                         data-position="normal" >With SafeBlock.io<br />Keep all your Cryptos<br />in a Perfect Security 💪</div>
+                         data-position="normal">@Localizer["Slider1"]</div>
                     <div class="ms-layer ms-subtitle"
                          style=""
-                         data-effect="left(long)" 
-                         data-duration="500" 
-                         data-delay="0" 
+                         data-effect="left(long)"
+                         data-duration="500"
+                         data-delay="0"
                          data-offset-x="0"
                          data-offset-y="0"
                          data-origin="ml"
-                             data-position="normal">Feel free to create your multi-currency wallet now<br /> and enjoy all the features: exchange, mixing ...</div>
+                         data-position="normal">@Localizer["Slider2"]</div>
                     <div class="ms-layer ms-subtitle"
                          style=""
-                         data-effect="bottom(long,false)" 
-                         data-duration="300" 
-                         data-delay="500" 
+                         data-effect="bottom(long,false)"
+                         data-duration="300"
+                         data-delay="500"
                          data-offset-x="0"
                          data-offset-y="100"
                          data-origin="ml"
                          data-position="normal">
-                        <a asp-controller="Account" asp-action="Login" class="btn btn-success">Log In</a>
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-success">@Localizer["Login"]</a>
                     </div>
                     <div class="ms-layer ms-subtitle"
                          style=""
-                         data-effect="bottom(long,false)" 
-                         data-duration="300" 
-                         data-delay="500" 
+                         data-effect="bottom(long,false)"
+                         data-duration="300"
+                         data-delay="500"
                          data-offset-x="165"
                          data-offset-y="100"
                          data-origin="ml"
                          data-position="normal">
-                        <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Create a Wallet</a>
+                        <a asp-controller="Account" asp-action="Register" class="btn btn-primary">@Localizer["CreateWallet"]</a>
                     </div>
                     <img class="ms-layer"
                          src="static/blank.gif"
@@ -68,7 +69,7 @@
                          data-offset-x="250"
                          data-offset-y="0"
                          data-origin="mr"
-                         data-position="normal"/>
+                         data-position="normal" />
                     <img class="ms-layer"
                          src="static/blank.gif"
                          data-src="/static/play-halo2.png"
@@ -81,7 +82,7 @@
                          data-offset-x="250"
                          data-offset-y="0"
                          data-origin="mr"
-                         data-position="normal"/>
+                         data-position="normal" />
                     <div class="ms-layer blink play"
                          style=""
                          data-effect="fade"
@@ -93,70 +94,68 @@
                          data-origin="mr"
                          data-position="normal">
                         <a href="#" class="launch-slider">
-                            <img src="/static/play.png" alt=""/>
+                            <img src="/static/play.png" alt="" />
                         </a>
                     </div>
-                    <img
-                        class="ms-layer ms-wheel"
-                        src="/static/blank.gif"
-                        data-src="/static/mouse-scroll-b-icon-w.png"
-                        alt=""
-                        style=""
-                        data-effect="t(true,n,50,n,n,n,n,n,n,n,n,n,n,n,n)"
-                        data-duration="1500"
-                        data-delay="200"
-                        data-ease="easeOutQuint"
-                        data-type="image"
-                        data-action="scrollToEnd"
-                        data-offset-x="0"
-                        data-offset-y="35"
-                        data-origin="bc"
-                        data-position="normal" />
-                    <img
-                        class="ms-layer ms-wheel-icon"
-                        src="/static/blank.gif"
-                        data-src="/static/mouse-scroll-w-icon-w.png"
-                        alt=""
-                        style=""
-                        data-effect="t(true,n,55,-666,n,n,n,n,n,n,n,n,n,n,n)"
-                        data-duration="1500"
-                        data-delay="200"
-                        data-ease="easeOutQuint"
-                        data-type="image"
-                        data-action="scrollToEnd"
-                        data-offset-x="0"
-                        data-offset-y="35"
-                        data-origin="bc"
-                        data-position="normal" />
+                    <img class="ms-layer ms-wheel"
+                         src="/static/blank.gif"
+                         data-src="/static/mouse-scroll-b-icon-w.png"
+                         alt=""
+                         style=""
+                         data-effect="t(true,n,50,n,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-duration="1500"
+                         data-delay="200"
+                         data-ease="easeOutQuint"
+                         data-type="image"
+                         data-action="scrollToEnd"
+                         data-offset-x="0"
+                         data-offset-y="35"
+                         data-origin="bc"
+                         data-position="normal" />
+                    <img class="ms-layer ms-wheel-icon"
+                         src="/static/blank.gif"
+                         data-src="/static/mouse-scroll-w-icon-w.png"
+                         alt=""
+                         style=""
+                         data-effect="t(true,n,55,-666,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-duration="1500"
+                         data-delay="200"
+                         data-ease="easeOutQuint"
+                         data-type="image"
+                         data-action="scrollToEnd"
+                         data-offset-x="0"
+                         data-offset-y="35"
+                         data-origin="bc"
+                         data-position="normal" />
                 </div>
-            
-                <div class="ms-slide" data-delay="1" data-fill-mode="fill" >
+
+                <div class="ms-slide" data-delay="1" data-fill-mode="fill">
                     <div class="ms-layer ms-title text-right"
                          style=""
-                         data-effect="top(long,false)" 
-                         data-duration="1000" 
-                         data-delay="0" 
-                         data-hide-effect="fade" 
+                         data-effect="top(long,false)"
+                         data-duration="1000"
+                         data-delay="0"
+                         data-hide-effect="fade"
                          data-ease="easeOutQuint"
                          data-parallax="1"
                          data-offset-x="0"
                          data-offset-y="-150"
                          data-origin="mr"
-                         data-position="normal" >With SafeBlock.io<br />Keep all your Cryptos<br />in a Perfect Security 💪</div>
+                         data-position="normal">With SafeBlock.io<br />Keep all your Cryptos<br />in a Perfect Security 💪</div>
                     <div class="ms-layer ms-subtitle text-right"
                          style=""
-                         data-effect="left(long)" 
-                         data-duration="500" 
-                         data-delay="0" 
+                         data-effect="left(long)"
+                         data-duration="500"
+                         data-delay="0"
                          data-offset-x="0"
                          data-offset-y="0"
                          data-origin="mr"
-                         data-position="normal">Feel free to create your multi-currency wallet now<br /> and enjoy all the features: exchange, mixing ...</div>
+                         data-position="normal">Feel free to create your multi-currency wallet now<br />and enjoy all the features: exchange, mixing ...</div>
                     <div class="ms-layer ms-subtitle"
                          style=""
-                         data-effect="bottom(long,false)" 
-                         data-duration="300" 
-                         data-delay="500" 
+                         data-effect="bottom(long,false)"
+                         data-duration="300"
+                         data-delay="500"
                          data-offset-x="0"
                          data-offset-y="100"
                          data-origin="mr"
@@ -165,77 +164,75 @@
                     </div>
                     <div class="ms-layer ms-subtitle"
                          style=""
-                         data-effect="bottom(long,false)" 
-                         data-duration="300" 
-                         data-delay="500" 
+                         data-effect="bottom(long,false)"
+                         data-duration="300"
+                         data-delay="500"
                          data-offset-x="165"
                          data-offset-y="100"
                          data-origin="mr"
                          data-position="normal">
                         <a asp-controller="Account" asp-action="Register" class="btn btn-primary">Create a Wallet</a>
                     </div>
-                    <img
-                        class="ms-layer ms-wheel"
-                        src="/static/blank.gif"
-                        data-src="/static/mouse-scroll-b-icon-w.png"
-                        alt=""
-                        style=""
-                        data-effect="t(true,n,50,n,n,n,n,n,n,n,n,n,n,n,n)"
-                        data-duration="1500"
-                        data-delay="200"
-                        data-ease="easeOutQuint"
-                        data-type="image"
-                        data-action="scrollToEnd"
-                        data-offset-x="0"
-                        data-offset-y="35"
-                        data-origin="bc"
-                        data-position="normal" />
-                    <img
-                        class="ms-layer ms-wheel-icon"
-                        src="/static/blank.gif"
-                        data-src="/static/mouse-scroll-w-icon-w.png"
-                        alt=""
-                        style=""
-                        data-effect="t(true,n,55,-666,n,n,n,n,n,n,n,n,n,n,n)"
-                        data-duration="1500"
-                        data-delay="200"
-                        data-ease="easeOutQuint"
-                        data-type="image"
-                        data-action="scrollToEnd"
-                        data-offset-x="0"
-                        data-offset-y="35"
-                        data-origin="bc"
-                        data-position="normal" />
+                    <img class="ms-layer ms-wheel"
+                         src="/static/blank.gif"
+                         data-src="/static/mouse-scroll-b-icon-w.png"
+                         alt=""
+                         style=""
+                         data-effect="t(true,n,50,n,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-duration="1500"
+                         data-delay="200"
+                         data-ease="easeOutQuint"
+                         data-type="image"
+                         data-action="scrollToEnd"
+                         data-offset-x="0"
+                         data-offset-y="35"
+                         data-origin="bc"
+                         data-position="normal" />
+                    <img class="ms-layer ms-wheel-icon"
+                         src="/static/blank.gif"
+                         data-src="/static/mouse-scroll-w-icon-w.png"
+                         alt=""
+                         style=""
+                         data-effect="t(true,n,55,-666,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-duration="1500"
+                         data-delay="200"
+                         data-ease="easeOutQuint"
+                         data-type="image"
+                         data-action="scrollToEnd"
+                         data-offset-x="0"
+                         data-offset-y="35"
+                         data-origin="bc"
+                         data-position="normal" />
 
                 </div>
-            
-                <div class="ms-slide" data-delay="1" data-fill-mode="fill" >
+
+                <div class="ms-slide" data-delay="1" data-fill-mode="fill">
                     <div class="ms-layer ms-title"
                          style=""
-                         data-effect="top(long,false)" 
-                         data-duration="1000" 
-                         data-delay="0" 
-                         data-hide-effect="fade" 
+                         data-effect="top(long,false)"
+                         data-duration="1000"
+                         data-delay="0"
+                         data-hide-effect="fade"
                          data-ease="easeOutQuint"
                          data-parallax="1"
                          data-offset-x="0"
                          data-offset-y="-150"
                          data-origin="ml"
-                         data-position="normal" >With SafeBlock.io<br />Keep all your Cryptos<br />in a Perfect Security 💪</div>
+                         data-position="normal">With SafeBlock.io<br />Keep all your Cryptos<br />in a Perfect Security 💪</div>
                     <div class="ms-layer ms-subtitle"
                          style=""
-                         data-effect="left(long)" 
-                         data-duration="500" 
-                         data-delay="0" 
+                         data-effect="left(long)"
+                         data-duration="500"
+                         data-delay="0"
                          data-offset-x="0"
                          data-offset-y="0"
                          data-origin="ml"
-                         data-position="normal">Feel free to create your multi-currency wallet now<br /> and enjoy all the features: exchange, mixing ...</div>
+                         data-position="normal">Feel free to create your multi-currency wallet now<br />and enjoy all the features: exchange, mixing ...</div>
                     <div class="ms-layer ms-subtitle"
                          style=""
-                         data-effect="bottom(long,false)" 
-                         data-duration="300" 
-                         data-delay="500" 
+                         data-effect="bottom(long,false)"
+                         data-duration="300"
+                         data-delay="500"
                          data-offset-x="0"
                          data-offset-y="100"
                          data-origin="ml"
@@ -244,9 +241,9 @@
                     </div>
                     <div class="ms-layer ms-subtitle"
                          style=""
-                         data-effect="bottom(long,false)" 
-                         data-duration="300" 
-                         data-delay="500" 
+                         data-effect="bottom(long,false)"
+                         data-duration="300"
+                         data-delay="500"
                          data-offset-x="165"
                          data-offset-y="100"
                          data-origin="ml"
@@ -266,84 +263,266 @@
                          data-offset-x="45"
                          data-offset-y="-45"
                          data-origin="mr"
-                         data-position="normal"/>
-                    <img
-                        class="ms-layer ms-wheel"
-                        src="/static/blank.gif"
-                        data-src="/static/mouse-scroll-b-icon-w.png"
-                        alt=""
-                        style=""
-                        data-effect="t(true,n,50,n,n,n,n,n,n,n,n,n,n,n,n)"
-                        data-duration="1500"
-                        data-delay="200"
-                        data-ease="easeOutQuint"
-                        data-type="image"
-                        data-action="scrollToEnd"
-                        data-offset-x="0"
-                        data-offset-y="35"
-                        data-origin="bc"
-                        data-position="normal" />
-                    <img
-                        class="ms-layer ms-wheel-icon"
-                        src="/static/blank.gif"
-                        data-src="/static/mouse-scroll-w-icon-w.png"
-                        alt=""
-                        style=""
-                        data-effect="t(true,n,55,-666,n,n,n,n,n,n,n,n,n,n,n)"
-                        data-duration="1500"
-                        data-delay="200"
-                        data-ease="easeOutQuint"
-                        data-type="image"
-                        data-action="scrollToEnd"
-                        data-offset-x="0"
-                        data-offset-y="35"
-                        data-origin="bc"
-                        data-position="normal" />
+                         data-position="normal" />
+                    <img class="ms-layer ms-wheel"
+                         src="/static/blank.gif"
+                         data-src="/static/mouse-scroll-b-icon-w.png"
+                         alt=""
+                         style=""
+                         data-effect="t(true,n,50,n,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-duration="1500"
+                         data-delay="200"
+                         data-ease="easeOutQuint"
+                         data-type="image"
+                         data-action="scrollToEnd"
+                         data-offset-x="0"
+                         data-offset-y="35"
+                         data-origin="bc"
+                         data-position="normal" />
+                    <img class="ms-layer ms-wheel-icon"
+                         src="/static/blank.gif"
+                         data-src="/static/mouse-scroll-w-icon-w.png"
+                         alt=""
+                         style=""
+                         data-effect="t(true,n,55,-666,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-duration="1500"
+                         data-delay="200"
+                         data-ease="easeOutQuint"
+                         data-type="image"
+                         data-action="scrollToEnd"
+                         data-offset-x="0"
+                         data-offset-y="35"
+                         data-origin="bc"
+                         data-position="normal" />
 
                 </div>
                 @*<div class="ms-slide" data-delay="1" data-fill-mode="fill" >
-                    <div class="ms-layer ms-title"
-                        style=""
-                        data-ease="easeOutQuint"
-                        data-parallax="6"
-                        data-offset-x="0"
-                        data-offset-y="100"
-                        data-origin="tc"
-                        data-position="normal" >Handle all this Currencies :</div>
-                </div>*@
+                        <div class="ms-layer ms-title"
+                            style=""
+                            data-ease="easeOutQuint"
+                            data-parallax="6"
+                            data-offset-x="0"
+                            data-offset-y="100"
+                            data-origin="tc"
+                            data-position="normal" >Handle all this Currencies :</div>
+                    </div>*@
             </div>
         </div>
     </div>
 </div>
 @*<div class="container">
-    <div class="jumbotron bg-transparent text-center m-0">
-        <h1>Keep your Cryptos. Safely.</h1>
-        <p class="lead">Spend your Cryptocurrencies with Safety and Keep your Privacy with SafeBlock.</p>
-        <div class="form-group mt-5">
-            <a asp-controller="Account" asp-action="GettingStarted" asp-route-section="register" class="btn btn-primary btn-lg"><i class="fas fa-user-plus"></i> Create a Wallet</a>
-            <a asp-controller="Account" asp-action="GettingStarted" asp-route-section="login" class="btn btn-secondary btn-lg"><i class="fas fa-sign-in-alt"></i> Sign In SafeBlock</a>
+        <div class="jumbotron bg-transparent text-center m-0">
+            <h1>Keep your Cryptos. Safely.</h1>
+            <p class="lead">Spend your Cryptocurrencies with Safety and Keep your Privacy with SafeBlock.</p>
+            <div class="form-group mt-5">
+                <a asp-controller="Account" asp-action="GettingStarted" asp-route-section="register" class="btn btn-primary btn-lg"><i class="fas fa-user-plus"></i> Create a Wallet</a>
+                <a asp-controller="Account" asp-action="GettingStarted" asp-route-section="login" class="btn btn-secondary btn-lg"><i class="fas fa-sign-in-alt"></i> Sign In SafeBlock</a>
+            </div>
         </div>
     </div>
-</div>
-<div id="app-clearfix">
-    <img src="https://pix.watch/dVio9Q/8oQ_To.jpeg" class="app" alt="SafeBlock.io Wallet" />
-</div>*@
+    <div id="app-clearfix">
+        <img src="https://pix.watch/dVio9Q/8oQ_To.jpeg" class="app" alt="SafeBlock.io Wallet" />
+    </div>*@
 <div id="wrapper">
     <main id="main">
-        <section>
+        <section id="why-choose">
             <div class="container">
-                <h2>Why choose SafeBlock.io ?</h2>
-                <p class="lead">We are actually one of the best solutions for keeping your coins safe.</p>
+                <h2>@Localizer["WhyChooseSafeBlock"]</h2>
+                <p class="lead">@Localizer["WeAreActually"]</p>
                 <div class="separator"></div>
-                <img src="~/static/Sans titre-4.jpg" style="width: 100%;"/>
+                <div class="row pt-3">
+                    <div class="col-md-4 text-center">
+                        <img src="~/static/138368.svg" class="main" style="width: 200px;" />
+                        <img src="~/static/139732.svg" class="second" style="width: 80px; position: absolute; left: 268px; top: 130px;" />
+                        <h5 class="mt-5" style="font-weight: bold; font-family: 'Open Sans'; color: #14142D; font-size: 14pt;">Complete Security</h5>
+                        <p class="mt-3" style="font-family: 'Roboto', sans-serif; color: #A6A9C1; font-size: 11pt; line-height: 28px;">
+                            SafeBlock.io use Cold Storage<br />
+                            system for storing accounts.
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <img src="~/static/140992.svg" class="main" style="width: 200px;" />
+                        <img src="~/static/148767.svg" class="second" style="width: 80px; position: absolute; left: 268px; top: 130px;" />
+                        <h5 class="mt-5" style="font-weight: bold; font-family: 'Open Sans'; color: #14142D; font-size: 14pt;">Simple to Use for Everyone</h5>
+                        <p class="mt-3" style="font-family: 'Roboto', sans-serif; color: #A6A9C1; font-size: 11pt; line-height: 28px;">
+                            We make it easy to understand the<br />
+                            technology behing each project
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <img src="~/static/139737.svg" class="main" style="width: 200px;" />
+                        <img src="~/static/148766.svg" class="second" style="width: 80px; position: absolute; left: 268px; top: 130px;" />
+                        <h5 class="mt-5" style="font-weight: bold; font-family: 'Open Sans'; color: #14142D; font-size: 14pt;">No KYC or Surveillance</h5>
+                        <p class="mt-3" style="font-family: 'Roboto', sans-serif; color: #A6A9C1; font-size: 11pt; line-height: 28px;">
+                            Our platform does not require<br />
+                            KYC for creating a wallet.
+                        </p>
+                    </div>
+                </div>
             </div>
         </section>
-        <section class="bg-white">
+        <section class="bg-white short" id="features">
             <div class="container">
-                <h2>Which Currencies are supported ?</h2>
-                <p class="lead">Actually SafeBlock.io supports this seven following currencies.</p>
-                <div class="separator"></div>
+                <h3 class="text-center">We have developed solutions for everyone.</h3>
                 <div class="row">
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/912224.svg" class="icon" />
+                            <h5>Merchant Solutions</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/912267.svg" class="icon" />
+                            <h5>Escrow Platform</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/912259.svg" class="icon" />
+                            <h5>Mobile Application</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3 pt-3">
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/912223.svg" class="icon" />
+                            <h5>Buying Cryptos</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/912252.svg" class="icon" />
+                            <h5>Full Node Hosting</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/912226.svg" class="icon" />
+                            <h5>24/7 Support</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center text-muted mt-5 pt-4">and much more solutions...</p>
+            </div>
+        </section>
+        @*<section id="dashboard">
+            <div class="container pb-3">
+                <h2>Watch a Dashboard Preview</h2>
+                <p class="lead">@Localizer["GetUpdates"]</p>
+                <div class="separator mb-5"></div>
+                <div class="row pt-5">
+                    <div class="col-md-6 pt-4">
+                        <div style="width: 55px; float: left; height: 100%;">
+                            <div style="width: 35px;
+border-radius: 50%;
+height: 35px;
+line-height: 35px;
+text-align: center;
+color: #689ACA;
+background-color:      #FBFFFD;
+box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
+                            <div style="width: 35px;
+margin-top: 107px;
+border-radius: 50%;
+height: 35px;
+line-height: 35px;
+text-align: center;
+color: #689ACA;
+background-color:      #FBFFFD;
+box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
+                        </div>
+                        <h3 style="font-size: 14pt; color: #333333;" class="pt-2">Elegant & User-Friendly Interface</h3>
+                        <p style="font-family: Open Sans; font-size: 16px; font-weight: 400; color: #666666;">
+                            Welcome to Artech, Sydney's specialist office leas<br />
+                            people are drawn together.
+                        </p>
+                        <h3 class="pt-5" style="font-size: 14pt; color: #333333;">Elegant & User-Friendly Interface</h3>
+                        <p style="font-family: Open Sans; font-size: 16px; font-weight: 400; color: #666666;">
+                            Welcome to Artech, Sydney's specialist office leas<br />
+                            people are drawn together.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/static/dashboard-preview.png" style="width: 550px; box-shadow: 0px 0px 100px 0px #EFEFEF;" />
+                    </div>
+                </div>
+            </div>
+        </section>*@
+        <section id="card">
+            <div class="container pb-3">
+                <h2>Watch a Dashboard Preview</h2>
+                <p class="lead">@Localizer["GetUpdates"]</p>
+                <div class="separator mb-3"></div>
+                <div class="row pt-5">
+                    <div class="col-md-6 pt-5 mt-3">
+                        <div style="width: 55px; float: left; height: 100%;">
+                            <div style="width: 35px;
+border-radius: 50%;
+height: 35px;
+line-height: 35px;
+text-align: center;
+color: #689ACA;
+background-color:      #FBFFFD;
+box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
+                            <div style="width: 35px;
+margin-top: 107px;
+border-radius: 50%;
+height: 35px;
+line-height: 35px;
+text-align: center;
+color: #689ACA;
+background-color:      #FBFFFD;
+box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
+                        </div>
+                        <h3 style="font-size: 14pt; color: #333333;" class="pt-2">Elegant & User-Friendly Interface</h3>
+                        <p style="font-family: Open Sans; font-size: 16px; font-weight: 400; color: #666666;">
+                            Welcome to Artech, Sydney's specialist office leas<br />
+                            people are drawn together.
+                        </p>
+                        <h3 class="pt-5" style="font-size: 14pt; color: #333333;">Elegant & User-Friendly Interface</h3>
+                        <p style="font-family: Open Sans; font-size: 16px; font-weight: 400; color: #666666;">
+                            Welcome to Artech, Sydney's specialist office leas<br />
+                            people are drawn together.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/static/credit-card.png" style="width: 550px;" />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-white" id="currencies">
+            <div class="container">
+                <h2>@Localizer["WhichCurrencies"]</h2>
+                <p class="lead">@Localizer["ActuallySafeBlockSupports"]</p>
+                <div class="separator mb-5"></div>
+                <div class="row pt-3">
                     <div class="col-lg text-center">
                         <a href="https://bitcoin.org/fr/" target="_blank">
                             <img src="~/static/btc.png" alt="bitcoin" class="coin" />
@@ -366,7 +545,7 @@
                         <a href="https://stratisplatform.com/" target="_blank">
                             <img src="~/static/strat.png" alt="stratis" class="coin" />
                         </a>
-                        <h4 class="mt-3 text-muted">Stratis</h4>
+                        <h3 class="mt-3 text-muted">Stratis</h3>
                     </div>
                     <div class="col-lg text-center">
                         <a href="https://www.bitcoincash.org/" target="_blank">
@@ -389,26 +568,63 @@
                 </div>
             </div>
         </section>
-        <section>
+        @*<section class="bg-white short" id="features">
             <div class="container">
-                <h2>Subcribe to our Newsletter</h2>
-                <p class="lead">Get updates about SafeBlock.io and news about cryptocurrencies.</p>
+                <h3 class="text-center">We have developed solutions for everyone.</h3>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/680940.svg" class="icon" />
+                            <h5>Merchant Solutions</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/891500.svg" class="icon" />
+                            <h5>Escrow Platform</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/912238.svg" class="icon" />
+                            <h5>Mobile Application</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="">
+            <div class="container">
+                <h2>@Localizer["SubscribeToNewsletter"]</h2>
+                <p class="lead">@Localizer["GetUpdates"]</p>
                 <div class="separator mb-5"></div>
                 <div class="row offset-md-3 col-md-6">
                     <div class="col-md-8 p-0">
-                        <input type="text" class="form-control p-2" placeholder="Enter your email address..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control p-2" placeholder="@Localizer[" EnterEmail"]" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     </div>
                     <div class="col-md-4 pr-0">
-                        <button class="btn-block btn p-2 btn-holo btn-primary" type="button">Subscribe !</button>
+                        <button class="btn-block btn p-2 btn-holo btn-primary" type="button">@Localizer["Subscribe"]</button>
                     </div>
                 </div>
-                <p class="small text-center text-muted pt-4">Read more about how we collect and use your data in our <a href="">Privacy Policy</a>.</p>
+                <p class="small text-center text-muted pt-4">@Localizer["ReadMoreAbout"] <a href="">@Localizer["PrivacyPolicy"]</a>.</p>
             </div>
-        </section>
+        </section>*@
     </main>
 </div>
 @section Scripts
-{
+    {
     <script type="text/javascript">
         $(document).ready(function() {
             var mastersliderHome = new MasterSlider();
@@ -451,9 +667,9 @@
             /*$(".launch-slider").hover(function() {
                 $("#carteSoudCtrl")[0].play();
             });*/
-            
+
             $(".launch-slider").click(function() {
-                mastersliderHome.api.resume(); 
+                mastersliderHome.api.resume();
             });
         });
     </script>

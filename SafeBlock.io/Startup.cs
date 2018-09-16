@@ -16,12 +16,18 @@ using NetEscapades.AspNetCore.SecurityHeaders;
 using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
-using SafeBlock.Io.Models;
-using SafeBlock.Io.Settings;
+using SafeBlock.io.Models;
+using SafeBlock.io.Settings;
 using SignalRChat.Hubs;
 using WebMarkupMin.AspNetCore2;
+using React.AspNet;
+using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
 
-namespace SafeBlock.Io
+namespace SafeBlock.io
 {
     public class Startup
     {
@@ -32,7 +38,6 @@ namespace SafeBlock.Io
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<VaultSettings>(Configuration.GetSection("Vault"));
@@ -52,14 +57,13 @@ namespace SafeBlock.Io
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options =>
             {
+                //options.Cookie.Domain = "safeblock.io";
                 options.LoginPath = "/account/getting-started/login";
                 options.LogoutPath = "/account/logout";
                 options.AccessDeniedPath = "/account/getting-started/register";
             });
             
             services.AddDistributedMemoryCache();
-            
-            services.AddDirectoryBrowser();
             
             services.AddSession(options =>
             {
@@ -71,9 +75,13 @@ namespace SafeBlock.Io
                 options.InstanceName = "SecuredSession";
                 options.Configuration = Configuration.GetConnectionString("Redis");
             });
-            
-            services.AddMvc();
-            
+
+            services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+            services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization(); ;
+
             services.AddRecaptcha(new RecaptchaOptions
             {
                 SiteKey = Configuration["Recaptcha:SiteKey"],
@@ -97,20 +105,33 @@ namespace SafeBlock.Io
                     options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseBrowserLink();
+                //app.UseBrowserLink();
             }
             else
             {
                 app.UseExceptionHandler("/home/error");
             }
+            var supportedCultures = new[]
+            {
+                new CultureInfo("en-US"),
+                new CultureInfo("en"),
+                new CultureInfo("fr-FR"),
+                new CultureInfo("fr")
+            };
 
-            app.UseSecurityHeaders(new HeaderPolicyCollection()
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("en-US"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
+
+            /*app.UseSecurityHeaders(new HeaderPolicyCollection()
                 .AddFrameOptionsDeny()
                 .AddContentTypeOptionsNoSniff()
                 .AddXssProtectionBlock()
@@ -123,34 +144,17 @@ namespace SafeBlock.Io
                     builder.AddObjectSrc().None();
                     builder.AddFormAction().Self();
                     builder.AddFrameAncestors().None();
-                }));
+                }));*/
 
             app.UseStaticFiles();
-            
-            /*app.UseDirectoryBrowser(new DirectoryBrowserOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "static")),
-                RequestPath = "/static"
-            });*/
 
             app.UseSession();
 
             app.UseAuthentication();
-            
-            app.UseWebMarkupMin();
-            
-            /*app.UseSignalR(routes => 
-            {
-                routes.MapHub<NotificationHub>("/chathub");
-            });*/
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseWebMarkupMin();
+
+            app.UseMvc(routes => routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}"));
         }
     }
 }

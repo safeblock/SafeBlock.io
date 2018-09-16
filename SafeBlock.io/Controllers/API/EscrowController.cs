@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NBitcoin;
 using SafeBlock.io.Models.API;
-using SafeBlock.Io.Services;
+using SafeBlock.io.Services;
 
 namespace SafeBlock.io.Controllers.API
 {

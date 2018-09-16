@@ -1,4 +1,4 @@
-﻿namespace SafeBlock.Io.Settings
+﻿namespace SafeBlock.io.Settings
 {
     public class PostgreSQLSettings
     {

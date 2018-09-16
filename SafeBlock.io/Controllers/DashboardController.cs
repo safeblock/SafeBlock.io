@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace SafeBlock.Io.Controllers
+namespace SafeBlock.io.Controllers
 {
     [Authorize]
     public class DashboardController : Controller
@@ -11,6 +11,8 @@ namespace SafeBlock.Io.Controllers
         {
             return View();
         }
+
+        /*
 
         [Route("dashboard/choose-wallet")]
         public IActionResult ChooseWallet()
@@ -30,8 +32,32 @@ namespace SafeBlock.Io.Controllers
             return View();
         }
 
+        [Route("dashboard/vault")]
+        public IActionResult Vault()
+        {
+            return View();
+        }
+
+        [Route("dashboard/escrow")]
+        public IActionResult Escrow()
+        {
+            return View();
+        }
+
+        [Route("dashboard/full-node")]
+        public IActionResult FullNode()
+        {
+            return View();
+        }
+
         [Route("dashboard/support")]
         public IActionResult Support()
+        {
+            return View();
+        }
+
+        [Route("dashboard/version")]
+        public IActionResult Version()
         {
             return View();
         }
@@ -39,6 +65,6 @@ namespace SafeBlock.Io.Controllers
         public IActionResult MyAccount()
         {
             return Content("");
-        }
+        }*/
     }
 }

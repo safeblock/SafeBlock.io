@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace SafeBlock.Io.Controllers
+namespace SafeBlock.io.Controllers
 {
     public class ICOController : Controller
     {

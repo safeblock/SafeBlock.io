@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net.Mail;
 
-namespace SafeBlock.Io.Services
+namespace SafeBlock.io.Services
 {
     public static class MailUsing
     {
@@ -12,12 +12,12 @@ namespace SafeBlock.Io.Services
             var smtpServer = new SmtpClient("mail.privateemail.com")
             {
                 Port = 587,
-                Credentials = new System.Net.NetworkCredential("contact@safeblock.io", "zzncfvx0"),
+                Credentials = new System.Net.NetworkCredential("contact@SafeBlock.io", "zzncfvx0"),
                 EnableSsl = true,
             };
             var mail = new MailMessage()
             {
-                From = new MailAddress("contact@safeblock.io"),
+                From = new MailAddress("contact@SafeBlock.io"),
                 Subject = "🔑 [SafeBlock.io] Confirmate your wallet creation.",
                 Body = System.IO.File.ReadAllText(templateFile)
                     .Replace("{link}", activationLink),

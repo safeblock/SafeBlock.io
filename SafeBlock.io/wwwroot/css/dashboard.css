@@ -15,16 +15,19 @@ body {
     vertical-align: middle;
 }
 
-.dropdown-toggle::after {
+.dropdown-toggle::after
+{
     vertical-align: middle;
 }
 
-.bg-dark {
+.bg-dark
+{
     background-color: #334363 !important;
 }
 
-.bg-light {
-    background: #f8f8fb;
+.bg-light
+{
+    background-color: #f9f9f9 !important;
 }
 
 .navbar-dark .navbar-text {
@@ -59,6 +62,12 @@ body {
     border-bottom: 1px solid #EEEEEE;
 }
 
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-nav .nav-item:not(.active) .nav-link:hover
+{
+    color: rgba(0,0,0, 0.8);
+}
+
 #second-bar .nav-item:first-child .nav-link {
     margin-left: 30px;
 }
@@ -88,7 +97,7 @@ body {
     width: 25px;
 }
 
-#side .nav-link:not(.inherit):hover,
+/*#side .nav-link:not(.inherit):hover,*/
 #side .nav-link.active {
     /*background: url("/static/active.png") no-repeat left center;*/
     background-size: 10px;
@@ -108,7 +117,9 @@ body {
     margin-bottom: 25px;
 }
 
-#wrapper {
+#wrapper
+{
+    overflow-y: auto;
     position: fixed;
     left: 72px;
     top: 116px;
@@ -120,53 +131,74 @@ body {
 #wrapper h1 {
     font-weight: 100;
     font-size: 25pt;
-    color: #777777;
+    color: #111111;
     margin-bottom: 35px;
 }
 
-#wrapper .pute {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 14px;
-    line-height: 1.5;
-    color: #24292e;
-    font-size: 14px !important;
-    /*color: rgba(255,255,255,0.75);*/
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    padding: 25px 30px;
-    height: 30vh;
-    /*box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.01);*/
-}
+    #wrapper .block
+    {
+        background-color: #FFFFFF;
+        box-shadow: 0px 4px 10px #F1F1F1;
+        border-radius: 4px;
+        padding: 30px;
+    }
 
-#wrapper .pute h3 {
+        #wrapper .block.big
+        {
+            min-height: 300px;
+        }
 
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12pt;
-    font-weight: 300;
-    color: #333333;
-}
+        #wrapper .block h3
+        {
+            font-size: 18pt;
+            font-weight: 300;
+            color: #333333;
+        }
 
-/*.toast-success
+.block .green
 {
-    opacity: 1 !important;
-    visibility: visible;
-    position: fixed;
-    color: #000000 !important;
-    border: 0pt none;
-    z-index: 100000;
-    transition: all 0.3s ease-in-out 0s;
-    width: 300px;
-    padding: 34px 24px 26px;
-    right: 21px;
-    bottom: 21px;
-    background-color: #fff;
-    box-shadow: 0px 0px 16px 0px #e0e0e0 !important;
-    position: relative;
-    min-height: 80px;
-    padding: 20px 80px 12px 70px;
-}*/
+    color: mediumseagreen;
+}
 
-.toast-success {
+.block .red
+{
+    color: orangered;
+}
+
+.block .headline
+{
+    border-bottom: 1px solid #EEEEEE;
+    padding-bottom: 12px;
+}
+
+.block .headline img
+{
+    margin-top: 2px;
+    float: left;
+    height: 34px;
+    margin-right: 20px;
+}
+
+    .block .headline h4
+    {
+        color: #9a9a9a;
+        text-transform: uppercase;
+        font-size: 10pt;
+        margin-bottom: 0px;
+    }
+
+    .block .headline h5
+    {
+        font-size: 13pt;
+    }
+
+    .block .body
+    {
+        padding-top: 20px;
+    }
+
+.toast-success
+{
     color: #ffffff;
     border-color: #1bbf89;
     background-color: #1bbf89;
@@ -194,8 +226,8 @@ body {
 }
 
 .toast-info .user-avatar img {
-    width: 40px;
-    height: 40px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
 }
 
@@ -240,4 +272,136 @@ body {
 
 #toast-container.toast-top-right > div {
     margin-top: 60px;
+}
+
+.lol::after
+{
+    content: "\f243";
+    font-family: Font Awesome 5 Free;
+    font-weight: 900;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+
+.sk-folding-cube
+{
+    margin: 20px auto;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    -webkit-transform: rotateZ(45deg);
+    transform: rotateZ(45deg);
+}
+
+    .sk-folding-cube .sk-cube
+    {
+        float: left;
+        width: 50%;
+        height: 50%;
+        position: relative;
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+        .sk-folding-cube .sk-cube:before
+        {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #EEEEEE;
+            -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
+            animation: sk-foldCubeAngle 2.4s infinite linear both;
+            -webkit-transform-origin: 100% 100%;
+            -ms-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+        }
+
+    .sk-folding-cube .sk-cube2
+    {
+        -webkit-transform: scale(1.1) rotateZ(90deg);
+        transform: scale(1.1) rotateZ(90deg);
+    }
+
+    .sk-folding-cube .sk-cube3
+    {
+        -webkit-transform: scale(1.1) rotateZ(180deg);
+        transform: scale(1.1) rotateZ(180deg);
+    }
+
+    .sk-folding-cube .sk-cube4
+    {
+        -webkit-transform: scale(1.1) rotateZ(270deg);
+        transform: scale(1.1) rotateZ(270deg);
+    }
+
+    .sk-folding-cube .sk-cube2:before
+    {
+        -webkit-animation-delay: 0.3s;
+        animation-delay: 0.3s;
+    }
+
+    .sk-folding-cube .sk-cube3:before
+    {
+        -webkit-animation-delay: 0.6s;
+        animation-delay: 0.6s;
+    }
+
+    .sk-folding-cube .sk-cube4:before
+    {
+        -webkit-animation-delay: 0.9s;
+        animation-delay: 0.9s;
+    }
+
+@-webkit-keyframes sk-foldCubeAngle
+{
+    0%, 10%
+    {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+
+    25%, 75%
+    {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+
+    90%, 100%
+    {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
+}
+
+@keyframes sk-foldCubeAngle
+{
+    0%, 10%
+    {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0;
+    }
+
+    25%, 75%
+    {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1;
+    }
+
+    90%, 100%
+    {
+        -webkit-transform: perspective(140px) rotateY(180deg);
+        transform: perspective(140px) rotateY(180deg);
+        opacity: 0;
+    }
 }

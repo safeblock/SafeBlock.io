@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SafeBlock.Io.Models
+namespace SafeBlock.io.Models
 {
     public class Users
     {

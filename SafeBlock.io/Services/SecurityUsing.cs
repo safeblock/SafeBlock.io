@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using BCrypt.Net;
 
-namespace SafeBlock.Io.Services
+namespace SafeBlock.io.Services
 {
     public class SecurityUsing
     {

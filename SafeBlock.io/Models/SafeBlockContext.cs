@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using SafeBlock.Io.Models;
+using SafeBlock.io.Models;
 
-namespace SafeBlock.Io.Models
+namespace SafeBlock.io.Models
 {
     public sealed partial class SafeBlockContext : DbContext
     {

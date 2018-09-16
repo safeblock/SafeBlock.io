@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using SafeBlock.Io.Models;
+using SafeBlock.io.Models;
 
-namespace SafeBlock.Io.Controllers
+namespace SafeBlock.io.Controllers
 {
     public class SupportController : Controller
     {

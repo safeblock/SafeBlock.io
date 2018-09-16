@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Text;
+﻿using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SafeBlock.Io.Models;
-using SafeBlock.Io.Services;
-using VaultSharp;
-using VaultSharp.Backends.Authentication.Models.AppId;
-using VaultSharp.Backends.Authentication.Models.Custom;
-using VaultSharp.Backends.Authentication.Models.Token;
+using Microsoft.Extensions.Localization;
 
-namespace SafeBlock.Io.Controllers
+namespace SafeBlock.io.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<IActionResult> Index()
+        private IStringLocalizer<HomeController> _localizer;
+
+        public HomeController(IStringLocalizer<HomeController> localizer)
         {
+            _localizer = localizer;
+        }
+
+        public IActionResult Index()
+        {
+            ViewBag.Test = _localizer["Test"];
             return View();
         }
 

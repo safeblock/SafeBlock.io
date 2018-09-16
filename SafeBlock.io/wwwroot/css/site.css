@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Work+Sans:100,300,400|PT+Sans:400,700|Roboto:300,400');
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans|Work+Sans:100,300,400|PT+Sans:400,700|Roboto:300,400');
 
 ::-moz-selection {
     background: #39f;
@@ -6,8 +6,9 @@
     text-shadow: none;
 }
 
-body {
-    background-color: #2e4060;
+body
+{
+    background-color: #2d314a;
     margin: 0px;
 }
 
@@ -111,10 +112,13 @@ canvas {
     z-index: -1;
 }
 
-#edge-background.girl {
-    background: url("/static/section-background.svg") 50% 17vh no-repeat, url("/static/girl.png") center no-repeat;
-    background-size: auto, cover;
-}
+    #edge-background.girl
+    {
+        background: url("/static/section-background.svg") 50% 17vh no-repeat, url("/static/J-JdV7.jpg") center no-repeat;
+        background-size: auto, cover; /* -url("/static/girl.png") */
+        /*background-blend-mode: hard-light;
+        background-color: red;*/
+    }
 
 #particle-background.simple {
     /*background: url("/static/header-overlay.png") 0 0 no-repeat, url("/static/section-background.svg") 50% 17vh no-repeat, url("/static/header-bg-azure.png") 50% 100% no-repeat;*/
@@ -327,9 +331,15 @@ canvas {
     min-height: 200px;
 }
 
-section {
-    padding: 100px 0px;
+section
+{
+    padding: 100px 0;
     font-family: 'Roboto', sans-serif;
+}
+
+section.short
+{
+    padding: 70px 0px;
 }
 
 section h2 {
@@ -339,16 +349,61 @@ section h2 {
     color: #444444;
 }
 
+    section h3
+    {
+        color: #555555;
+        font-size: 21pt;
+    }
+
 section h5 {
     font-weight: 100;
 }
 
-.icon {
-    float: left;
-    font-size: 60px;
-    line-height: 50px;
-    margin-right: 15px;
-}
+    section#features .text-muted
+    {
+        color: #999999 !important;
+        font-style: italic;
+        font-size: 10pt;
+    }
+
+    section#features h3
+    {
+        margin-bottom: 70px;
+    }
+
+        section#features .block
+        {
+            border: 1px solid #CCCCCC;
+            border-radius: 20px;
+            height: 135px;
+            padding: 27px 25px;
+        }
+
+            section#features .block h5
+            {
+                font-weight: normal;
+                font-size: 16pt;
+            }
+            section#features .block p
+            {
+                font-weight: normal;
+                font-size: 10pt;
+                color: #888888;
+            }
+
+            section#features .block .icon
+            {
+                width: 80px;
+                margin-right: 20px;
+            }
+
+            .icon
+            {
+                float: left;
+                font-size: 60px;
+                line-height: 50px;
+                margin-right: 15px;
+            }
 
 section p.lead {
     font-weight: 300;
@@ -359,7 +414,7 @@ section p.lead {
 
 section .separator {
     background-color: #0b54ec;
-    width: 70px;
+    width: 90px;
     height: 2px;
     margin: 23px auto 50px;
 }
@@ -369,11 +424,17 @@ footer {
     color: #DDDDDD;
 }
 
-footer a,
-footer a:hover {
-    color: #AAAAAA;
-    text-decoration: none;
-}
+    footer .inner
+    {
+        padding: 60px 0px;
+    }
+
+    footer a,
+    footer a:hover
+    {
+        color: #AAAAAA;
+        text-decoration: none;
+    }
 
 footer .sub-footer {
     background-color: #20232a;

@@ -48,7 +48,7 @@ namespace SafeBlock.io
                 options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLDefault"));
             });
             
-            services.AddTransient<IUtilisateurs, Utilisateurs>();
+            services.AddTransient<IUsers, Users>();
             
             services.AddMemoryCache();
             

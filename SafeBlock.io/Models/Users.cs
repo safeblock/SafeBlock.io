@@ -1,19 +1,40 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+using System.Linq;
 
 namespace SafeBlock.io.Models
 {
-    public class Users
+    public class Users : IUsers
     {
-        public int Id { get; set; }
-        public string Mail { get; set; }
-        public string Token { get; set; }
-        public string Role { get; set; }
-        public DateTime? RegisterDate { get; set; }
-        public bool? HasUsingTor { get; set; }
-        public string RegisterIp { get; set; }
-        public string RegisterContext { get; set; }
-        public bool? IsAllowed { get; set; }
-        public bool? IsMailChecked { get; set; }
-        public string TwoFactorPolicy { get; set; }
+        private readonly SafeBlockContext _context = null;
+
+        public Users(DbContextOptions options)
+        {
+            _context = new SafeBlockContext(options);
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return _context.Users.Where(x => x.Mail == "clint.mourlevat@gmail.com").ToList();
+        }
+
+        public User GetUserByMail(string mail)
+        {
+            return _context.Users.Where(x => x.Mail.Equals(mail.ToLower())).SingleOrDefault();
+        }
+
+        public bool IsUserByMail(string mail)
+        {
+            return _context.Users.Any(x => x.Mail.Equals(mail.ToLower()));
+        }
+
+        public void AddUser(User newUser)
+        {
+            _context.Users.Add(newUser);
+            _context.SaveChanges();
+        }
     }
 }

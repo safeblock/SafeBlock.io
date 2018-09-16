@@ -7,8 +7,8 @@ namespace SafeBlock.io.Models
 {
     public sealed partial class SafeBlockContext : DbContext
     {
-        public DbSet<Users> Users { get; set; }
-
+        public DbSet<User> Users { get; set; }
+        
         public SafeBlockContext() : base()
         {
         }
@@ -30,7 +30,7 @@ namespace SafeBlock.io.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Users>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.ForNpgsqlHasComment("Contain all users informations.");
 
@@ -51,7 +51,5 @@ namespace SafeBlock.io.Models
                 entity.Property(e => e.RegisterIp).HasColumnName("RegisterIP");
             });
         }
-
-        public DbSet<Users> Utilisateurs { get; set; }  
     }
 }

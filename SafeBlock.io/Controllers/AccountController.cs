@@ -26,16 +26,16 @@ namespace SafeBlock.io.Controllers
         private IHostingEnvironment _env;
         private IVaultClient _vaultClient;
         
-        private readonly IUtilisateurs _utilisateurs;
+        private readonly IUsers _users;
 
-        public AccountController(IHostingEnvironment env, IOptions<VaultSettings> _vaultSettings, SafeBlockContext context, IUtilisateurs utilisateurs)
+        public AccountController(IHostingEnvironment env, IOptions<VaultSettings> _vaultSettings, SafeBlockContext context, IUsers users)
         {
             _env = env;
             _context = context;
 
             _vaultClient = VaultClientFactory.CreateVaultClient(new Uri(_vaultSettings.Value.ConnectionString), new TokenAuthenticationInfo(_vaultSettings.Value.Token));
 
-            _utilisateurs = utilisateurs;
+            _users = users;
         }
 
         [Route("account/getting-started/{section?}")]
@@ -67,24 +67,23 @@ namespace SafeBlock.io.Controllers
                 {
                     var SecurityToken = SecurityUsing.CreateCryptographicallySecureGuid().ToString();
 
-                    var newUser = new Users
-                    {
-                        Mail = handleLoginModel.Mail.ToLower(),
-                        Token = SecurityToken,    //SecurityUsing.HashBCrypt(handleLoginModel.Password),
-                        Role = "User",
-                        RegisterDate = DateTime.Now,
-                        HasUsingTor = true,    //TODO : detect tor ip
-                        RegisterIp = HttpContext.Connection.RemoteIpAddress.ToString(),
-                        RegisterContext = JsonConvert.SerializeObject(HttpContext.Request.Headers),
-                        IsAllowed = true,
-                        IsMailChecked = false,
-                        TwoFactorPolicy = "None",
-                    };
-                    sb.Users.Add(newUser);
                     try
                     {
-                        sb.SaveChanges();
-
+                        var newUser = new User
+                        {
+                            Mail = handleLoginModel.Mail.ToLower(),
+                            Token = SecurityToken,    //SecurityUsing.HashBCrypt(handleLoginModel.Password),
+                            Role = "User",
+                            RegisterDate = DateTime.Now,
+                            HasUsingTor = true,    //TODO : detect tor ip
+                            RegisterIp = HttpContext.Connection.RemoteIpAddress.ToString(),
+                            RegisterContext = JsonConvert.SerializeObject(HttpContext.Request.Headers),
+                            IsAllowed = true,
+                            IsMailChecked = false,
+                            TwoFactorPolicy = "None",
+                        };
+                        _users.AddUser(newUser);
+                        
                         //TODO : store in secret
                         // Chiffrement du token
                         var firstCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(
@@ -139,12 +138,10 @@ namespace SafeBlock.io.Controllers
             ViewBag.Section = "login";
             ModelState.Remove("VerifyPassword");
 
-            return Content(_utilisateurs.GetUsers().Count.ToString());
-
             if (ModelState.IsValid)
             {
-                var userPresence = _context.Users.Where(x => x.Mail.Equals(handleLoginModel.Mail.ToLower()));
-                if (userPresence.Any())
+                var userPresence = _users.IsUserByMail(handleLoginModel.Mail);
+                if (userPresence)
                 {
                     var token = string.Empty;
 
@@ -159,7 +156,7 @@ namespace SafeBlock.io.Controllers
                         ModelState.AddModelError("Mail", "Unable to decrypt your account.");
                     }
 
-                    var user = userPresence.First();
+                    var user = _users.GetUserByMail(handleLoginModel.Mail);
                     if (token.ToLower().Equals(user.Token))
                     {
                         SignInUser(user.Mail, user.Role, handleLoginModel.KeepSession);

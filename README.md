@@ -1,4 +1,4 @@
-# SafeBlock Repository
+# Official SafeBlock.io Repository
 This is the official repository of safeblock.io a multicurrencies wallet with lots off features.
 
 ![](https://img.shields.io/badge/safeblock-v2.0.0-brightgreen.svg?longCache=true) ![](https://img.shields.io/badge/bootstrap-4.1.1-blue.svg?longCache=true) ![](https://img.shields.io/badge/nbitcoin-4.1.1.7-lightgray.svg?longCache=true) ![](https://img.shields.io/badge/BCrypt.Net--Next-2.1.3-lightgray.svg?longCache=true)

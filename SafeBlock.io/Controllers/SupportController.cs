@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SafeBlock.io.Models;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace SafeBlock.io.Controllers
 {
@@ -36,8 +37,14 @@ namespace SafeBlock.io.Controllers
             return View();
         }
 
-        public IActionResult SendMessage()
+        [Route("support/send-message")]
+        [ValidateRecaptcha]
+        public IActionResult SendMessage(ContactDatas contactDatas)
         {
+            if(ModelState.IsValid)
+            {
+                return Content(contactDatas.Content);
+            }
             return Content("salut");
         }
     }

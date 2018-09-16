@@ -176,7 +176,7 @@
     <environment exclude="Development">
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-    @Html.Partial("_ValidationScriptsPartial")
+    <partial name="_ValidationScriptsPartial" />
     @RenderSection("Scripts", required: false)
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97451022-1"></script>
     <script>

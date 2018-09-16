@@ -2,8 +2,15 @@
 @{
 ViewData["Title"] = "Read our Blog";
 }
-@Model.Count
 <div id="particle-background" class="simple"></div>
+<div id="wave-header" class="short">
+    <div class="container">
+        <div class="offset-md-2 col-md-8 text-center">
+            <h1 class="text-white mb-0">Read our Blog</h1>
+            <p class="text-white-50 m-0 pt-3">What's new at SafeBlock.io ?</p>
+        </div>
+    </div>
+</div>
 <div id="wrapper">
     <main id="main">
         <section class="pt-5" id="blog">
@@ -32,7 +39,7 @@ ViewData["Title"] = "Read our Blog";
                                                         <span>&nbsp;<a class="inherit" asp-controller="Blog" asp-action="Search" asp-route-term="@tag">#@tag</a>&nbsp;</span>
                                                     }
                                                 </h6>
-                                                <h2><a asp-action="Index" asp-route-article="@Article.SeoTitle" class="inherit">@Article.Title</a></h2>
+                                                <h2><a asp-action="Article" asp-route-article="@Article.SeoTitle" class="inherit">@Article.Title</a></h2>
                                                 <p class="date text-muted">@Article.WriteDate.Value.ToString("D")</p>
                                                 <p class="m-0">@Article.Preamble</p>
                                             </div>
@@ -55,15 +62,7 @@ ViewData["Title"] = "Read our Blog";
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <aside>
-                            <div class="head title">Posts les plus populaires</div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="ds" style="height: 130px;">
-                                    </div>
-                                </div>
-                            </div>
-                        </aside>
+                        <partial name="Sidebar" />
                     </div>
                 </div>
             </div>

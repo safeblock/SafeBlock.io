@@ -40,6 +40,13 @@ namespace SafeBlock.io.Controllers
             return View(blog);
         }
 
+        [Route("blog/category/{category}")]
+        public IActionResult Category(string category)
+        {
+            var blog = _blog.GetArticlesByCategory(category);
+            return View(blog);
+        }
+
         [Route("blog/{article}")]
         public IActionResult Article(string article)
         {

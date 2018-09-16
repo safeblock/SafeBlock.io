@@ -54,6 +54,13 @@ body
     text-decoration: inherit;
 }
 
+.cover
+{
+    width: 100%;
+    height: 100%;
+    background-size: cover; 
+}
+
 .inherit:hover {
     text-decoration: none;
 }
@@ -218,18 +225,24 @@ canvas {
     background-image: linear-gradient(to right, #41faa4 0%, #16a3fe 100%);
 }
 
-#support {
+#wave-header
+{
     margin: 30px 0px 70px;
 }
 
-#support .input-group {
+#wave-header.short
+{
+    margin: 30px 0px 40px;
+}
+
+#wave-header .input-group {
     border: 0px solid #fff;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
     color: #fff;
 }
 
-#support .input-group input {
+#wave-header .input-group input {
     background-color: transparent;
     border: 0pt none;
     color: #EEEEEE;
@@ -735,7 +748,7 @@ nav.navbar-expand-lg .nav-link.active::after {
 }
 
 #blog .head.title {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: #2d314a;
     color: white;
     padding: 12px 12px;
     text-align: center;
@@ -777,9 +790,34 @@ nav.navbar-expand-lg .nav-link.active::after {
     line-height: 1.6;
 }
 
-.cover
+#blog .list-group.shadow .list-group-item:first-child,
+#blog .list-group.shadow .list-group-item:last-child
 {
-    width: 100%;
-    height: 100%;
-    background-size: cover; 
+    border-radius: 0 !important;
+}
+
+#blog .list-group.shadow .list-group-item
+{
+    border: 0pt none;
+}
+
+#blog .list-group.shadow .list-group-item .badge
+{
+    background-color: #E1F5F4;
+    color: #6F8BA4;
+}
+
+#blog #tags
+{
+    padding-bottom: 10px !important;
+}
+
+#blog .tag
+{
+    font-size: 10pt;
+    margin-bottom: 5px;
+    background-color: #43c1a8;
+    color: #FDFDFD;
+    font-weight: 400;
+    padding: 7px;
 }

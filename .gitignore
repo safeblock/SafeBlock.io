@@ -253,8 +253,7 @@ fabric.properties
 # *.iml
 # modules.xml
 
-*wwwroot/lib/*
-wwwroot/lib/*
-wwwroot\lib\
-wwwroot\lib\*
-*wwwroot\lib\*
+SafeBlock.io/wwwroot/lib
+.vscode
+.vscode/*
+package-lock.json

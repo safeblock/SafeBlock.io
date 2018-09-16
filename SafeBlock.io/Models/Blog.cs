@@ -7,18 +7,18 @@ using System.Linq;
 
 namespace SafeBlock.io.Models
 {
-    public class Blogs : IBlogs
+    public class Blog : IBlog
     {
         private readonly SafeBlockContext _context = null;
 
-        public Blogs(DbContextOptions options)
+        public Blog(DbContextOptions options)
         {
             _context = new SafeBlockContext(options);
         }
 
         public List<Article> GetAllArticles()
         {
-            return _context.Blogs.ToList();
+            return _context.Blog.ToList();
         }
     }
 }

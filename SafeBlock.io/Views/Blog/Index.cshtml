@@ -1,65 +1,71 @@
-﻿@{
-    ViewData["Title"] = "We are Tor Friendly";
+﻿@model List<Article>
+@{
+ViewData["Title"] = "Read our Blog";
 }
+@Model.Count
 <div id="particle-background" class="simple"></div>
 <div id="wrapper">
     <main id="main">
         <section class="pt-5" id="blog">
             <div class="container">
                 <div class="row">
-            <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-12 mb-5">
-                            <div class="bg-white shadow item">
-                                <div class="row">
-                                        <div class="col-md-4">
-                                            <div style="width: 100%; height: 100%; background-size: cover; background-image: url('https://digital-marketing.media/wp-content/uploads/2018/01/1psot-520x400.jpg');"></div>
+                    <div class="col-md-9">
+                        @{
+                            var i=0;
+                        }
+                        @foreach(var Article in Model)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 mb-5">
+                                    <div class="bg-white shadow item">
+                                        <div class="row">
+                                            @if(i % 2 == 0)
+                                            {
+                                                <div class="col-md-4">
+                                                    <div class="cover" style="background-image: url('@Article.Cover');"></div>
+                                                </div>
+                                            }
+                                            <div class="col-md-8 p-5 text-center">
+                                                <h6 class="text-success small title">
+                                                    @foreach(var tag in Article.Tags.Split(","))
+                                                    {
+                                                        <span>&nbsp;<a class="inherit" asp-controller="Blog" asp-action="Search" asp-route-term="@tag">#@tag</a>&nbsp;</span>
+                                                    }
+                                                </h6>
+                                                <h2><a asp-action="Index" asp-route-article="@Article.SeoTitle" class="inherit">@Article.Title</a></h2>
+                                                <p class="date text-muted">@Article.WriteDate.Value.ToString("D")</p>
+                                                <p class="m-0">@Article.Preamble</p>
+                                            </div>
+                                            @if(i % 2 == 1)
+                                            {
+                                                <div class="col-md-4">
+                                                    <div class="cover" style="background-image: url('@Article.Cover');"></div>
+                                                </div>
+                                            }
                                         </div>
-                                    <div class="col-md-8 p-5 text-center">
-                                        <h6 class="text-success small title"> &nbsp;                                            <a href="/blog/search/csharp" class="inherit">#csharp</a> &nbsp;                                            <a href="/blog/search/dotnet" class="inherit">#dotnet</a> &nbsp;                                            <a href="/blog/search/visualstudio" class="inherit">#visualstudio</a> &nbsp;</h6>
-                                        <h2><a href="/blog/comment-stacker-stratis" class="inherit">Comment Staker vos Stratis avec le Wallet Qt (StratisX)</a></h2>
-                                        <p class="date text-muted">mardi 17 avril 2018</p>
-                                        <p class="m-0">Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Photo booth anim…</p>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 mb-5">
-                            <div class="bg-white shadow item">
-                                <div class="row">
-                                    <div class="col-md-8 p-5 text-center">
-                                        <h6 class="text-success small title"> &nbsp;                                            <a href="/blog/search/npm" class="inherit">#npm</a> &nbsp;                                            <a href="/blog/search/nodejs" class="inherit">#nodejs</a> &nbsp;</h6>
-                                        <h2><a href="/blog/stunning-vistas-juneau" class="inherit">The Stunning Vistas of Juneau</a></h2>
-                                        <p class="date text-muted">mardi 17 avril 2018</p>
-                                        <p>Meh synth Schlitz, tempor duis single-origin coffee ea next level ethnic fingerstache fanny pack nostrud. Photo booth anim…</p>
-                                    </div>
-                                        <div class="col-md-4">
-                                            <div style="width: 100%; height: 100%; background-size: cover; background-image: url('https://digital-marketing.media/wp-content/uploads/2018/01/2post-520x400.jpg"></div>
-                                        </div>
-                                </div>
+                            i++;
+                        }
+                        <div class="row">
+                            <div class="col-md-12 mb-5 text-center">
+                                <a href=""><button class="btn-3d">⇽ Posts Précedents</button></a>
                             </div>
                         </div>
                     </div>
-                <div class="row">
-                    <div class="col-md-12 mb-5 text-center">
-                        <a href=""><button class="btn-3d">⇽ Posts Précedents</button></a>
+                    <div class="col-md-3">
+                        <aside>
+                            <div class="head title">Posts les plus populaires</div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="ds" style="height: 130px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <aside>
-    <div class="head title">Posts les plus populaires</div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="ds" style="height: 130px;">
-            </div>
-        </div>
-    </div>
-</aside>
-            </div>
-        </div>
             </div>
         </section>
     </main>

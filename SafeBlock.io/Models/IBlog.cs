@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SafeBlock.io.Models
 {
-    public interface IBlogs
+    public interface IBlog
     {
         List<Article> GetAllArticles();
     }

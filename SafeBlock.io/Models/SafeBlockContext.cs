@@ -8,7 +8,7 @@ namespace SafeBlock.io.Models
     public sealed partial class SafeBlockContext : DbContext
     {
         public DbSet<User> Users { get; set; }
-        public DbSet<Article> Blogs { get; set; }
+        public DbSet<Article> Blog { get; set; }
         
         public SafeBlockContext() : base()
         {
@@ -54,11 +54,15 @@ namespace SafeBlock.io.Models
 
             modelBuilder.Entity<Article>(entity =>
             {
-                entity.ForNpgsqlHasComment("Liste des articles du blog.");
+                entity.ForNpgsqlHasComment("Contain all blog articles.");
 
                 entity.Property(e => e.Id).HasColumnName("ID");
-                
+
                 entity.Property(e => e.WriteDate).HasColumnType("date");
+
+                entity.Property(e => e.Author).IsRequired();
+                
+                entity.Property(e => e.ViewsNumber).IsRequired();
 
                 /*entity.HasIndex(e => e.Mail)
                     .HasName("MailPrevent")

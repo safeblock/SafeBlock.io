@@ -107,7 +107,7 @@ namespace SafeBlock.io.Controllers
 
                         return RedirectToAction("ChooseWallet", "Dashboard");
                     }
-                    catch (DbUpdateException e)
+                    catch// (DbUpdateException e)
                     {
                         ModelState.AddModelError("Mail", "This mail address is already used.");
                     }
@@ -118,7 +118,7 @@ namespace SafeBlock.io.Controllers
         }
 
         // Routine de connexion
-        private void SignInUser(string mail, string role = "user", bool persistent = false)
+        private void SignInUser(string mail, string role = "User", bool persistent = false)
         {
             var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
             identity.AddClaim(new Claim(ClaimTypes.Name, mail));

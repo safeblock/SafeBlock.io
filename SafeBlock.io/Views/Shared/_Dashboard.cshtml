@@ -154,6 +154,7 @@
     <environment exclude="Development">
         <script src="~/js/dashboard.min.js" asp-append-version="true"></script>
     </environment>
-    @Html.Partial("_ValidationScriptsPartial") @RenderSection("Scripts", required: false)
+    <partial name="_ValidationScriptsPartial" />
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

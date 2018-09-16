@@ -32,10 +32,10 @@
     </ul>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade @(ViewBag.Section == "register" ? "show active":"")" id="create-wallet" role="tabpanel" aria-labelledby="create-wallet">
-            @Html.Partial("CreateWallet")
+            <partial name="CreateWallet" />
         </div>
         <div class="tab-pane fade @(ViewBag.Section == "login" ? "show active":"")" id="login" role="tabpanel" aria-labelledby="login">
-            @Html.Partial("Login")
+            <partial name="Login" />
         </div>
         <div class="tab-pane fade @(ViewBag.Section == "ds" ? "show active":"")" id="contact" role="tabpanel" aria-labelledby="contact-tab">...3</div>
     </div>

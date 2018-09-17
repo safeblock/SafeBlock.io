@@ -26,6 +26,15 @@ $(document).ready(function () {
         midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
     });
 
+    var scroll = $(window).scrollTop();
+    if(scroll >= 685)
+    {
+        $("#navbar").addClass("active");
+        $("#navbar").css("position", "fixed");
+        $(".logo").attr("src", "/static/logo-black.png");
+        is_down = true;
+    }
+
     var items = document.querySelectorAll(".accordion a");
 
     function toggleAccordion() {
@@ -58,6 +67,7 @@ $(window).scroll(function (event)
             $("#navbar").css("position", "relative");
             $("#navbar").removeClass("active");
             $(".logo").attr("src", "/static/logo.png");
+            is_down = false;
         }
     }
 });

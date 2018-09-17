@@ -1,5 +1,5 @@
 @model ContactDatas
-<form method="post" asp-controller="Support" asp-action="SendMessage" asp-antiforgery="true" data-ajax="true" data-ajax-method="POST">
+<form method="post" asp-controller="Support" asp-action="SendMessage" asp-antiforgery="true" data-ajax="true" data-ajax-method="POST" data-ajax-complete="SendedMessage();" data-ajax-mode="replace" data-ajax-update="#content-test">
     <div class="row">
         <div class="col">
             <div class="form-group">

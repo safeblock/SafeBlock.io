@@ -84,7 +84,7 @@ namespace SafeBlock.io
 
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .AddDataAnnotationsLocalization(); ;
+                .AddDataAnnotationsLocalization();
 
             services.AddRecaptcha(new RecaptchaOptions
             {

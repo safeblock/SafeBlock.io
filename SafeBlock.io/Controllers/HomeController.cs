@@ -1,8 +1,17 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http.Features;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Razor;
+using System.Collections;
+using System.Globalization;
 
 namespace SafeBlock.io.Controllers
 {
@@ -30,7 +39,8 @@ namespace SafeBlock.io.Controllers
         [Route("change-language/{lang}")]
         public IActionResult ChangeLanguage(string lang)
         {
-            //TODO : adding localization
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)), new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)});
+
             return RedirectToAction("Index");
         }
         

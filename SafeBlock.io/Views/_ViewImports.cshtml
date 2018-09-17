@@ -1,8 +1,16 @@
 @using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
 @using SafeBlock.io
 @using SafeBlock.io.Models
 @using GravatarHelper.Common
 @using React.AspNet
+@using System.Net.Http
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
 @addTagHelper "*, Microsoft.AspNetCore.SpaServices"
 @addTagHelper *, GravatarHelper.AspNetCore
 @addTagHelper *, PaulMiami.AspNetCore.Mvc.Recaptcha

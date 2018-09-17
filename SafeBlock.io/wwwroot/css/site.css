@@ -454,7 +454,7 @@ footer .sub-footer {
 }
 
 .twitter {
-    z-index: 999;
+    z-index: 95;
     background: #fff;
     position: absolute;
     top: 40vh;
@@ -541,7 +541,7 @@ nav.navbar-expand-lg.active
 {
     box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
     position: fixed;
-    z-index: 9999;
+    z-index: 99;
     width: 100%;
     background-color: #ffffff !important;
 }

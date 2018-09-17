@@ -9,10 +9,12 @@
     <nav id="cookieConsent" class="navbar navbar-expand-lg fixed-bottom navbar-dark text-white" role="alert">
         <div class="container">
             <span class="navbar-text text-white p-0">
-                <strong>Do you like Cookies 🍪 ? </strong> Nous utilisons des cookies pour vous garantir la meilleure expérience possible.
-                <a asp-controller="Home" asp-action="PrivacyPolicy">En Savoir Plus</a>.
+                <strong>Do you like Cookies 🍪 ? </strong> Nous utilisons des cookies pour vous garantir la meilleure expérience possible tout en préservant votre vie privée.
             </span>
-            <button type="button" class="btn btn-warning btn-sm normal float-right" data-cookie-string="@cookieString">I Understood</button>
+            <div class="float-right">
+                <a asp-controller="Home" asp-action="PrivacyPolicy" type="button" class="btn btn-primary btn-sm normal">Read More</a>
+                <button type="button" class="btn btn-warning btn-sm normal" data-cookie-string="@cookieString">I Understood</button>
+            </div>
         </div>
     </nav>
     <script>

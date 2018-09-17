@@ -427,6 +427,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mt-3 pt-3">
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/680940.svg" class="icon" />
+                            <h5>Merchant Solutions</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/891500.svg" class="icon" />
+                            <h5>Escrow Platform</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="block">
+                            <img src="~/static/912238.svg" class="icon" />
+                            <h5>Mobile Application</h5>
+                            <p>
+                                Lorem ipsum dolor sit amet,
+                                sapien etiam, nunc amet.
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <p class="text-center text-muted mt-5 pt-4">and much more solutions...</p>
             </div>
         </section>
@@ -438,23 +470,8 @@
                 <div class="row pt-5">
                     <div class="col-md-6 pt-4">
                         <div style="width: 55px; float: left; height: 100%;">
-                            <div style="width: 35px;
-border-radius: 50%;
-height: 35px;
-line-height: 35px;
-text-align: center;
-color: #689ACA;
-background-color:      #FBFFFD;
-box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
-                            <div style="width: 35px;
-margin-top: 107px;
-border-radius: 50%;
-height: 35px;
-line-height: 35px;
-text-align: center;
-color: #689ACA;
-background-color:      #FBFFFD;
-box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
+                            <div class="elegant-point">✓</div>
+                            <div class="elegant-point">✓</div>
                         </div>
                         <h3 style="font-size: 14pt; color: #333333;" class="pt-2">Elegant & User-Friendly Interface</h3>
                         <p style="font-family: Open Sans; font-size: 16px; font-weight: 400; color: #666666;">
@@ -475,29 +492,14 @@ box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
         </section>*@
         <section id="card">
             <div class="container pb-3">
-                <h2>Watch a Dashboard Preview</h2>
+                <h2>Get a Beautiful Debit Card</h2>
                 <p class="lead">@Localizer["GetUpdates"]</p>
                 <div class="separator mb-3"></div>
                 <div class="row pt-5">
                     <div class="col-md-6 pt-5 mt-3">
                         <div style="width: 55px; float: left; height: 100%;">
-                            <div style="width: 35px;
-border-radius: 50%;
-height: 35px;
-line-height: 35px;
-text-align: center;
-color: #689ACA;
-background-color:      #FBFFFD;
-box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
-                            <div style="width: 35px;
-margin-top: 107px;
-border-radius: 50%;
-height: 35px;
-line-height: 35px;
-text-align: center;
-color: #689ACA;
-background-color:      #FBFFFD;
-box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
+                            <div class="elegant-point">✓</div>
+                            <div class="elegant-point" style="margin-top: 107px;">✓</div>
                         </div>
                         <h3 style="font-size: 14pt; color: #333333;" class="pt-2">Elegant & User-Friendly Interface</h3>
                         <p style="font-family: Open Sans; font-size: 16px; font-weight: 400; color: #666666;">
@@ -567,43 +569,6 @@ box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
                 </div>
             </div>
         </section>
-        @*<section class="bg-white short" id="features">
-            <div class="container">
-                <h3 class="text-center">We have developed solutions for everyone.</h3>
-                <div class="row mb-4">
-                    <div class="col-md-4">
-                        <div class="block">
-                            <img src="~/static/680940.svg" class="icon" />
-                            <h5>Merchant Solutions</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="block">
-                            <img src="~/static/891500.svg" class="icon" />
-                            <h5>Escrow Platform</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="block">
-                            <img src="~/static/912238.svg" class="icon" />
-                            <h5>Mobile Application</h5>
-                            <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="">
             <div class="container">
                 <h2>@Localizer["SubscribeToNewsletter"]</h2>
@@ -611,65 +576,65 @@ box-shadow: 0px 4px 4px 2px #F3F3F3;">✓</div>
                 <div class="separator mb-5"></div>
                 <div class="row offset-md-3 col-md-6">
                     <div class="col-md-8 p-0">
-                        <input type="text" class="form-control p-2" placeholder="@Localizer[" EnterEmail"]" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control p-2" placeholder="@Localizer["EnterEmail"]" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     </div>
                     <div class="col-md-4 pr-0">
                         <button class="btn-block btn p-2 btn-holo btn-primary" type="button">@Localizer["Subscribe"]</button>
                     </div>
                 </div>
-                <p class="small text-center text-muted pt-4">@Localizer["ReadMoreAbout"] <a href="">@Localizer["PrivacyPolicy"]</a>.</p>
+                <p class="small text-center text-muted pt-4">@Localizer["ReadMoreAbout"] <a asp-controller="Home" asp-action="PrivacyPolicy">@Localizer["PrivacyPolicy"]</a>.</p>
             </div>
-        </section>*@
+        </section>
     </main>
 </div>
 @section Scripts
-    {
-    <script type="text/javascript">
-        $(document).ready(function() {
-            var mastersliderHome = new MasterSlider();
-            mastersliderHome.setup("masterslider",
-                {
-                    width: $(".container").width(),
-                    height: $("#landing").height(),
-                    minHeight: 0,
-                    space: 0,
-                    start: 1,
-                    grabCursor: true,
-                    swipe: true,
-                    mouse: true,
-                    keyboard: true,
-                    layout: "fullwidth",
-                    wheel: false,
-                    autoplay: false,
-                    instantStartLayers: true,
-                    loop: true,
-                    shuffle: false,
-                    preload: 0,
-                    heightLimit: true,
-                    autoHeight: false,
-                    smoothHeight: true,
-                    endPause: true,
-                    overPause: false,
-                    fillMode: "fill",
-                    centerControls: false,
-                    startOnAppear: false,
-                    layersMode: "center",
-                    autofillTarget: "",
-                    hideLayers: false,
-                    fullscreenMargin: 0,
-                    speed: 5,
-                    dir: "h",
-                    parallaxMode: 'swipe',
-                    view: "fade"
-                });
-
-            /*$(".launch-slider").hover(function() {
-                $("#carteSoudCtrl")[0].play();
-            });*/
-
-            $(".launch-slider").click(function() {
-                mastersliderHome.api.resume();
+{
+<script type="text/javascript">
+    $(document).ready(function() {
+        var mastersliderHome = new MasterSlider();
+        mastersliderHome.setup("masterslider",
+            {
+                width: $(".container").width(),
+                height: $("#landing").height(),
+                minHeight: 0,
+                space: 0,
+                start: 1,
+                grabCursor: true,
+                swipe: true,
+                mouse: true,
+                keyboard: true,
+                layout: "fullwidth",
+                wheel: false,
+                autoplay: false,
+                instantStartLayers: true,
+                loop: true,
+                shuffle: false,
+                preload: 0,
+                heightLimit: true,
+                autoHeight: false,
+                smoothHeight: true,
+                endPause: true,
+                overPause: false,
+                fillMode: "fill",
+                centerControls: false,
+                startOnAppear: false,
+                layersMode: "center",
+                autofillTarget: "",
+                hideLayers: false,
+                fullscreenMargin: 0,
+                speed: 5,
+                dir: "h",
+                parallaxMode: 'swipe',
+                view: "fade"
             });
+
+        /*$(".launch-slider").hover(function() {
+            $("#carteSoudCtrl")[0].play();
+        });*/
+
+        $(".launch-slider").click(function() {
+            mastersliderHome.api.resume();
         });
-    </script>
+    });
+</script>
 }

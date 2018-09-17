@@ -578,6 +578,18 @@ nav.navbar-expand-lg .nav-link.active::after {
     transform-origin: bottom left;
 }
 
+.elegant-point
+{
+    width: 35px;
+    border-radius: 50%;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    color: #689ACA;
+    background-color:      #FBFFFD;
+    box-shadow: 0px 4px 4px 2px #F3F3F3;
+}
+
 .notify .heartbit {
     position: absolute;
     top: -20px;

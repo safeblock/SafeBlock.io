@@ -186,4 +186,49 @@
   <data name="WhyChooseSafeBlock" xml:space="preserve">
     <value>Pourquoi choisir SafeBlock.io ?</value>
   </data>
+  <data name="GetDebitCard" xml:space="preserve">
+    <value>Obtener une Carte de Débit Magnifique</value>
+  </data>
+  <data name="GetDebitCardDesc" xml:space="preserve">
+    <value>Une belle carte qui fonctionne tout le temps et partout.</value>
+  </data>
+  
+  <data name="CompleteSecurity" xml:space="preserve">
+    <value>Une Complète Sécurité</value>
+  </data>
+  <data name="CompleteSecurityDesc" xml:space="preserve">
+    <value>SafeBlock.io use Cold Storage&lt;br&gt; system for storing accounts.</value>
+  </data>
+  <data name="SimpleToUseForEveryone" xml:space="preserve">
+    <value>Facile à Utilisé pour Tous</value>
+  </data>
+  <data name="SimpleToUseForEveryoneDesc" xml:space="preserve">
+    <value>We make it easy to understand the&lt;br&gt; technology behing each project</value>
+  </data>
+  <data name="NoKycOrSurveillance" xml:space="preserve">
+    <value>Pas de KYC ou d'Espionnage</value>
+  </data>
+  <data name="NoKycOrSurveillanceDesc" xml:space="preserve">
+    <value>Our platform does not require KYC&lt;br&gt; for creating a wallet.</value>
+  </data>
+  <data name="WeHaveDevelopedForEveryone" xml:space="preserve">
+    <value>Nous avons développé des solutions pour tous</value>
+  </data>
+  <data name="MuchMoreSolutions" xml:space="preserve">
+    <value>et bien d'autres solutions...</value>
+  </data>
+  <data name="DebitCardPoint1" xml:space="preserve">
+    <value>Elegant &amp; User-Friendly Interface</value>
+  </data>
+  <data name="DebitCardPoint1Desc" xml:space="preserve">
+    <value>Welcome to Artech, Sydney's specialist office leas&lt;br&gt;
+people are drawn together.</value>
+  </data>
+  <data name="DebitCardPoint2" xml:space="preserve">
+    <value>Elegant &amp; User-Friendly Interface</value>
+  </data>
+  <data name="DebitCardPoint2Desc" xml:space="preserve">
+    <value>Welcome to Artech, Sydney's specialist office leas&lt;br&gt;
+people are drawn together.</value>
+  </data>
 </root>

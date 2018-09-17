@@ -1,4 +1,6 @@
-﻿toastr.options = {
+﻿var is_down = false;
+
+toastr.options = {
   "closeButton": false,
   "debug": false,
   "newestOnTop": true,
@@ -32,6 +34,32 @@ $(document).ready(function () {
     }
 
     items.forEach(item => item.addEventListener('click', toggleAccordion));
+});
+
+$(window).scroll(function (event)
+{
+    var scroll = $(window).scrollTop();
+    if(scroll >= 685)
+    {
+        if(!is_down)
+        {
+            $("#navbar").addClass("active");
+            $("#navbar").css("position", "fixed");
+            $("#navbar").css("top", "-120px").animate({top:0}, 500);
+            $(".logo").attr("src", "/static/logo-black.png");
+            is_down = true;
+        }
+    }
+    else if (scroll <= 50)
+    {
+        if(is_down)
+        {
+            $("#navbar").css("top", "120px").animate({top:0}, 300);
+            $("#navbar").css("position", "relative");
+            $("#navbar").removeClass("active");
+            $(".logo").attr("src", "/static/logo.png");
+        }
+    }
 });
 
 function SendedMessage()

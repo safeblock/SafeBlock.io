@@ -6,10 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Resources\HomeController.fr.resx" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="2.1.3" />
     <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="BuildBundlerMinifier-Typescript" Version="2.1.258" />
@@ -37,6 +33,10 @@
 
   <ItemGroup>
     <None Include="Resources\Controllers\HomeController.fr.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources\HomeController.fr.resx" />
   </ItemGroup>
 
 </Project>

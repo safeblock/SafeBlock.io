@@ -3,7 +3,11 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Net;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 
 namespace SafeBlock.io.Services
 {
@@ -57,6 +61,19 @@ namespace SafeBlock.io.Services
         {
             var hash = (new SHA512Managed()).ComputeHash(Encoding.UTF8.GetBytes(value));
             return string.Join("", hash.Select(b => b.ToString("x2")).ToArray());
+        }
+
+        public static bool IsTorVisitor(string visitorIp)
+        {
+            using (var torCheck = new WebClient())
+            {
+                const string ip = "77.203.158.172";
+                if (torCheck.DownloadString($"https://check.torproject.org/cgi-bin/TorBulkExitList.py?ip={ip}&port=").Contains(visitorIp))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 

@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: 
+Disallow: /dashboard
+Disallow: /very-high-secret-admin-or-not

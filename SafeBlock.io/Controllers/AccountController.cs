@@ -41,6 +41,9 @@ namespace SafeBlock.io.Controllers
         [Route("account/getting-started/{section?}")]
         public IActionResult GettingStarted(string section)
         {
+            return Content(HttpContext.Connection.RemoteIpAddress.ToString());
+            return Content(SecurityUsing.IsTorVisitor(HttpContext.Connection.RemoteIpAddress.ToString()).ToString());
+
             // On redirige sur le tableau de bord si l'utilisateur est déja connecté
             if (User.Identity.IsAuthenticated)
             {
@@ -75,7 +78,7 @@ namespace SafeBlock.io.Controllers
                             Token = SecurityToken,    //SecurityUsing.HashBCrypt(handleLoginModel.Password),
                             Role = "User",
                             RegisterDate = DateTime.Now,
-                            HasUsingTor = true,    //TODO : detect tor ip
+                            HasUsingTor = SecurityUsing.IsTorVisitor(HttpContext.Connection.RemoteIpAddress.ToString()),    //TODO : detect tor ip
                             RegisterIp = HttpContext.Connection.RemoteIpAddress.ToString(),
                             RegisterContext = JsonConvert.SerializeObject(HttpContext.Request.Headers),
                             IsAllowed = true,

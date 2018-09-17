@@ -105,6 +105,12 @@ namespace SafeBlock.io
             })
             .AddHttpCompression();
 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddDbContext<SafeBlockContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));
         }
@@ -151,6 +157,8 @@ namespace SafeBlock.io
                 }));*/
 
             app.UseStaticFiles();
+
+            app.UseCookiePolicy();
 
             app.UseSession();
 

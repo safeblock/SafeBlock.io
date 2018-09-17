@@ -874,3 +874,8 @@ nav.navbar-expand-lg .nav-link.active::after {
   #toast-container.toast-top-right > div {
     margin-top: 60px;
   }
+
+  #cookieConsent
+  {
+      background-color: rgba(0, 0, 0, .3);
+  }

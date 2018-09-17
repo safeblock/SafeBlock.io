@@ -77,7 +77,7 @@
                         <a class="nav-link" href="#">App.</a>
                     </li>
                     <li class="nav-item ml-3">
-                        <a asp-controller="Blog" asp-action="Index" class="nav-link">Blog</a>
+                        <a asp-controller="Blog" asp-action="Index" class="nav-link @(Context.Request.Path.ToString().StartsWith("/blog") ? "active":"")">Blog</a>
                     </li>
                     <li class="nav-item ml-3">
                         <a asp-controller="Support" asp-action="Index" class="nav-link @(Context.Request.Path.ToString().StartsWith("/support") ? "active":"")">Support</a>

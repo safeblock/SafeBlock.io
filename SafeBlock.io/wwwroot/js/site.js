@@ -39,6 +39,11 @@ function SendedMessage()
     toastr.success('Thanks, you will receive a reply within a few days. 🙂')
 }
 
+function FailedMessage()
+{
+    toastr.error('Arf, we have a problem with the support :( Try with Twitter')
+}
+
 /*document.addEventListener('DOMContentLoaded',function(event){
     // array with texts to type in typewriter
     var dataText = [ 

@@ -42,6 +42,7 @@ namespace SafeBlock.io
         {
             services.Configure<VaultSettings>(Configuration.GetSection("Vault"));
             services.Configure<PostgreSQLSettings>(Configuration.GetSection("PostgreSQL"));
+            services.Configure<MailingSettings>(Configuration.GetSection("Mailing"));
             
             services.AddEntityFrameworkNpgsql().AddDbContext<SafeBlockContext>(options =>
             {

@@ -556,6 +556,10 @@ nav.navbar-expand-lg .nav-link {
     color: #0087ca;
 }
 
+nav.navbar-expand-lg.active .nav-link:not(.nav-dropdown)::after {
+    background-color: #000000;
+}
+
 nav.navbar-expand-lg .nav-link:not(.nav-dropdown)::after {
     content: '';
     position: absolute;

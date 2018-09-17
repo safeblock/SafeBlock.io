@@ -74,33 +74,20 @@ body
     margin: -50px auto 20px;
 }
 
-.language-switch img {
+.language-switcher img {
     border-radius: 50%;
     border: 3px solid #475674;
     width: 32px;
 }
 
-.language-switcher {
-    padding-left: 3px;
-}
-
 .language-switcher .dropdown-menu {
     min-width: 70px;
+    margin-left: -24px;
 }
 
 .language-switcher a {
     font-size: 10pt;
     line-height: 19pt;
-}
-
-.language-switcher::before {
-    position: absolute;
-    content: '';
-    left: 0;
-    top: 6px;
-    height: 30px;
-    width: 1px;
-    background: rgba(255, 255, 255, 0.1);
 }
 
 canvas {

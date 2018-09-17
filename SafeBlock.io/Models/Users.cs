@@ -18,7 +18,7 @@ namespace SafeBlock.io.Models
 
         public List<User> GetAllUsers()
         {
-            return _context.Users.Where(x => x.Mail == "clint.mourlevat@gmail.com").ToList();
+            return _context.Users.ToList();
         }
 
         public User GetUserByMail(string mail)

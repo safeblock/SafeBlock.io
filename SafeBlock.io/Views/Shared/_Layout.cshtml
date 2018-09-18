@@ -92,7 +92,7 @@
                     }
                     <li class="nav-item dropdown language-switcher ml-3">
                         @{
-                            var currentCulture = Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.Name;
+                            var currentCulture = Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.Name.Substring(0, 2);
                         }
                         <a asp-controller="Home" asp-action="ChangeLanguage" class="nav-link nav-dropdown old-dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img src="~/static/@(currentCulture).png"/>

@@ -1,6 +1,71 @@
 @model List<Article>
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+ViewData["Title"] = "Read our Blog";
 }
-<h2>title</h2>
+<div id="edge-background" class="simple"></div>
+<div id="wave-header" class="short">
+    <div class="container">
+        <div class="offset-md-2 col-md-8 text-center">
+            <h1 class="text-white mb-0 text-capitalize">Security Category</h1>
+            <p class="text-white-50 m-0 pt-3">What's new at SafeBlock.io ?</p>
+        </div>
+    </div>
+</div>
+<div id="wrapper">
+    <main id="main">
+        <section class="pt-5" id="blog">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        @{
+                            var i=0;
+                        }
+                        @foreach(var Article in Model)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 mb-5">
+                                    <div class="bg-white shadow item">
+                                        <div class="row">
+                                            @if(i % 2 == 0)
+                                            {
+                                                <div class="col-md-4">
+                                                    <div class="cover" style="background-image: url('@Article.Cover');"></div>
+                                                </div>
+                                            }
+                                            <div class="col-md-8 p-5 text-center">
+                                                <h6 class="text-success small title">
+                                                    @foreach(var tag in Article.Tags.Split(","))
+                                                    {
+                                                        <span>&nbsp;<a class="inherit" asp-controller="Blog" asp-action="Tag" asp-route-tag="@tag">#@tag</a>&nbsp;</span>
+                                                    }
+                                                </h6>
+                                                <h2><a asp-action="Article" asp-route-article="@Article.SeoTitle" class="inherit">@Article.Title</a></h2>
+                                                <p class="date text-muted">@Article.WriteDate.Value.ToString("D")</p>
+                                                <p class="m-0">@Article.Preamble</p>
+                                            </div>
+                                            @if(i % 2 == 1)
+                                            {
+                                                <div class="col-md-4">
+                                                    <div class="cover" style="background-image: url('@Article.Cover');"></div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            i++;
+                        }
+                        <div class="row">
+                            <div class="col-md-12 mb-5 text-center">
+                                <a href=""><button class="btn-3d">⇽ Posts Précedents</button></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <partial name="Sidebar" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>

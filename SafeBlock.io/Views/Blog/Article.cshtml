@@ -24,6 +24,13 @@ ViewData["Title"] = "Read our Blog";
                                         <h2><a asp-action="Article" asp-route-article="@Model.SeoTitle" class="inherit">@Model.Title</a></h2>
                                         <p class="date text-center text-muted mb-5">@Model.WriteDate.Value.ToString("D")</p>
                                         @Html.Raw(Markdown.Parse(Model.Content))
+                                        
+                                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                        <div class="addthis_relatedposts_inline"></div>
+                                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9fbae6ad340d93"></script>
+
+
                                     </div>
                                 </div>
                             </div>

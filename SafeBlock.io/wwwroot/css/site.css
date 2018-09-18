@@ -845,22 +845,22 @@ nav.navbar-expand-lg .nav-link.active::after {
     border-color: #1bbf89;
     background-color: #1bbf89;
   }
-  .toast-warning {
+.toast-warning {
     color: #ffffff;
     border-color: #f7af3e;
     background-color: #f7af3e;
-  }
+}
   .toast-info {
     color: #ffffff;
     border-color: #56c0e0;
     background-color: #56c0e0;
-  }
+}
   .toast-error {
     color: #ffffff;
     border-color: #db524b;
     background-color: #db524b;
-  }
-  #toast-container > div {
+}
+#toast-container > div {
     opacity: 1;
     margin-top: 20px;
     border-radius: 4px;
@@ -868,17 +868,22 @@ nav.navbar-expand-lg .nav-link.active::after {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-  }
-  #toast-container > div:hover {
+}
+#toast-container > div:hover {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
-  }
-  #toast-container.toast-top-right > div {
+}
+#toast-container.toast-top-right > div {
     margin-top: 60px;
-  }
+}
 
-  #cookieConsent
-  {
-      background-color: rgba(29, 31, 49, 0.71);
-  }
+#cookieConsent
+{
+  background-color: rgba(29, 31, 49, 0.71);
+}
+
+.list-group-item-action.active {
+    color: #383d41;
+    background-color: #d6d8db !important;
+}

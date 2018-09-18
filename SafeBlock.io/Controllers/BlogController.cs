@@ -39,13 +39,6 @@ namespace SafeBlock.io.Controllers
             return View(blog);
         }
 
-        [Route("blog/category/{category}")]
-        public IActionResult Category(string category)
-        {
-            var blog = _blog.GetArticlesByCategory(category);
-            return View(blog);
-        }
-
         [Route("blog/{article}")]
         public IActionResult Article(string article)
         {
@@ -53,7 +46,14 @@ namespace SafeBlock.io.Controllers
             return View(blogArticle);
         }
 
-        [Route(("blog/{tag}"))]
+        [Route("blog/category/{category}")]
+        public IActionResult Category(string category)
+        {
+            var blog = _blog.GetArticlesByCategory(category).OrderByDescending(x => x.Id).ToList();
+            return View(blog);
+        }
+
+        [Route(("blog/tag/{tag}"))]
         public IActionResult Tag(string tag)
         {
             return View();

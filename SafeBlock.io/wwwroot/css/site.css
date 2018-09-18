@@ -187,6 +187,10 @@ canvas {
     background: #608cee !important;
 }
 
+.btn-holo.btn-success {
+    background: #43c1a8 !important;
+}
+
 .btn-gradient {
     font-size: 12px;
     line-height: 46px;

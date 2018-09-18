@@ -118,98 +118,107 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ActuallySafeBlockSupports" xml:space="preserve">
-    <value>Actually SafeBlock.io supports this seven following currencies.</value>
+    <value>Actuellement SafeBlock.io supporte ces 7 cryptomonnaies.</value>
   </data>
   <data name="Become Affiliated" xml:space="preserve">
-    <value>Become Affiliated</value>
+    <value>Devenir Affilié</value>
   </data>
   <data name="CreateAccount" xml:space="preserve">
-    <value>Create Account</value>
+    <value>Créer un Compte</value>
   </data>
   <data name="CreateWallet" xml:space="preserve">
-    <value>Create a Wallet</value>
+    <value>Créer un Wallet</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>Entrer votre adresse email...</value>
   </data>
   <data name="FeelFree" xml:space="preserve">
-    <value>Feel free to create your multi-currency wallet now and enjoy all the features like exchange, mixing ...</value>
+    <value>N'hésitez pas à créer votre portefeuille multi-devises maintenant et profitez de toutes les fonctionnalités comme l'échange, le mixage ...</value>
+  </data>
+  <data name="GetUpdates" xml:space="preserve">
+    <value>Obtenez des informations à propos de SafeBlock.io et des news sur les cryptomonnaies.</value>
   </data>
   <data name="Git Repository" xml:space="preserve">
-    <value>Git Repository</value>
+    <value>Dépot Git</value>
   </data>
   <data name="KeepInSecurity" xml:space="preserve">
-    <value>With SafeBlock.io Keep all your Cryptos in a Perfect Security 💪</value>
+    <value>Avec SafeBlock.io Gardez tous vos Cryptos dans une sécurité parfaite 💪</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Log In</value>
+    <value>Login</value>
   </data>
   <data name="MyAccount" xml:space="preserve">
-    <value>My Account</value>
+    <value>Mon Compte</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacy Policy</value>
+    <value>Politique sur la vie privée</value>
   </data>
-  <data name="ReadMore" xml:space="preserve">
-    <value />
+  <data name="ReadMoreAbout" xml:space="preserve">
+    <value>Lisez comment nous utilisez vos données dans notre </value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Register</value>
+    <value>Inscription</value>
   </data>
   <data name="See the Blog" xml:space="preserve">
-    <value>See the Blog</value>
+    <value>Voir le Blog</value>
   </data>
   <data name="Slider1" xml:space="preserve">
-    <value>With SafeBlock.io&lt;br /&gt;Keep all your Cryptos&lt;br /&gt;in a Perfect Security 💪</value>
+    <value>Avec SafeBlock.io&lt;br /&gt;Gardez tout vos Coins&lt;br /&gt;en Sécurité 💪</value>
   </data>
   <data name="Slider2" xml:space="preserve">
-    <value>Feel free to create your multi-currency wallet now&lt;br /&gt;and enjoy all the features: exchange, mixing ...</value>
+    <value>N'hésitez pas à créer votre portefeuille multi-devises&lt;br /&gt;maintenant et profitez de toutes nos fonctionnalités.</value>
   </data>
   <data name="Subscribe" xml:space="preserve">
-    <value>Subscribe</value>
+    <value>Souscription !</value>
+  </data>
+  <data name="SubscribeToNewsletter" xml:space="preserve">
+    <value>Souscription à la Newsletter</value>
   </data>
   <data name="UsefulLinks" xml:space="preserve">
-    <value>Useful Links</value>
+    <value>Liens Utiles</value>
   </data>
   <data name="WeAreActually" xml:space="preserve">
-    <value>We are actually one of the best solutions for keeping your coins safe.</value>
+    <value>Nous sommes l'une des meilleures solutions pour garder vos cryptomonnaies en toute sécurité.</value>
   </data>
   <data name="WhichCurrencies" xml:space="preserve">
-    <value>Which Currencies are supported ?</value>
+    <value>Quelles Cryptomonnaies sont Supportés ?</value>
   </data>
   <data name="WhyChooseSafeBlock" xml:space="preserve">
-    <value>Why choose SafeBlock.io ?</value>
+    <value>Pourquoi choisir SafeBlock.io ?</value>
   </data>
   <data name="GetDebitCard" xml:space="preserve">
-    <value>Get a Beautiful Debit Card</value>
+    <value>Obtener une Carte de Débit Magnifique</value>
   </data>
   <data name="GetDebitCardDesc" xml:space="preserve">
-    <value>Une carte qui fonctionne tout le temps </value>
+    <value>Une belle carte qui fonctionne tout le temps et partout.</value>
   </data>
   
   <data name="CompleteSecurity" xml:space="preserve">
-    <value>Complete Security</value>
+    <value>Une Complète Sécurité</value>
   </data>
   <data name="CompleteSecurityDesc" xml:space="preserve">
     <value>SafeBlock.io use Cold Storage&lt;br&gt; system for storing accounts.</value>
   </data>
   <data name="SimpleToUseForEveryone" xml:space="preserve">
-    <value>Simple to Use for Everyone</value>
+    <value>Facile à Utilisé pour Tous</value>
   </data>
   <data name="SimpleToUseForEveryoneDesc" xml:space="preserve">
     <value>We make it easy to understand the&lt;br&gt; technology behing each project</value>
   </data>
   <data name="NoKycOrSurveillance" xml:space="preserve">
-    <value>No KYC or Surveillance</value>
+    <value>Pas de KYC ou d'Espionnage</value>
   </data>
   <data name="NoKycOrSurveillanceDesc" xml:space="preserve">
     <value>Our platform does not require KYC&lt;br&gt; for creating a wallet.</value>
   </data>
   <data name="WeHaveDevelopedForEveryone" xml:space="preserve">
-    <value>We have developed solutions for everyone.</value>
+    <value>Nous avons développé des solutions pour tous</value>
   </data>
   <data name="MuchMoreSolutions" xml:space="preserve">
-    <value>and much more solutions...</value>
+    <value>et bien d'autres solutions...</value>
   </data>
   <data name="DebitCardPoint1" xml:space="preserve">
-    <value>Elegant &amp; User-Friendly Interface</value>
+    <value>Un design Soigné</value>
   </data>
   <data name="DebitCardPoint1Desc" xml:space="preserve">
     <value>Welcome to Artech, Sydney's specialist office leas&lt;br&gt;

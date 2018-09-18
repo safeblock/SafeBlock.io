@@ -524,22 +524,7 @@
                 </div>
             </div>
         </section>
-        <section class="">
-            <div class="container">
-                <h2>@Localizer["SubscribeToNewsletter"]</h2>
-                <p class="lead">@Localizer["GetUpdates"]</p>
-                <div class="separator mb-5"></div>
-                <form class="row offset-md-3 col-md-6" asp-action="SubscribeNewsletter" data-ajax="true" data-ajax-method="POST" data-ajax-failure="FailedSubscribed" data-ajax-success="SuccessfullySubscribed">
-                    <div class="col-md-8 p-0">
-                        <input type="text" id="email-input-newsletter" name="email" class="form-control p-2" placeholder="@Localizer["EnterEmail"]" aria-label="Recipient's username" aria-describedby="basic-addon2">
-                    </div>
-                    <div class="col-md-4 pr-0">
-                        <button class="btn-block btn p-2 btn-holo btn-primary" type="submit">@Localizer["Subscribe"]</button>
-                    </div>
-                </form>
-                <p class="small text-center text-muted pt-4">@Localizer["ReadMoreAbout"] <a asp-controller="Home" asp-action="PrivacyPolicy">@Localizer["PrivacyPolicy"]</a>.</p>
-            </div>
-        </section>
+        <partial name="Newsletter"/>
     </main>
 </div>
 @section Scripts

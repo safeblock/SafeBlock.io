@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using System.Collections;
 using System.Globalization;
 using System.Runtime.InteropServices.WindowsRuntime;
+using RestSharp;
+using RestSharp.Authenticators;
+using SafeBlock.io.Models;
 
 namespace SafeBlock.io.Controllers
 {
@@ -65,9 +68,24 @@ namespace SafeBlock.io.Controllers
 
         [HttpPost]
         [Route("subscribe-newsletter")]
-        public IActionResult SubscribeNewsletter(string email)
+        public IActionResult SubscribeNewsletter(Newsletter newsletter)
         {
-            return Ok();
+            try
+            {
+                //TODO : adding api key in .config file
+                var client = new RestClient("https://api.sendinblue.com/v3/contacts");
+                var request = new RestRequest(Method.POST);
+                request.AddHeader("api-key", "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");
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddParameter("undefined", $"{{\"email\":\"{newsletter.Email}\",\"listIds\":[],\"smtpBlacklistSender\":[]}}", ParameterType.RequestBody);
+                IRestResponse response = client.Execute(request);
+                return Ok();
+            }
+            catch
+            {
+                return Error();
+            }
         }
     }
 }

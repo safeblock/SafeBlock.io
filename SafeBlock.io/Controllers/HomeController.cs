@@ -29,20 +29,6 @@ namespace SafeBlock.io.Controllers
             ViewBag.Test = _localizer["Test"];
             return View();
         }
-
-        [Route("error/{errorCode?}")]
-        public IActionResult Error(int errorCode = 404) 
-        {
-            return View(errorCode);
-        }
-
-        [Route("change-language/{lang}")]
-        public IActionResult ChangeLanguage(string lang)
-        {
-            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)), new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)});
-
-            return RedirectToAction("Index");
-        }
         
         [Route("privacy-policy")]
         public IActionResult PrivacyPolicy()
@@ -60,6 +46,20 @@ namespace SafeBlock.io.Controllers
         public IActionResult Status()
         {
             return View();
+        }
+
+        [Route("error/{errorCode?}")]
+        public IActionResult Error(int errorCode = 404) 
+        {
+            return View(errorCode);
+        }
+
+        [Route("change-language/{lang}")]
+        public IActionResult ChangeLanguage(string lang, string redirectUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)), new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)});
+            
+            return LocalRedirect(redirectUrl);
         }
     }
 }

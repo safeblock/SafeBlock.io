@@ -179,9 +179,9 @@ namespace SafeBlock.io.Controllers
         [Route("account/activate/{token}")]
         public async Task<IActionResult> Activate(string token)
         {
-            //todo : add expiration date
-            /*_context.Users.First(x => SecurityUsing.Sha512(x.Token).Equals(token)).IsMailChecked = true;
-            await _context.SaveChangesAsync();*/
+            //TODO : add expiration date
+            _context.Users.First(x => SecurityUsing.Sha512(x.Token).Equals(token)).IsMailChecked = true;
+            await _context.SaveChangesAsync();
             return View();
         }
 

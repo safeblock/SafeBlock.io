@@ -35,7 +35,7 @@ namespace SafeBlock.io.Controllers
         [Route("blog")]
         public IActionResult Index()
         {
-            var blog = _blog.GetAllArticles();
+            var blog = _blog.GetAllArticles().OrderByDescending(x => x.Id).ToList();
             return View(blog);
         }
 

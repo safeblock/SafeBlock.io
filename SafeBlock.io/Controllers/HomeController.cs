@@ -55,5 +55,11 @@ namespace SafeBlock.io.Controllers
         {
             return View();
         }
+
+        [Route("service-status")]
+        public IActionResult Status()
+        {
+            return View();
+        }
     }
 }

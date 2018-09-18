@@ -107,7 +107,8 @@ namespace SafeBlock.io.Controllers
                         // Envoi du mail de confirmation
                         MailUsing.SendConfirmationMail(handleLoginModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.io\robots.txt");
 
-                        return RedirectToAction("ChooseWallet", "Dashboard");
+                        //TODO : display "choose-wallet" modal
+                        return RedirectToAction("Index", "Dashboard");
                     }
                     catch// (DbUpdateException e)
                     {

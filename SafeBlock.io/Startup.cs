@@ -74,11 +74,11 @@ namespace SafeBlock.io
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
             
-            /*services.AddDistributedRedisCache(options =>
+            services.AddDistributedRedisCache(options =>
             {
                 options.InstanceName = "SecuredSession";
                 options.Configuration = Configuration.GetConnectionString("Redis");
-            });*/
+            });
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
@@ -157,13 +157,9 @@ namespace SafeBlock.io
                 }));*/
 
             app.UseStaticFiles();
-
             app.UseCookiePolicy();
-
             app.UseSession();
-
             app.UseAuthentication();
-
             app.UseWebMarkupMin();
 
             app.UseMvc(routes => routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}"));

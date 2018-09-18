@@ -36,7 +36,7 @@ ViewData["Title"] = "Read our Blog";
                                                 <h6 class="text-success small title">
                                                     @foreach(var tag in Article.Tags.Split(","))
                                                     {
-                                                        <span>&nbsp;<a class="inherit" asp-controller="Blog" asp-action="Search" asp-route-term="@tag">#@tag</a>&nbsp;</span>
+                                                        <span>&nbsp;<a class="inherit" asp-controller="Blog" asp-action="Tag" asp-route-tag="@tag">#@tag</a>&nbsp;</span>
                                                     }
                                                 </h6>
                                                 <h2><a asp-action="Article" asp-route-article="@Article.SeoTitle" class="inherit">@Article.Title</a></h2>

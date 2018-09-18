@@ -25,7 +25,7 @@
             <div class="container">
                 <ul class="nav tabs justify-content-center" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="nowledgebase-tab" data-toggle="tab" href="#nowledgebase" role="tab" aria-controls="nowledgebase" aria-selected="true">KnowledgeBase</a>
+                        <a class="nav-link active" id="knowledgebase-tab" data-toggle="tab" href="#knowledgebase" role="tab" aria-controls="knowledgebase" aria-selected="true">KnowledgeBase</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="faq-tab" data-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false">FAQ</a>
@@ -35,7 +35,7 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="nowledgebase" role="tabpanel" aria-labelledby="nowledgebase-tab">
+                    <div class="tab-pane fade show active" id="knowledgebase" role="tabpanel" aria-labelledby="knowledgebase-tab">
                         <div class="row mt-5">
                             <div class="col-lg-3">
                                 <img src="~/static/icons/icons8-utilisateur-50.png" class="icon"/>
@@ -85,38 +85,7 @@
                     <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">
                         <div class="row mt-5">
                             <div class="col-lg-12">
-                                <div class="accordion">
-                                    <div class="accordion-item">
-                                        <a>Why is the moon sometimes out during the day?</a>
-                                        <div class="content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <a>Why is the sky blue?</a>
-                                        <div class="content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <a>Will we ever discover aliens?</a>
-                                        <div class="content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <a>How much does the Earth weigh?</a>
-                                        <div class="content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <a>How do airplanes stay up?</a>
-                                        <div class="content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Elementum sagittis vitae et leo duis ut. Ut tortor pretium viverra suspendisse potenti.</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <partial name="FAQ" />
                             </div>
                         </div>
                     </div>

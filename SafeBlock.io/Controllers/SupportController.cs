@@ -27,6 +27,7 @@ namespace SafeBlock.io.Controllers
         {
             if (ModelState.IsValid)
             {
+                return RedirectToAction("ViewCategory", new {category=knowledgeBase.Query});
             }
             
             return View("ViewCategory", knowledgeBase);

@@ -340,6 +340,11 @@ canvas {
     min-height: 200px;
 }
 
+.p-40
+{
+    padding: 4px 0px !important;
+}
+
 section
 {
     padding: 100px 0;

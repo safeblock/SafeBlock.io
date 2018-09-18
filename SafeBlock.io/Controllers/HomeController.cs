@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Collections;
 using System.Globalization;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace SafeBlock.io.Controllers
 {
@@ -60,6 +61,13 @@ namespace SafeBlock.io.Controllers
             Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)), new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)});
             
             return LocalRedirect(redirectUrl);
+        }
+
+        [HttpPost]
+        [Route("subscribe-newsletter")]
+        public IActionResult SubscribeNewsletter(string email)
+        {
+            return Ok();
         }
     }
 }

@@ -82,6 +82,16 @@ function FailedMessage()
     toastr.error('Arf, we have a problem with the support :( Try with Twitter')
 }
 
+function SuccessfullySubscribed()
+{
+    alert("ok");
+}
+
+function FailedSubscribed()
+{
+    alert("no");
+}
+
 /*document.addEventListener('DOMContentLoaded',function(event){
     // array with texts to type in typewriter
     var dataText = [ 

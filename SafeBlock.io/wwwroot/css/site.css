@@ -887,3 +887,15 @@ nav.navbar-expand-lg .nav-link.active::after {
     color: #383d41;
     background-color: #d6d8db !important;
 }
+
+.markdown h2
+{
+    font-size: 20pt;
+}
+
+.markdown p
+{
+    font-size: 12pt;
+    font-weight: 200;
+    margin-bottom: 30px;
+}

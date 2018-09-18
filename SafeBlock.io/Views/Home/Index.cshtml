@@ -1,4 +1,5 @@
 ﻿@{
+    ViewBag.Slider = true;
     ViewData["Title"] = "Keep your Cryptos. Safely.";
 }
 <a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
@@ -309,19 +310,6 @@
         </div>
     </div>
 </div>
-@*<div class="container">
-        <div class="jumbotron bg-transparent text-center m-0">
-            <h1>Keep your Cryptos. Safely.</h1>
-            <p class="lead">Spend your Cryptocurrencies with Safety and Keep your Privacy with SafeBlock.</p>
-            <div class="form-group mt-5">
-                <a asp-controller="Account" asp-action="GettingStarted" asp-route-section="register" class="btn btn-primary btn-lg"><i class="fas fa-user-plus"></i> Create a Wallet</a>
-                <a asp-controller="Account" asp-action="GettingStarted" asp-route-section="login" class="btn btn-secondary btn-lg"><i class="fas fa-sign-in-alt"></i> Sign In SafeBlock</a>
-            </div>
-        </div>
-    </div>
-    <div id="app-clearfix">
-        <img src="https://pix.watch/dVio9Q/8oQ_To.jpeg" class="app" alt="SafeBlock.io Wallet" />
-    </div>*@
 <div id="wrapper">
     <main id="main">
         <section id="why-choose">
@@ -541,14 +529,14 @@
                 <h2>@Localizer["SubscribeToNewsletter"]</h2>
                 <p class="lead">@Localizer["GetUpdates"]</p>
                 <div class="separator mb-5"></div>
-                <div class="row offset-md-3 col-md-6">
+                <form class="row offset-md-3 col-md-6" asp-action="SubscribeNewsletter" data-ajax="true" data-ajax-method="POST" data-ajax-failure="FailedSubscribed" data-ajax-success="SuccessfullySubscribed">
                     <div class="col-md-8 p-0">
-                        <input type="text" class="form-control p-2" placeholder="@Localizer["EnterEmail"]" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" id="email-input-newsletter" name="email" class="form-control p-2" placeholder="@Localizer["EnterEmail"]" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     </div>
                     <div class="col-md-4 pr-0">
-                        <button class="btn-block btn p-2 btn-holo btn-primary" type="button">@Localizer["Subscribe"]</button>
+                        <button class="btn-block btn p-2 btn-holo btn-primary" type="submit">@Localizer["Subscribe"]</button>
                     </div>
-                </div>
+                </form>
                 <p class="small text-center text-muted pt-4">@Localizer["ReadMoreAbout"] <a asp-controller="Home" asp-action="PrivacyPolicy">@Localizer["PrivacyPolicy"]</a>.</p>
             </div>
         </section>

@@ -54,6 +54,11 @@ body
     text-decoration: inherit;
 }
 
+.full-width
+{
+    width: 100%;
+}
+
 .cover
 {
     width: 100%;

@@ -16,7 +16,6 @@ using Microsoft.Extensions.Options;
 using SafeBlock.io.Services;
 using SafeBlock.io.Settings;
 using VaultSharp;
-using VaultSharp.Backends.Authentication.Models.Token;
 
 namespace SafeBlock.io.Controllers
 {
@@ -49,6 +48,13 @@ namespace SafeBlock.io.Controllers
 
         [Route("blog/{article}")]
         public IActionResult Article(string article)
+        {
+            var blogArticle = _blog.GetArticleBySeo(article);
+            return View(blogArticle);
+        }
+
+        [Route(("blog/{tag}"))]
+        public IActionResult Tag(string tag)
         {
             return View();
         }

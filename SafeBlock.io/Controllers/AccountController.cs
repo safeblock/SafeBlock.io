@@ -16,7 +16,6 @@ using Microsoft.Extensions.Options;
 using SafeBlock.io.Services;
 using SafeBlock.io.Settings;
 using VaultSharp;
-using VaultSharp.Backends.Authentication.Models.Token;
 
 namespace SafeBlock.io.Controllers
 {
@@ -33,7 +32,7 @@ namespace SafeBlock.io.Controllers
             _env = env;
             _context = context;
 
-            _vaultClient = VaultClientFactory.CreateVaultClient(new Uri(_vaultSettings.Value.ConnectionString), new TokenAuthenticationInfo(_vaultSettings.Value.Token));
+            //_vaultClient = VaultClientFactory.CreateVaultClient(new Uri(_vaultSettings.Value.ConnectionString), new TokenAuthenticationInfo(_vaultSettings.Value.Token));
 
             _users = users;
         }
@@ -97,10 +96,10 @@ namespace SafeBlock.io.Controllers
                             firstCrypt));
 
                         // Création du token dans le vault (doublement chiffré)
-                        await _vaultClient.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}", new Dictionary<string, object>
+                        /*await _vaultClient.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}", new Dictionary<string, object>
                         {
                             {"token", secondCrypt}
-                        });
+                        });*/
 
                         // Connexion de l'utilisateur
                         SignInUser(handleLoginModel.Mail);
@@ -150,8 +149,8 @@ namespace SafeBlock.io.Controllers
 
                     try
                     {
-                        var fullyCryptedToken = await _vaultClient.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
-                        var halfCryptedToken = Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data["token"].ToString()));
+                        var fullyCryptedToken = "salut";    //await _vaultClient.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
+                        var halfCryptedToken = "salut";    //Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data["token"].ToString()));
                         token = Aes.Decrypt("8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba", SecurityUsing.HexToBytes(halfCryptedToken));
                     }
                     catch

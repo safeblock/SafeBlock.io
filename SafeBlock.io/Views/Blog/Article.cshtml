@@ -1,1 +1,64 @@
-﻿
+﻿@using Westwind.AspNetCore.Markdown
+@model Article
+@{
+ViewData["Title"] = "Read our Blog";
+}
+<div id="edge-background" class="simple"></div>
+<div id="wrapper">
+    <main id="main">
+        <section class="pt-5" id="blog">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="bg-white shadow item mb-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <img src="@Model.Cover" alt="@Model.Title" class="full-width" />
+                                    <div class="p-5">
+                                        <h6 class="text-success text-center small title">
+                                            @foreach(var tag in Model.Tags.Split(","))
+                                            {
+                                                <span>&nbsp;<a class="inherit" asp-controller="Blog" asp-action="Tag" asp-route-tag="@tag">#@tag</a>&nbsp;</span>
+                                            }
+                                        </h6>
+                                        <h2><a asp-action="Article" asp-route-article="@Model.SeoTitle" class="inherit">@Model.Title</a></h2>
+                                        <p class="date text-center text-muted mb-5">@Model.WriteDate.Value.ToString("D")</p>
+                                        @Html.Raw(Markdown.Parse(Model.Content))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white shadow item">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="p-5">
+                                        <div id="disqus_thread"></div>
+                                        <script>
+                                        /**
+                                        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+                                        var disqus_config = function () {
+                                        this.page.url = '@(Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path)';  // Replace PAGE_URL with your page's canonical URL variable
+                                        this.page.identifier = '@Model.Guid'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                        };
+                                        (function() { // DON'T EDIT BELOW THIS LINE
+                                        var d = document, s = d.createElement('script');
+                                        s.src = 'https://safeblock-io.disqus.com/embed.js';
+                                        s.setAttribute('data-timestamp', +new Date());
+                                        (d.head || d.body).appendChild(s);
+                                        })();
+                                        </script>
+                                        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <partial name="Sidebar" />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>

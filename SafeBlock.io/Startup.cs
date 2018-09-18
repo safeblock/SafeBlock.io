@@ -74,11 +74,11 @@ namespace SafeBlock.io
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
             
-            services.AddDistributedRedisCache(options =>
+            /*services.AddDistributedRedisCache(options =>
             {
                 options.InstanceName = "SecuredSession";
                 options.Configuration = Configuration.GetConnectionString("Redis");
-            });
+            });*/
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 

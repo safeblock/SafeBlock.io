@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Net;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http.Features;
-using System.Globalization;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.Razor;
-using System.Collections;
-using System.Globalization;
-using System.Runtime.InteropServices.WindowsRuntime;
 using RestSharp;
-using RestSharp.Authenticators;
 using SafeBlock.io.Models;
 
 namespace SafeBlock.io.Controllers

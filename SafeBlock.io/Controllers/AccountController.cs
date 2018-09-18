@@ -16,6 +16,8 @@ using Microsoft.Extensions.Options;
 using SafeBlock.io.Services;
 using SafeBlock.io.Settings;
 using VaultSharp;
+using VaultSharp.V1.AuthMethods;
+using VaultSharp.V1.AuthMethods.Token;
 
 namespace SafeBlock.io.Controllers
 {
@@ -32,7 +34,9 @@ namespace SafeBlock.io.Controllers
             _env = env;
             _context = context;
 
-            //_vaultClient = VaultClientFactory.CreateVaultClient(new Uri(_vaultSettings.Value.ConnectionString), new TokenAuthenticationInfo(_vaultSettings.Value.Token));
+            IAuthMethodInfo authMethod = new TokenAuthMethodInfo(_vaultSettings.Value.Token);
+            var vaultClientSettings = new VaultClientSettings(_vaultSettings.Value.ConnectionString, authMethod);
+            _vaultClient = new VaultClient(vaultClientSettings); 
 
             _users = users;
         }
@@ -40,9 +44,6 @@ namespace SafeBlock.io.Controllers
         [Route("account/getting-started/{section?}")]
         public IActionResult GettingStarted(string section)
         {
-            return Content(HttpContext.Connection.RemoteIpAddress.ToString());
-            return Content(SecurityUsing.IsTorVisitor(HttpContext.Connection.RemoteIpAddress.ToString()).ToString());
-
             // On redirige sur le tableau de bord si l'utilisateur est déja connecté
             if (User.Identity.IsAuthenticated)
             {
@@ -74,7 +75,7 @@ namespace SafeBlock.io.Controllers
                         var newUser = new User
                         {
                             Mail = handleLoginModel.Mail.ToLower(),
-                            Token = SecurityToken,    //SecurityUsing.HashBCrypt(handleLoginModel.Password),
+                            Token = SecurityToken,
                             Role = "User",
                             RegisterDate = DateTime.Now,
                             HasUsingTor = SecurityUsing.IsTorVisitor(HttpContext.Connection.RemoteIpAddress.ToString()),    //TODO : detect tor ip
@@ -96,10 +97,10 @@ namespace SafeBlock.io.Controllers
                             firstCrypt));
 
                         // Création du token dans le vault (doublement chiffré)
-                        /*await _vaultClient.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}", new Dictionary<string, object>
+                        await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}", new Dictionary<string, object>
                         {
                             {"token", secondCrypt}
-                        });*/
+                        });
 
                         // Connexion de l'utilisateur
                         SignInUser(handleLoginModel.Mail);
@@ -150,8 +151,8 @@ namespace SafeBlock.io.Controllers
 
                     try
                     {
-                        var fullyCryptedToken = "salut";    //await _vaultClient.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
-                        var halfCryptedToken = "salut";    //Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data["token"].ToString()));
+                        var fullyCryptedToken = await _vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
+                        var halfCryptedToken =  Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data.Data["token"].ToString()));
                         token = Aes.Decrypt("8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba", SecurityUsing.HexToBytes(halfCryptedToken));
                     }
                     catch

@@ -1,43 +1,46 @@
-﻿@{
+﻿@model LoginSystem
+@{
     ViewData["Title"] = "Getting Started";
     ViewBag.HideFooter = true;
-    if (ViewBag.Section == null)
-    {
-        ViewBag.Section = "register";
-    }
 }
 <div id="edge-background"></div>
-<div class="loader"></div> 
-<div class="dialog-window loaded hide">
+<div class="loader">
+    <div class="hollow-dots-spinner" :style="spinnerStyle">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div> 
+<div class="dialog-window loaded hide @(Model.Step == "login" ? "login":"")">
     <h1 class="text-center">SafeBlock.io</h1>
     <p class="text-center">The Most Secure Cryptos Wallet on the Earth.</p>
     <ul class="nav tabs justify-content-center">
         <li class="nav-item">
-            <a class="nav-link @(ViewBag.Section == "register" ? "active":"")" href="#create-wallet" data-toggle="tab" role="tab" aria-controls="create-wallet" aria-selected="true">Create a Wallet</a>
+            <a class="nav-link @(Model.Step == "register" ? "active":"")" href="#create-wallet" data-toggle="tab" role="tab" aria-controls="create-wallet" aria-selected="true">Create a Wallet</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @(ViewBag.Section == "login" ? "active":"")" href="#login" id="home-tab" data-toggle="tab" role="tab" aria-controls="login" aria-selected="true">Sign In</a>
+            <a class="nav-link @(Model.Step == "login" ? "active":"")" href="#login" id="home-tab" data-toggle="tab" role="tab" aria-controls="login" aria-selected="true">Sign In</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="#"><i class="fas fa-lock-open"></i> Forgotten Password</a>
+                <a class="dropdown-item" asp-action="ForgotPassword"><i class="fas fa-lock"></i> I've Lost my Password</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <a class="dropdown-item" asp-action="RecoverFromCertificate">Recover Account from a Certificate</a>
+                <a class="dropdown-item" asp-action="ImportWallet">Import a JSON Wallet</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
+                <a class="dropdown-item" asp-controller="Support" asp-action="ViewResult" asp-route-term="identification"><i class="fas fa-life-ring"></i> Get support</a>
             </div>
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade @(ViewBag.Section == "register" ? "show active":"")" id="create-wallet" role="tabpanel" aria-labelledby="create-wallet">
+        <div class="tab-pane fade @(Model.Step == "register" ? "show active":"")" id="create-wallet" role="tabpanel" aria-labelledby="create-wallet">
             <partial name="CreateWallet" />
         </div>
-        <div class="tab-pane fade @(ViewBag.Section == "login" ? "show active":"")" id="login" role="tabpanel" aria-labelledby="login">
+        <div class="tab-pane fade @(Model.Step == "login" ? "show active":"")" id="login" role="tabpanel" aria-labelledby="login">
             <partial name="Login" />
         </div>
-        <div class="tab-pane fade @(ViewBag.Section == "ds" ? "show active":"")" id="contact" role="tabpanel" aria-labelledby="contact-tab">...3</div>
+        <div class="tab-pane fade @(Model.Step == "ds" ? "show active":"")" id="contact" role="tabpanel" aria-labelledby="contact-tab">...3</div>
     </div>
 </div>
 @section Scripts
@@ -48,7 +51,7 @@
                     $(".loader").fadeOut();
                     $(".loaded").fadeIn();
                 },
-                1000);
+                1500);
         });
     </script>
 }

@@ -8,7 +8,6 @@ namespace SafeBlock.io.Services
     {
         public static void SendConfirmationMail(string mailAddress, string templateFile, string activationLink, string certificateFile)
         {
-            //TODO : put password in configuration file
             var smtpServer = new SmtpClient("mail.privateemail.com")
             {
                 Port = 587,

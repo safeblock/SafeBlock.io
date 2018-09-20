@@ -48,7 +48,7 @@ $(document).ready(function () {
 $(window).scroll(function (event)
 {
     var scroll = $(window).scrollTop();
-    if(scroll >= 685)
+    if(scroll >= 300)
     {
         if(!is_down)
         {

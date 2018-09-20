@@ -373,19 +373,19 @@ section h5 {
     font-weight: 100;
 }
 
-    section#features .text-muted
+    section#services .text-muted
     {
         color: #999999 !important;
         font-style: italic;
         font-size: 10pt;
     }
 
-    section#features h3
+    section#services h3
     {
         margin-bottom: 70px;
     }
 
-        section#features .block
+        section#services .block
         {
             border: 1px solid #CCCCCC;
             border-radius: 20px;
@@ -393,19 +393,19 @@ section h5 {
             padding: 27px 25px;
         }
 
-            section#features .block h5
+            section#services .block h5
             {
                 font-weight: normal;
                 font-size: 16pt;
             }
-            section#features .block p
+            section#services .block p
             {
                 font-weight: normal;
                 font-size: 10pt;
                 color: #888888;
             }
 
-            section#features .block .icon
+            section#services .block .icon
             {
                 width: 80px;
                 margin-right: 20px;
@@ -431,6 +431,40 @@ section .separator {
     width: 90px;
     height: 2px;
     margin: 23px auto 50px;
+}
+
+section#why-choose
+{
+
+}
+
+section#why-choose img.main
+{
+    width: 200px;
+}
+
+section#why-choose img.second
+{
+    width: 80px;
+    position: absolute;
+    left: 268px;
+    top: 130px;
+}
+
+section#why-choose h5
+{
+    font-weight: bold;
+    font-family: 'Open Sans';
+    color: #14142D;
+    font-size: 14pt;
+}
+
+section#why-choose p
+{
+    font-family: 'Roboto', sans-serif;
+    color: #A6A9C1;
+    font-size: 11pt;
+    line-height: 28px;
 }
 
 footer {
@@ -472,6 +506,7 @@ footer .sub-footer {
 }
 
 .dialog-window {
+    transition: top 0.5s;
     margin: auto;
     width: 500px;
     background: #fff;
@@ -482,6 +517,11 @@ footer .sub-footer {
     margin: auto;
     left: calc(100vw / 2 - 500px / 2);
     top: calc(100vh / 2 - 492px / 2);
+}
+
+.dialog-window.login
+{
+    top: calc(100vh / 2 - 450px / 2);
 }
 
 .dialog-window h1 {
@@ -668,16 +708,54 @@ nav.navbar-expand-lg .nav-link.active::after {
 }
 
 .loader {
-    -webkit-animation: spin 1s linear infinite;
-    animation: spin 1s linear infinite;
-    border: 5px solid #f3f3f3;
-    border-top-color: #CCCCCC;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 90px;
+    height: 20px;
     position: absolute;
-    left: calc(50% - 25px);
-    top: calc(50% - 50px);
+    left: calc(50% - 40px);
+    top: calc(50% - 30px);
+}
+
+.hollow-dots-spinner, .hollow-dots-spinner * {
+    box-sizing: border-box;
+}
+
+.hollow-dots-spinner {
+    height: 15px;
+    width: calc(30px * 3);
+}
+
+.hollow-dots-spinner .dot {
+    width: 15px;
+    height: 15px;
+    margin: 0 calc(15px / 2);
+    border: calc(15px / 5) solid #b9bfe6;
+    border-radius: 50%;
+    float: left;
+    transform: scale(0);
+    animation: hollow-dots-spinner-animation 1000ms ease infinite 0ms;
+}
+
+.hollow-dots-spinner .dot:nth-child(1) {
+    animation-delay: calc(200ms * 1);
+}
+
+.hollow-dots-spinner .dot:nth-child(2) {
+    animation-delay: calc(200ms * 2);
+}
+
+.hollow-dots-spinner .dot:nth-child(3) {
+    animation-delay: calc(200ms * 3);
+
+}
+
+@keyframes hollow-dots-spinner-animation {
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
 
 @keyframes spin {

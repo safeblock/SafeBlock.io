@@ -1,4 +1,4 @@
-@model List<Article>
+@model dynamic
 @{
     ViewData["Title"] = "Service Status";
 }
@@ -13,13 +13,62 @@
 </div>
 <div id="wrapper">
     <main id="main">
-        <section class="pt-5" id="blog">
+        <section class="pt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        ds
-                    </div>
-                    <div class="col-md-3">
+                        @if (ViewBag.Error != true)
+                        {
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Service Name</th>
+                                        <th>Description</th>
+                                        <th>Check ID</th>
+                                        <th class="text-right" scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>SafeBlock.io</td>
+                                        <td>SafeBlock.io Main Website</td>
+                                        <td>safeblock</td>
+                                        <td class="text-right">
+                                            <label class="badge badge-@(Model[2].Status.ToString().ToLower().Contains("passing") ? "success":"danger")">@Model[2].Status</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>SafeBlock.io API</td>
+                                        <td>Provide a global SafeBlock.io services interface</td>
+                                        <td>api</td>
+                                        <td class="text-right">
+                                            <label class="badge badge-@(Model[4].Status.ToString().ToLower().Contains("passing") ? "success":"danger")">@Model[4].Status</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wallet Vault</td>
+                                        <td>Store all the derived wallets.</td>
+                                        <td>vault</td>
+                                        <td class="text-right">
+                                            <label class="badge badge-@(Model[0].Status.ToString().ToLower().Contains("passing") ? "success":"danger")">@Model[0].Status</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Database Server</td>
+                                        <td>Store all the informations (PostgreSQL Server).</td>
+                                        <td>postgresql</td>
+                                        <td class="text-right">
+                                            <label class="badge badge-@(Model[1].Status.ToString().ToLower().Contains("passing") ? "success":"danger")">@Model[1].Status</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <p class="text-danger text-center">The Health Check Agent does seem to be offline.</p>
+                        }
+                        <p class="text-center mt-5 text-muted small">All the informations are provided by a <a href="https://www.consul.io/docs/agent/basics.html" target="_blank">Consul Agent</a> &reg;.</p>
                     </div>
                 </div>
             </div>

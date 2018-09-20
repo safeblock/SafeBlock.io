@@ -21,13 +21,6 @@ namespace SafeBlock.io.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //TODO : VIRER CA
-            #region old
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseNpgsql(@"Host=localhost;Database=SafeBlock;Username=safeblock;Password=rafale");
-            }
-            #endregion
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

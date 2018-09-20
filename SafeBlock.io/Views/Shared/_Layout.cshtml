@@ -43,7 +43,7 @@
                 </ul>
                 <ul class="nav navbar-nav ml-auto m-auto">
                     <li class="nav-item">
-                        <a asp-controller="Home" asp-action="Services" class="nav-link">Services</a>
+                        <a href="@(Context.Request.Path != "/" ? "/":"")#services" class="nav-link">Services</a>
                     </li>
                     <li class="nav-item ml-3">
                         <a asp-controller="ICO" asp-action="Index" class="nav-link">ICO
@@ -75,7 +75,7 @@
                     }
                     else
                     {
-                        <li class="nav-item ml-3">
+                        <li class="nav-item ml-3 p-40">
                             <a asp-controller="Dashboard" asp-action="Index" class="nav-link">Welcome Back !</a>
                         </li>
 

@@ -23,22 +23,22 @@ namespace SafeBlock.io.Controllers
 {
     public class AccountController : Controller
     {
-        private SafeBlockContext _context;
-        private IHostingEnvironment _env;
-        private IVaultClient _vaultClient;
-        
+        private readonly SafeBlockContext _context;
+        private readonly IHostingEnvironment _env;
+        private readonly IVaultClient _vaultClient;
         private readonly IUsers _users;
+        private readonly IOptions<VaultSettings> _vaultSettings;
 
-        public AccountController(IHostingEnvironment env, IOptions<VaultSettings> _vaultSettings, SafeBlockContext context, IUsers users)
+        public AccountController(IHostingEnvironment env, IOptions<VaultSettings> vaultSettings, SafeBlockContext context, IUsers users)
         {
             _env = env;
             _context = context;
+            _users = users;
+            _vaultSettings = vaultSettings;
 
             var authMethod = new TokenAuthMethodInfo(_vaultSettings.Value.Token);
             var vaultClientSettings = new VaultClientSettings(_vaultSettings.Value.ConnectionString, authMethod);
             _vaultClient = new VaultClient(vaultClientSettings); 
-
-            _users = users;
         }
 
         [Route("account/getting-started/{section?}")]
@@ -50,75 +50,68 @@ namespace SafeBlock.io.Controllers
                 return RedirectToAction("Index", "Dashboard");
             }
 
-            ViewBag.Section = section;
-            return View();
+            return View(new LoginSystem()
+            {
+                Step = section
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("account/getting-started/register")]
-        public async Task<IActionResult> Register(HandleLoginModel handleLoginModel)
+        public async Task<IActionResult> Register(LoginSystem loginSystem)
         {
             //TODO : remove user if not confirmed after 1 day
-
-            ViewBag.Section = "register";
-            ModelState.Remove("KeepSession");
+            
+            loginSystem.Step = "register";
 
             if(ModelState.IsValid)
             {
-                using (var sb = new SafeBlockContext())
+                try
                 {
                     var SecurityToken = SecurityUsing.CreateCryptographicallySecureGuid().ToString();
-
-                    try
+                    
+                    var newUser = new User
                     {
-                        var newUser = new User
-                        {
-                            Mail = handleLoginModel.Mail.ToLower(),
-                            Token = SecurityToken,
-                            Role = "User",
-                            RegisterDate = DateTime.Now,
-                            HasUsingTor = SecurityUsing.IsTorVisitor(HttpContext.Connection.RemoteIpAddress.ToString()),    //TODO : detect tor ip
-                            RegisterIp = HttpContext.Connection.RemoteIpAddress.ToString(),
-                            RegisterContext = JsonConvert.SerializeObject(HttpContext.Request.Headers),
-                            IsAllowed = true,
-                            IsMailChecked = false,
-                            TwoFactorPolicy = "None",
-                        };
-                        _users.AddUser(newUser);
-                        
-                        //TODO : store in secret
-                        // Chiffrement du token
-                        var firstCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(
-                            "8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba",
-                            SecurityToken));
-                        var secondCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(
-                            handleLoginModel.Password,
-                            firstCrypt));
+                        Mail = loginSystem.RegisterModel.Mail.ToLower(),
+                        Token = SecurityToken,
+                        Role = "User",
+                        RegisterDate = DateTime.Now,
+                        HasUsingTor = SecurityUsing.IsTorVisitor(HttpContext.Connection.RemoteIpAddress.ToString()),
+                        RegisterIp = HttpContext.Connection.RemoteIpAddress.ToString(),
+                        RegisterContext = JsonConvert.SerializeObject(HttpContext.Request.Headers),
+                        IsAllowed = true,
+                        IsMailChecked = false,
+                        TwoFactorPolicy = "None",
+                    };
+                    _users.AddUser(newUser);
+                    
+                    // Chiffrement du token
+                    var firstCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(_vaultSettings.Value.AESPassphrase, SecurityToken));
+                    var secondCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(loginSystem.RegisterModel.Password, firstCrypt));
 
-                        // Création du token dans le vault (doublement chiffré)
-                        await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}", new Dictionary<string, object>
-                        {
-                            {"token", secondCrypt}
-                        });
-
-                        // Connexion de l'utilisateur
-                        SignInUser(handleLoginModel.Mail);
-
-                        // Envoi du mail de confirmation
-                        MailUsing.SendConfirmationMail(handleLoginModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.io\robots.txt");
-
-                        //TODO : display "choose-wallet" modal
-                        return RedirectToAction("Index", "Dashboard");
-                    }
-                    catch// (DbUpdateException e)
+                    // Création du token dans le vault (doublement chiffré)
+                    await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(loginSystem.RegisterModel.Mail)}", new Dictionary<string, object>
                     {
-                        ModelState.AddModelError("Mail", "This mail address is already used.");
-                    }
+                        {"token", secondCrypt}
+                    });
+
+                    // Connexion de l'utilisateur
+                    SignInUser(loginSystem.RegisterModel.Mail);
+
+                    //TODO : changer le systeme d'envoi de mail
+                    // Envoi du mail de confirmation
+                    MailUsing.SendConfirmationMail(loginSystem.RegisterModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.io\robots.txt");
+
+                    return RedirectToAction("Index", "Dashboard", new {firstLogin=true});
+                }
+                catch
+                {
+                    ViewBag.CreationError = true;
                 }
             }
 
-            return View("GettingStarted", handleLoginModel);
+            return View("GettingStarted", loginSystem);
         }
 
         // Routine de connexion
@@ -137,33 +130,32 @@ namespace SafeBlock.io.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("account/getting-started/login")]
-        public async Task<IActionResult> Login(HandleLoginModel handleLoginModel)
+        public async Task<IActionResult> Login(LoginSystem loginSystem)
         {
-            ViewBag.Section = "login";
-            ModelState.Remove("VerifyPassword");
+            loginSystem.Step = "login";
 
             if (ModelState.IsValid)
             {
-                var userPresence = _users.IsUserByMail(handleLoginModel.Mail);
+                var userPresence = _users.IsUserByMail(loginSystem.LoginModel.Mail);
                 if (userPresence)
                 {
                     var token = string.Empty;
 
                     try
                     {
-                        var fullyCryptedToken = await _vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(handleLoginModel.Mail)}");
-                        var halfCryptedToken =  Aes.Decrypt(handleLoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data.Data["token"].ToString()));
-                        token = Aes.Decrypt("8a174f91ebc1713f62108712267eca28dcf8bcc12d155c9dd79cd30661a7a1d665350330c074cd9cd9c702ba7e750192188aca5fefbb942e822862da9c4c7dba", SecurityUsing.HexToBytes(halfCryptedToken));
+                        var fullyCryptedToken = await _vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(loginSystem.LoginModel.Mail)}");
+                        var halfCryptedToken = Aes.Decrypt(loginSystem.LoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data.Data["token"].ToString()));
+                        token = Aes.Decrypt(_vaultSettings.Value.AESPassphrase, SecurityUsing.HexToBytes(halfCryptedToken));
                     }
                     catch
                     {
                         ModelState.AddModelError("Mail", "Unable to decrypt your account.");
                     }
 
-                    var user = _users.GetUserByMail(handleLoginModel.Mail);
+                    var user = _users.GetUserByMail(loginSystem.LoginModel.Mail);
                     if (token.ToLower().Equals(user.Token))
                     {
-                        SignInUser(user.Mail, user.Role, handleLoginModel.KeepSession);
+                        SignInUser(user.Mail, user.Role, loginSystem.LoginModel.KeepSession);
 
                         return RedirectToAction("Index", "Dashboard");
                     }
@@ -173,7 +165,7 @@ namespace SafeBlock.io.Controllers
                     ModelState.AddModelError("Mail", "This account does not exists.");
                 }
             }
-            return View("GettingStarted", handleLoginModel);
+            return View("GettingStarted", loginSystem);
         }
 
         [Route("account/activate/{token}")]
@@ -183,6 +175,30 @@ namespace SafeBlock.io.Controllers
             _context.Users.First(x => SecurityUsing.Sha512(x.Token).Equals(token)).IsMailChecked = true;
             await _context.SaveChangesAsync();
             return View();
+        }
+
+        [Route(("account/forgot-password"))]
+        public IActionResult ForgotPassword()
+        {
+            var loginSystem = new LoginSystem();
+            loginSystem.Step = "forgot";
+            return View("GettingStarted", loginSystem);
+        }
+
+        [Route("account/recover-from-certificate")]
+        public IActionResult RecoverFromCertificate()
+        {
+            var loginSystem = new LoginSystem();
+            loginSystem.Step = "recover";
+            return View("GettingStarted", loginSystem);
+        }
+
+        [Route("acocunt/import-wallet")]
+        public IActionResult ImportWallet()
+        {
+            var loginSystem = new LoginSystem();
+            loginSystem.Step = "import";
+            return View("GettingStarted", loginSystem);
         }
 
         [Route("account/logout")]

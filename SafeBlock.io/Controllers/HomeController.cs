@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Localization;
+using Newtonsoft.Json;
 using RestSharp;
 using SafeBlock.io.Models;
 
@@ -35,10 +37,26 @@ namespace SafeBlock.io.Controllers
             return View();
         }
 
+        [Route("status")]
         [Route("service-status")]
         public IActionResult Status()
         {
-            return View();
+            try
+            {
+                using (var consulLookup = new WebClient())
+                {
+                    //TODO : putting in config file
+                    dynamic consulStatus =
+                        JsonConvert.DeserializeObject(
+                            consulLookup.DownloadString("http://127.0.0.1:8500/v1/health/node/archlinux"));
+                    return View(consulStatus);
+                }
+            }
+            catch
+            {
+                ViewBag.Error = true;
+                return View();
+            }
         }
 
         [Route("error/{errorCode?}")]

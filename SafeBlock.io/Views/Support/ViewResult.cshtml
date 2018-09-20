@@ -38,27 +38,37 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="knowledgebase" role="tabpanel" aria-labelledby="knowledgebase-tab">
                         <div class="row mt-5">
-                            <div class="col-md-2 pt-2">
-                                <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="account" class="inherit"><strong>My Account</strong></a></h5>
-                                <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="privacy" class="inherit"><strong>Privacy Policy</strong></a></h5>
-                                <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="api" class="inherit"><strong>API Using</strong></a></h5>
-                                <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="affiliation" class="inherit"><strong>Affiliation</strong></a></h5>
-                                <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="hosting" class="inherit"><strong>Full Node Hosting</strong></a></h5>
-                                <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="anonymity" class="inherit"><strong>Anonymity</strong></a></h5>
-                                <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="payment" class="inherit"><strong>Billing & Payment</strong></a></h5>
-                                <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="identification" class="inherit"><strong>Identification</strong></a></h5>
-                            </div>
-                            <div class="col-md-10">
-                                <ul class="list-group list-group-flush">
-                                    @foreach (var Article in Model.Items)
-                                    {
-                                        <li class="list-group-item bg-transparent">
-                                            <i class="fas fa-file-alt"></i> &nbsp;
-                                            <a asp-controller="Support" asp-action="ReadArticle" asp-route-article="@Article.SeoTitle" class="inherit">@Article.Title</a>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
+                            @if (Model.Items.Count == 0)
+                            {
+                                //TODO : à traduire
+                                <div class="col-md-12">
+                                    <p class="text-center text-muted">Il n'y à pas d'articles pour le moment</p>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-2 pt-2">
+                                    <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="account" class="inherit"><strong>My Account</strong></a></h5>
+                                    <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="privacy" class="inherit"><strong>Privacy Policy</strong></a></h5>
+                                    <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="api" class="inherit"><strong>API Using</strong></a></h5>
+                                    <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="affiliation" class="inherit"><strong>Affiliation</strong></a></h5>
+                                    <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="hosting" class="inherit"><strong>Full Node Hosting</strong></a></h5>
+                                    <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="anonymity" class="inherit"><strong>Anonymity</strong></a></h5>
+                                    <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="payment" class="inherit"><strong>Billing & Payment</strong></a></h5>
+                                    <h5 class="mb-3"><a asp-action="ViewResult" asp-route-category="identification" class="inherit"><strong>Identification</strong></a></h5>
+                                </div>
+                                <div class="col-md-10">
+                                    <ul class="list-group list-group-flush">
+                                        @foreach (var Article in Model.Items)
+                                        {
+                                            <li class="list-group-item bg-transparent">
+                                                <i class="fas fa-file-alt"></i> &nbsp;
+                                                <a asp-controller="Support" asp-action="ReadArticle" asp-route-article="@Article.SeoTitle" class="inherit">@Article.Title</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div class="tab-pane fade" id="faq" role="tabpanel" aria-labelledby="faq-tab">

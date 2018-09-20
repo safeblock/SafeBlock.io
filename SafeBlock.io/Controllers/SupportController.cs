@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using SafeBlock.io.Models;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Microsoft.Extensions.Options;

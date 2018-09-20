@@ -23,12 +23,12 @@ namespace SafeBlock.io.Models
 
         public List<SupportArticle> GetArticlesByTerm(string term)
         {
-            return _context.Support.Where(x => x.Title.Contains(term) || x.Content.Contains(term) || x.Category.Contains(term)).ToList();
+            return _context.Support.Where(x => x.Title.Contains(term) || x.Content.Contains(term) || x.Category.Contains(term)).OrderByDescending(x => x.Id).ToList();
         }
 
         public List<SupportArticle> GetArticlesByCategory(string category)
         {
-            return _context.Support.Where(x => x.Category.Equals(category)).ToList();
+            return _context.Support.Where(x => x.Category.Equals(category)).OrderByDescending(x => x.Id).ToList();
         }
 
         public SupportArticle GetArticleBySeo(string seoTitle)

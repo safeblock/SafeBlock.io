@@ -10,10 +10,12 @@ namespace SafeBlock.io.Controllers
     public class SupportController : Controller
     {
         private IOptions<MailingSettings> _mailingSettings;
+        private ISupport _support;
 
-        public SupportController(IOptions<MailingSettings> mailingSettings)
+        public SupportController(IOptions<MailingSettings> mailingSettings, ISupport support)
         {
             _mailingSettings = mailingSettings;
+            _support = support;
         }
 
         [Route("support")]
@@ -38,7 +40,8 @@ namespace SafeBlock.io.Controllers
         {
             return View(new KnowledgeBase()
             {
-                Query = category
+                Query = category,
+                Items =  _support.GetArticlesByCategory(category)
             });
         }
 

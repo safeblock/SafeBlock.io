@@ -7,10 +7,6 @@ namespace SafeBlock.io.Models
     {
         [Required]
         public string Query { get; set; }
-        public List<KnowledgeItem> Items { get; set; }
-    }
-
-    public class KnowledgeItem
-    {
+        public List<SupportArticle> Items { get; set; }
     }
 }

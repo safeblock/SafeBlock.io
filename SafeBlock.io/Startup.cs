@@ -51,6 +51,7 @@ namespace SafeBlock.io
             
             services.AddTransient<IUsers, Users>();
             services.AddTransient<IBlog, Blog>();
+            services.AddTransient<ISupport, Support>();
             
             services.AddMemoryCache();
             

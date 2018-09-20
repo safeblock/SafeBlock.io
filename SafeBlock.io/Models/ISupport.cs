@@ -9,5 +9,6 @@ namespace SafeBlock.io.Models
         List<SupportArticle> GetAllArticles();
         List<SupportArticle> GetArticlesByTerm(string term);
         List<SupportArticle> GetArticlesByCategory(string term);
+        SupportArticle GetArticleBySeo(string seoTitle);
     }
 }

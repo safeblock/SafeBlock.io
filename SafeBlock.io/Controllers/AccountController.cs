@@ -34,7 +34,7 @@ namespace SafeBlock.io.Controllers
             _env = env;
             _context = context;
 
-            IAuthMethodInfo authMethod = new TokenAuthMethodInfo(_vaultSettings.Value.Token);
+            var authMethod = new TokenAuthMethodInfo(_vaultSettings.Value.Token);
             var vaultClientSettings = new VaultClientSettings(_vaultSettings.Value.ConnectionString, authMethod);
             _vaultClient = new VaultClient(vaultClientSettings); 
 

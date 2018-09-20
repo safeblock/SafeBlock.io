@@ -1,6 +1,6 @@
 ﻿@model KnowledgeBase
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Searching for " + @Model.Query;
     Layout = "_Layout";
 }
 <div id="edge-background" class="simple"></div>
@@ -51,11 +51,13 @@
                             </div>
                             <div class="col-md-10">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item bg-transparent"><i class="fas fa-file-alt"></i> &nbsp;How can I use the OneTouch method for Two-Factor Authentication?</li>
-                                    <li class="list-group-item bg-transparent"><i class="fas fa-file-alt"></i> &nbsp;How to check if my ZIP/Postal code for Canadian address is correct?</li>
-                                    <li class="list-group-item bg-transparent"><i class="fas fa-file-alt"></i> &nbsp;Rights Under The GDPR</li>
-                                    <li class="list-group-item bg-transparent"><i class="fas fa-file-alt"></i> &nbsp;Do you provide any support? What is your response time?</li>
-                                    <li class="list-group-item bg-transparent"><i class="fas fa-file-alt"></i> &nbsp;Do you provide phone support?</li>
+                                    @foreach (var Article in Model.Items)
+                                    {
+                                        <li class="list-group-item bg-transparent">
+                                            <i class="fas fa-file-alt"></i> &nbsp;
+                                            <a asp-controller="Support" asp-action="ReadArticle" asp-route-article="@Article.SeoTitle" class="inherit">@Article.Title</a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>

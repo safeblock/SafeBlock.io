@@ -9,8 +9,8 @@ namespace SafeBlock.io.Controllers
 {
     public class SupportController : Controller
     {
-        private IOptions<MailingSettings> _mailingSettings;
-        private ISupport _support;
+        private readonly IOptions<MailingSettings> _mailingSettings;
+        private readonly ISupport _support;
 
         public SupportController(IOptions<MailingSettings> mailingSettings, ISupport support)
         {
@@ -35,20 +35,21 @@ namespace SafeBlock.io.Controllers
             return View("ViewCategory", knowledgeBase);
         }
 
-        [Route("support/search/{category}")]
-        public IActionResult ViewCategory(string category)
+        [Route("support/search/{term}")]
+        public IActionResult ViewCategory(string term)
         {
             return View(new KnowledgeBase()
             {
-                Query = category,
-                Items =  _support.GetArticlesByCategory(category)
+                Query = term,
+                Items =  _support.GetArticlesByTerm(term)
             });
         }
 
         [Route("support/read/{article}")]
         public IActionResult ReadArticle(string article)
         {
-            return View();
+            var supportArticle = _support.GetArticleBySeo(article);
+            return View(supportArticle);
         }
 
         [Route("support/send-message")]
@@ -83,7 +84,7 @@ namespace SafeBlock.io.Controllers
                     return NotFound();
                 }
             }
-            return Content("salut");
+            return NotFound();
         }
     }
 }

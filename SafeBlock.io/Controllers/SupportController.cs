@@ -29,14 +29,14 @@ namespace SafeBlock.io.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("ViewCategory", new {category=knowledgeBase.Query});
+                return RedirectToAction("ViewResult", new {term=knowledgeBase.Query});
             }
             
-            return View("ViewCategory", knowledgeBase);
+            return View("ViewResult", knowledgeBase);
         }
 
         [Route("support/search/{term}")]
-        public IActionResult ViewCategory(string term)
+        public IActionResult ViewResult(string term)
         {
             return View(new KnowledgeBase()
             {

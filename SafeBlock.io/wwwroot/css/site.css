@@ -897,6 +897,24 @@ nav.navbar-expand-lg .nav-link.active::after {
     background-color: #d6d8db !important;
 }
 
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6
+{
+    text-align: left;
+    color: #111111;
+    font-weight: 300;
+    
+}
+
+.markdown h1
+{
+    font-size: 25pt;
+}
+
 .markdown h2
 {
     font-size: 20pt;

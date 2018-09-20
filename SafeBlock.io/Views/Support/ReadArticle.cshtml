@@ -1,1 +1,28 @@
-﻿dsds
+﻿@using Westwind.AspNetCore.Markdown
+@model SupportArticle
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "_Layout";
+}
+<div id="edge-background" class="simple"></div>
+<div id="wave-header" class="short">
+    <div class="container">
+        <div class="offset-md-2 col-md-8 text-center">
+            <h1 class="text-white mb-0">@Model.Title</h1>
+            <p class="text-white-50 m-0 pt-3">SafeBlock.io &rarr; <a asp-controller="Support" asp-action="Index" class="inherit">Support</a> &rarr; <a asp-controller="Support" asp-action="ViewResult" asp-route-term="@Model.Category" class="inherit text-capitalize">@Model.Category</a></p>
+        </div>
+    </div>
+</div>
+<div id="wrapper">
+    <main id="main">
+        <section class="pt-3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 markdown pt-3">
+                        @Html.Raw(Markdown.Parse(Model.Content))
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>

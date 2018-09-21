@@ -111,6 +111,11 @@ canvas {
     z-index: -1;
 }
 
+#edge-background.no-scroll
+{
+    height: 100%;
+}
+
     #edge-background.girl
     {
         background: url("/static/section-background.svg") 50% 17vh no-repeat, url("/static/J-JdV7.jpg") center no-repeat;

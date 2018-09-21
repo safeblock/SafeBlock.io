@@ -25,6 +25,10 @@ $(document).ready(function () {
         type: 'inline',
         midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
     });
+    
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 
     var scroll = $(window).scrollTop();
     if(scroll >= 685)

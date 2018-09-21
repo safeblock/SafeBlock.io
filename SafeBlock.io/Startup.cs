@@ -127,6 +127,7 @@ namespace SafeBlock.io
             {
                 app.UseExceptionHandler("/home/error");
             }
+            
             var supportedCultures = new[]
             {
                 new CultureInfo("en-US"),
@@ -134,7 +135,6 @@ namespace SafeBlock.io
                 new CultureInfo("fr-FR"),
                 new CultureInfo("fr")
             };
-
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture("en-US"),
@@ -142,6 +142,7 @@ namespace SafeBlock.io
                 SupportedUICultures = supportedCultures
             });
 
+            // Définit les entêtes de sécurité
             /*app.UseSecurityHeaders(new HeaderPolicyCollection()
                 .AddFrameOptionsDeny()
                 .AddContentTypeOptionsNoSniff()
@@ -156,7 +157,23 @@ namespace SafeBlock.io
                     builder.AddFormAction().Self();
                     builder.AddFrameAncestors().None();
                 }));*/
-
+            
+            // Fournit un accès à la documentation generé par mkdocs
+            app.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Documentation/site/")),
+                RequestPath = "/documentation",
+                EnableDirectoryBrowsing = false,
+                EnableDefaultFiles = true,
+                DefaultFilesOptions = { DefaultFileNames = {"index.html"}}
+            });
+            
+            var defaultFilesOptions = new DefaultFilesOptions();
+            defaultFilesOptions.DefaultFileNames.Clear();
+            defaultFilesOptions.DefaultFileNames.Add("robots.txt");
+            defaultFilesOptions.DefaultFileNames.Add("safeblock-pgp-key.asc");
+            
+            app.UseDefaultFiles(defaultFilesOptions);
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseSession();

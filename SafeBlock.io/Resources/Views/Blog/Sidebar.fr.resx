@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Test" xml:space="preserve">
-    <value>Hello</value>
+  <data name="FILTER BY CATEGORIES" xml:space="preserve">
+    <value>FILTRER PAR CATÉGORIES</value>
+  </data>
+  <data name="FILTER BY TAGS" xml:space="preserve">
+    <value>FILTRER PAR TAGS</value>
+  </data>
+  <data name="SHARE ARTICLES" xml:space="preserve">
+    <value>PARTAGER LES ARTICLES</value>
   </data>
 </root>

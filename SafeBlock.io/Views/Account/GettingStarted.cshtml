@@ -1,6 +1,6 @@
 ﻿@model LoginSystem
 @{
-    ViewData["Title"] = "Getting Started";
+    ViewData["Title"] = Localizer["Getting Started"];
     ViewBag.HideFooter = true;
 }
 <div id="edge-background"></div>
@@ -13,16 +13,16 @@
 </div> 
 <div class="dialog-window loaded hide @(Model.Step == "login" ? "login":"")">
     <h1 class="text-center">SafeBlock.io</h1>
-    <p class="text-center">The Most Secure Cryptos Wallet on the Earth.</p>
+    <p class="text-center">@Localizer["The Most Secure Cryptos Wallet on the Earth."]</p>
     <ul class="nav tabs justify-content-center">
         <li class="nav-item">
-            <a class="nav-link @(Model.Step == "register" ? "active":"")" href="#create-wallet" data-toggle="tab" role="tab" aria-controls="create-wallet" aria-selected="true">Create a Wallet</a>
+            <a class="nav-link @(Model.Step == "register" ? "active":"")" href="#create-wallet" data-toggle="tab" role="tab" aria-controls="create-wallet" aria-selected="true">@Localizer["Create a Wallet"]</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link @(Model.Step == "login" ? "active":"")" href="#login" id="home-tab" data-toggle="tab" role="tab" aria-controls="login" aria-selected="true">Sign In</a>
+            <a class="nav-link @(Model.Step == "login" ? "active":"")" href="#login" id="home-tab" data-toggle="tab" role="tab" aria-controls="login" aria-selected="true">@Localizer["Sign In"]</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">@Localizer["More"]</a>
             <div class="dropdown-menu">
                 <a class="dropdown-item" asp-action="ForgotPassword"><i class="fas fa-lock"></i> I've Lost my Password</a>
                 <div class="dropdown-divider"></div>

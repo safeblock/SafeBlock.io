@@ -2,19 +2,19 @@
 <form class="mt-4" asp-controller="Account" asp-action="Register" method="post" asp-antiforgery="true">
     <div class="form-group mb-2">
         <span asp-validation-for="RegisterModel.Mail" class="text-danger"></span>
-        <label for="emailInput">Email address</label>
-        <input type="email" class="form-control" asp-for="RegisterModel.Mail" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email address">
-        <small id="emailHelp" class="form-text text-muted ">We'll never share your email with any third party. Look our <a asp-controller="Home" asp-action="PrivacyPolicy">Privacy Policy</a>.</small>
+        <label for="emailInput">@Localizer["Email address"]</label>
+        <input type="email" class="form-control" asp-for="RegisterModel.Mail" id="emailInput" aria-describedby="emailHelp" placeholder="@Localizer["Enter email address"]">
+        <small id="emailHelp" class="form-text text-muted ">@Localizer["We'll never share your email with any third party. Look our"] <a asp-controller="Home" asp-action="PrivacyPolicy">@Localizer["Privacy Policy"]</a>.</small>
     </div>
     <div class="form-group">
         <span asp-validation-for="RegisterModel.Password" class="text-danger"></span>
-        <label for="passwordInput">Password</label>
-        <input type="password" class="form-control" asp-for="RegisterModel.Password" id="passwordInput" placeholder="Enter password">
+        <label for="passwordInput">@Localizer["Password"]</label>
+        <input type="password" class="form-control" asp-for="RegisterModel.Password" id="passwordInput" placeholder="@Localizer["Enter password"]">
     </div>
     <div class="form-group">
         <span asp-validation-for="RegisterModel.VerifyPassword" class="text-danger"></span>
-        <label for="verifyPasswordInput">Verify Password</label>
-        <input type="password" class="form-control" asp-for="RegisterModel.VerifyPassword" id="verifyPasswordInput" placeholder="Enter same password">
+        <label for="verifyPasswordInput">@Localizer["Verify Password"]</label>
+        <input type="password" class="form-control" asp-for="RegisterModel.VerifyPassword" id="verifyPasswordInput" placeholder="@Localizer["Enter same password"]">
     </div>
-    <button type="submit" class="btn btn-primary btn-block mt-4"><i class="fas fa-plus-circle"></i> CREATE AN ACCOUNT</button>
+    <button type="submit" class="btn btn-primary btn-block mt-4"><i class="fas fa-plus-circle"></i> @Localizer["CREATE AN ACCOUNT"]</button>
 </form>

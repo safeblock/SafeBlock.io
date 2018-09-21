@@ -68,10 +68,10 @@
                     @if(!User.Identity.IsAuthenticated)
                     {
                         <li class="nav-item ml-3">
-                            <a asp-controller="Account" asp-action="Register" class="btn btn-success small">Register</a>
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-success small">@Localizer["Register"]</a>
                         </li>
                         <li class="nav-item ml-3 p-40">
-                            <a asp-controller="Account" asp-action="Login" class="nav-link">Login</a>
+                            <a asp-controller="Account" asp-action="Login" class="nav-link">@Localizer["Login"]</a>
                         </li>
                     }
                     else
@@ -97,24 +97,24 @@
                   <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
                       <div></div>
                       <img src="/static/logo.png" class="mb-3"/>
-                      <p>With SafeBlock.io Keep all your Cryptos in a Perfect Security 💪</p>
-                      <p class="small">Feel free to create your multi-currency wallet now and enjoy all the features like exchange, mixing ...</p>
+                      <p>@Localizer["With SafeBlock.io Keep all your Cryptos in a Perfect Security 💪"]</p>
+                      <p class="small">@Localizer["Feel free to create your multi-currency wallet now and enjoy all the features like exchange, mixing ..."]</p>
                   </div>
                   <hr class="w-100 clearfix d-md-none">
                   <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                       <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
-                      <p><a href="@(Context.Request.Path != "/" ? "/":"")#services">All our Services</a></p>
-                      <p><a asp-controller="Home" asp-action="Status"><i class="fas fa-server"></i> Service Status</a></p>
-                      <p><a asp-controller="Dashboard" asp-action="Index">My Account</a></p>
-                      <p><a asp-controller="Support" asp-action="Index">Get Support</a></p>
+                      <p><a href="@(Context.Request.Path != "/" ? "/":"")#services">@Localizer["All our Services"]</a></p>
+                      <p><a asp-controller="Home" asp-action="Status"><i class="fas fa-server"></i> @Localizer["Service Status"]</a></p>
+                      <p><a asp-controller="Dashboard" asp-action="Index">@Localizer["My Account"]</a></p>
+                      <p><a asp-controller="Support" asp-action="Index">@Localizer["Get Support"]</a></p>
                   </div>
                   <hr class="w-100 clearfix d-md-none">
                   <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                      <h6 class="text-uppercase mb-4 font-weight-bold">Useful Links</h6>
-                      <p><a asp-controller="Home" asp-action="PrivacyPolicy">Privacy Policy</a></p>
-                      <p><a href="#!">Become Affiliated</a></p>
-                      <p><a href="https://github.com/safeblock/SafeBlock.io" target="_blank"><i class="fas fa-code-branch"></i> Git Repository</a></p>
-                      <p><a asp-controller="Blog" asp-action="Index">See the Blog</a></p>
+                      <h6 class="text-uppercase mb-4 font-weight-bold">@Localizer["Useful Links"]</h6>
+                      <p><a asp-controller="Home" asp-action="PrivacyPolicy">@Localizer["Privacy Policy"]</a></p>
+                      <p><a href="#!">@Localizer["Become Affiliated"]</a></p>
+                      <p><a href="https://github.com/safeblock/SafeBlock.io" target="_blank"><i class="fas fa-code-branch"></i> @Localizer["Git Repository"]</a></p>
+                      <p><a asp-controller="Blog" asp-action="Index">@Localizer["See the Blog"]</a></p>
                   </div>
                   <hr class="w-100 clearfix d-md-none">
                   <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
@@ -122,14 +122,14 @@
                       <p class="text-muted"><i class="fas fa-envelope mr-2"></i><a href="mailto:contact@safeblock.io">contact@safeblock.io</a></p>
                       <p class="text-muted"><i class="fab fa-twitter mr-2"></i> <a href="https://twitter.com/safeblock_io" target="_blank">safeblock_io</a></p> 
                       <p class="text-muted"><i class="fab fa-discord mr-2"></i> <a href="https://discord.gg/zA6PKqU" target="_blank">discord.gg/zA6PKqU</a></p> 
-                      <p class="text-muted"><i class="fas fa-key mr-2"></i> <a href="https://pgp.key-server.io/pks/lookup?op=get&fingerprint=on&search=0x56816686F3383210" data-toggle="tooltip" data-placement="top" title="Fingerprint: 4BD8 8D4C 1882 5867 790E  4528 5681 6686 F338 3210" target="_blank">PGP: F3383210</a> <a href="https://pgp.key-server.io/pks/lookup?op=get&fingerprint=on&search=0x56816686F3383210"><sup><i class="fas fa-external-link-alt"></i></sup></a></p> 
+                      <p class="text-muted"><i class="fas fa-key mr-2"></i> <a href="/safeblock-pgp-key.asc" data-toggle="tooltip" data-placement="top" title="Fingerprint: 4BD8 8D4C 1882 5867 790E  4528 5681 6686 F338 3210" target="_blank">PGP: F3383210</a> <a href="https://pgp.key-server.io/pks/lookup?op=get&fingerprint=on&search=0x56816686F3383210"><sup><i class="fas fa-external-link-alt"></i></sup></a></p> 
                   </div>
               </div>
           </div>
           <div class="py-3 pt-4 d-flex align-items-center sub-footer">
               <div class="col-md-12 col-lg-12">
                   <p class="text-center">Copyright &copy; @DateTime.Now.Year SafeBlock.io - <i class="fab fa-github"></i>
-                      <a href="https://github.com/safeblock/SafeBlock.io" class="inherit" target="_blank">Source Aailable on Github</a> - Thought with 💛 by <a href="https://about.me/clint-mourlevat" class="inherit" target="_blank">Clint Mourlevat</a>.</p>
+                      <a href="https://github.com/safeblock/SafeBlock.io" class="inherit" target="_blank">@Localizer["Source Aailable on Github"]</a> - @Localizer["Thought with 💛 by"] <a href="https://about.me/clint-mourlevat" class="inherit" target="_blank">Clint Mourlevat</a>.</p>
               </div>
           </div>
         </footer>

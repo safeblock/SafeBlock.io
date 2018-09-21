@@ -93,6 +93,12 @@ namespace SafeBlock.io
                 SiteKey = Configuration["Recaptcha:SiteKey"],
                 SecretKey = Configuration["Recaptcha:SecretKey"]
             });
+            
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -105,12 +111,6 @@ namespace SafeBlock.io
                 options.DefaultRequestCulture = new RequestCulture(culture: DefaultCulture, uiCulture: DefaultCulture);
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
-
-                /*options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
-                {
-                    // My custom request culture logic
-                    return new ProviderCultureResult("en-US");
-                }));*/
             });
             
             services.AddWebMarkupMin(options =>
@@ -188,6 +188,7 @@ namespace SafeBlock.io
             defaultFilesOptions.DefaultFileNames.Add("safeblock-pgp-key.asc");
             
             app.UseDefaultFiles(defaultFilesOptions);
+            app.UseCookiePolicy();
             app.UseStaticFiles();
             app.UseSession();
             app.UseAuthentication();

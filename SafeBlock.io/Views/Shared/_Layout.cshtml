@@ -81,17 +81,7 @@
 
                     }
                     <li class="nav-item dropdown language-switcher ml-3">
-                        @{
-                            var currentCulture = Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.Name.Substring(0, 2);
-                        }
-                        <a href="#" class="nav-link nav-dropdown old-dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="~/static/@(currentCulture).png"/>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="en" asp-route-redirectUrl="@Context.Request.Path" class="dropdown-item">English</a>
-                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="fr" asp-route-redirectUrl="@Context.Request.Path" class="dropdown-item">French</a>
-                            <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="ru" asp-route-redirectUrl="@Context.Request.Path" class="dropdown-item">Russian</a>
-                        </div>
+                        <partial name="_LanguageSwitcher" />
                     </li>
                 </ul>
             </div>

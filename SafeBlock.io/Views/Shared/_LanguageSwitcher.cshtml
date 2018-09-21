@@ -1,0 +1,20 @@
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+@{
+    var currentCulture = Context.Features.Get<IRequestCultureFeature>().RequestCulture.UICulture.Name.Substring(0, 2);
+    var cultureItems = LocOptions.Value.SupportedUICultures
+        .Select(c => new SelectListItem { Value = c.Name, Text = c.DisplayName })
+        .ToList();
+}
+<a href="#" class="nav-link nav-dropdown old-dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <img src="~/static/@(currentCulture).png"/>
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    @foreach (var cultureItem in cultureItems)
+    {
+        <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="@cultureItem.Value" asp-route-redirectUrl="@Context.Request.Path" class="dropdown-item text-capitalize">@cultureItem.Text (@cultureItem.Value.ToUpper())</a>
+    }
+    @*<a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="en" asp-route-redirectUrl="@Context.Request.Path" class="dropdown-item">English</a>
+    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="fr" asp-route-redirectUrl="@Context.Request.Path" class="dropdown-item">French</a>
+    <a asp-controller="Home" asp-action="ChangeLanguage" asp-route-lang="ru" asp-route-redirectUrl="@Context.Request.Path" class="dropdown-item">Russian</a>*@
+</div>

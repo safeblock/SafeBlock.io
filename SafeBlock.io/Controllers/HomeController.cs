@@ -68,7 +68,10 @@ namespace SafeBlock.io.Controllers
         [Route("change-language/{lang}")]
         public IActionResult ChangeLanguage(string lang, string redirectUrl)
         {
-            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)), new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)});
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName, CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(lang)), new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddYears(1)
+            });
             
             return LocalRedirect(redirectUrl);
         }

@@ -31,12 +31,14 @@ namespace SafeBlock.io
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+        
+        private const string DefaultCulture = "en";
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -49,11 +51,23 @@ namespace SafeBlock.io
                 options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLDefault"));
             });
             
+            services.AddDbContext<SafeBlockContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));
+            
             services.AddTransient<IUsers, Users>();
             services.AddTransient<IBlog, Blog>();
             services.AddTransient<ISupport, Support>();
             
-            services.AddMemoryCache();
+            services.AddDistributedRedisCache(options =>
+            {
+                options.InstanceName = "SecuredSession";
+                options.Configuration = Configuration.GetConnectionString("Redis");
+            });
+            
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
             
             services.AddAuthentication(options =>
             {
@@ -62,58 +76,59 @@ namespace SafeBlock.io
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options =>
             {
-                //options.Cookie.Domain = "safeblock.io";
+                options.Cookie.Domain = "safeblock.io";
                 options.LoginPath = "/account/getting-started/login";
                 options.LogoutPath = "/account/logout";
                 options.AccessDeniedPath = "/account/getting-started/register";
             });
-            
-            services.AddDistributedMemoryCache();
-            
-            services.AddSession(options =>
+
+            services.AddLocalization(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
-            });
-            
-            services.AddDistributedRedisCache(options =>
-            {
-                options.InstanceName = "SecuredSession";
-                options.Configuration = Configuration.GetConnectionString("Redis");
+                options.ResourcesPath = "Resources";
             });
 
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
-
-            services.AddMvc()
-                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-                .AddDataAnnotationsLocalization();
-
+            // Configuration
             services.AddRecaptcha(new RecaptchaOptions
             {
                 SiteKey = Configuration["Recaptcha:SiteKey"],
                 SecretKey = Configuration["Recaptcha:SecretKey"]
             });
 
-            services.AddWebMarkupMin(options =>
+            services.Configure<RequestLocalizationOptions>(options =>
             {
-                options.AllowMinificationInDevelopmentEnvironment = true;
-                options.AllowCompressionInDevelopmentEnvironment = true;
-            })
-            .AddHtmlMinification(options =>
-            {
-                options.MinificationSettings.RemoveRedundantAttributes = true;
-                options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
-                options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
-            })
-            .AddHttpCompression();
+                var supportedCultures = new[]
+                {
+                    new CultureInfo(DefaultCulture),
+                    new CultureInfo("fr")
+                };
 
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
+                options.DefaultRequestCulture = new RequestCulture(culture: DefaultCulture, uiCulture: DefaultCulture);
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
+
+                /*options.RequestCultureProviders.Insert(0, new CustomRequestCultureProvider(async context =>
+                {
+                    // My custom request culture logic
+                    return new ProviderCultureResult("en-US");
+                }));*/
             });
+            
+            services.AddWebMarkupMin(options =>
+                {
+                    options.AllowMinificationInDevelopmentEnvironment = true;
+                    options.AllowCompressionInDevelopmentEnvironment = true;
+                })
+                .AddHtmlMinification(options =>
+                {
+                    options.MinificationSettings.RemoveRedundantAttributes = true;
+                    options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+                    options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+                })
+                .AddHttpCompression();
 
-            services.AddDbContext<SafeBlockContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));
+            services.AddMvc()
+                .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+                .AddDataAnnotationsLocalization();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -127,36 +142,34 @@ namespace SafeBlock.io
             {
                 app.UseExceptionHandler("/home/error");
             }
-            
-            var supportedCultures = new[]
-            {
-                new CultureInfo("en-US"),
-                new CultureInfo("en"),
-                new CultureInfo("fr-FR"),
-                new CultureInfo("fr")
-            };
-            app.UseRequestLocalization(new RequestLocalizationOptions
-            {
-                DefaultRequestCulture = new RequestCulture("en-US"),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
-            });
 
             // Définit les entêtes de sécurité
-            /*app.UseSecurityHeaders(new HeaderPolicyCollection()
+            app.UseSecurityHeaders(new HeaderPolicyCollection()
                 .AddFrameOptionsDeny()
-                .AddContentTypeOptionsNoSniff()
                 .AddXssProtectionBlock()
                 .AddContentTypeOptionsNoSniff()
                 .AddXssProtectionEnabled()
                 .AddReferrerPolicyStrictOriginWhenCrossOrigin()
-                .RemoveServerHeader()
-                .AddContentSecurityPolicy(builder =>
+                .RemoveServerHeader());
+                /*.AddContentSecurityPolicy(builder =>
                 {
                     builder.AddObjectSrc().None();
                     builder.AddFormAction().Self();
                     builder.AddFrameAncestors().None();
                 }));*/
+            
+            var supportedCultures = new[]
+            {
+                new CultureInfo(DefaultCulture),
+                new CultureInfo("fr"),
+            };
+
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture(DefaultCulture),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures
+            });
             
             // Fournit un accès à la documentation generé par mkdocs
             app.UseFileServer(new FileServerOptions
@@ -175,7 +188,6 @@ namespace SafeBlock.io
             
             app.UseDefaultFiles(defaultFilesOptions);
             app.UseStaticFiles();
-            app.UseCookiePolicy();
             app.UseSession();
             app.UseAuthentication();
             app.UseWebMarkupMin();

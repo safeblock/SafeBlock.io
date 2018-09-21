@@ -7,6 +7,7 @@ namespace SafeBlock.io.Models
     {
         [Required(ErrorMessage = "The email address is required.")]
         [EmailAddress(ErrorMessage =  "This is not a valid email address.")]
+        //[Remote("ValidateEmailAddress", "Account", ErrorMessage = "lol")]
         public string Mail { get; set; }
 
         [Required(ErrorMessage = "The password is required.")]

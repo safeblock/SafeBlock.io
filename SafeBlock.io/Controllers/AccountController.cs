@@ -65,6 +65,12 @@ namespace SafeBlock.io.Controllers
             //TODO : remove user if not confirmed after 1 day
             
             loginSystem.Step = "register";
+            
+            var userPresence = _users.IsUserByMail(loginSystem.RegisterModel.Mail);
+            if (userPresence)
+            {
+                ModelState.AddModelError("RegisterModel.Mail", "This account already exists.");
+            }
 
             if(ModelState.IsValid)
             {
@@ -83,18 +89,20 @@ namespace SafeBlock.io.Controllers
                         RegisterContext = JsonConvert.SerializeObject(HttpContext.Request.Headers),
                         IsAllowed = true,
                         IsMailChecked = false,
-                        TwoFactorPolicy = "None",
+                        TwoFactorPolicy = "None"
                     };
                     _users.AddUser(newUser);
                     
-                    // Chiffrement du token
+                    // Chiffrement du token (avec la passphrase du site et le mot de passe utilisateur)
                     var firstCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(_vaultSettings.Value.AESPassphrase, SecurityToken));
                     var secondCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(loginSystem.RegisterModel.Password, firstCrypt));
 
-                    // Création du token dans le vault (doublement chiffré)
+                    // Création du token dans le vault
+                    //await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync(null, null, )
                     await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(loginSystem.RegisterModel.Mail)}", new Dictionary<string, object>
                     {
-                        {"token", secondCrypt}
+                        {"token", secondCrypt},
+                        {"timestamp", DateTimeOffset.Now.ToUnixTimeSeconds()}
                     });
 
                     // Connexion de l'utilisateur
@@ -102,13 +110,17 @@ namespace SafeBlock.io.Controllers
 
                     //TODO : changer le systeme d'envoi de mail
                     // Envoi du mail de confirmation
-                    MailUsing.SendConfirmationMail(loginSystem.RegisterModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.io\robots.txt");
+                    if (!_env.IsDevelopment())
+                    {
+                        MailUsing.SendConfirmationMail(loginSystem.RegisterModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.io\robots.txt");
+                    }
 
                     return RedirectToAction("Index", "Dashboard", new {firstLogin=true});
                 }
-                catch
+                catch(Exception e)
                 {
                     ViewBag.CreationError = true;
+                    ViewBag.Exception = e.Message;
                 }
             }
 
@@ -150,7 +162,7 @@ namespace SafeBlock.io.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError("Mail", "Unable to decrypt your account.");
+                        ModelState.AddModelError("LoginModel.Mail", "Unable to decrypt your account.");
                     }
 
                     var user = _users.GetUserByMail(loginSystem.LoginModel.Mail);
@@ -163,7 +175,7 @@ namespace SafeBlock.io.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("Mail", "This account does not exists.");
+                    ModelState.AddModelError("LoginModel.Mail", "This account does not exists.");
                 }
             }
             return View("GettingStarted", loginSystem);

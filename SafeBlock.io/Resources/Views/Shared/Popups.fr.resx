@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Test" xml:space="preserve">
-    <value>Hello</value>
+  <data name="SafeBlock.io is accessible from Tor and has a specific Tor URL that allows you to use all the features of our platform trought Tor and in a perfect anonymity." xml:space="preserve">
+    <value>SafeBlock.io est accessible depuis Tor et dispose d'une URL Tor spécifique qui vous permet d'utiliser toutes les fonctionnalités de notre plate-forme sur Tor et dans un anonymat parfait.</value>
+  </data>
+  <data name="Tor is free software and an open network that helps you defend against traffic analysis, a form of network surveillance that threatens personal freedom and privacy, confidential business activities and relationships, and state security." xml:space="preserve">
+    <value>Tor est un logiciel gratuit et un réseau ouvert qui vous aide à vous défendre contre l'analyse du trafic, et la surveillance des <réseaux></réseaux> qui menace les libertés personnelle et la vie privée.</value>
+  </data>
+  <data name="Visit TorProject.org" xml:space="preserve">
+    <value>Visit TorProject.org</value>
+  </data>
+  <data name="Switch Tor Version" xml:space="preserve">
+    <value>Switch Tor Version</value>
   </data>
 </root>

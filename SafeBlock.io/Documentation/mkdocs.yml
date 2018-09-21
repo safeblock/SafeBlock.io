@@ -1,0 +1,6 @@
+site_name: SafeBlock.io API Documentation
+site_description: Guide Reference for the SafeBlock.io API
+site_author: Clint Mourlevat
+google_analytics: ["UA-97451022-1", "safeblock.io"]
+theme: readthedocs
+repo_url: https://github.com/safeblock/SafeBlock.io

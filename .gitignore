@@ -259,3 +259,5 @@ SafeBlock.io/wwwroot/lib
 package-lock.json
 SafeBlock.io/appsettings.Development.json
 appsettings.Development.json
+SafeBlock.io/Documentation/site
+SafeBlock.io/Documentation/site/*

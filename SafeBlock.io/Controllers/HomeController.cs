@@ -48,7 +48,7 @@ namespace SafeBlock.io.Controllers
                     //TODO : putting in config file
                     dynamic consulStatus =
                         JsonConvert.DeserializeObject(
-                            consulLookup.DownloadString("http://127.0.0.1:8500/v1/health/node/archlinux"));
+                            consulLookup.DownloadString("http://127.0.0.1:8500/v1/health/checks/safeblock"));
                     return View(consulStatus);
                 }
             }

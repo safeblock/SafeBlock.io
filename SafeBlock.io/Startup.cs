@@ -136,21 +136,22 @@ namespace SafeBlock.io
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();
                 //app.UseBrowserLink();
             }
             else
             {
-                app.UseExceptionHandler("/home/error");
+                app.UseStatusCodePagesWithRedirects("/error/{0}"); 
             }
 
             // Définit les entêtes de sécurité
-            app.UseSecurityHeaders(new HeaderPolicyCollection()
+            /*app.UseSecurityHeaders(new HeaderPolicyCollection()
                 .AddFrameOptionsDeny()
                 .AddXssProtectionBlock()
                 .AddContentTypeOptionsNoSniff()
                 .AddXssProtectionEnabled()
                 .AddReferrerPolicyStrictOriginWhenCrossOrigin()
-                .RemoveServerHeader());
+                .RemoveServerHeader());*/
                 /*.AddContentSecurityPolicy(builder =>
                 {
                     builder.AddObjectSrc().None();

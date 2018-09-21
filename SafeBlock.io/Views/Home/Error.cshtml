@@ -1,14 +1,44 @@
-﻿@model int
+﻿@model SafeBlock.io.Controllers.ErrorModel
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
+<div id="edge-background" class="simple"></div>
+<div id="wave-header" class="short">
+    <div class="container">
+        <div class="offset-md-2 col-md-8 text-center">
+            <h1 class="text-white mb-0">Oops, We have an Error.</h1>
+            <p class="text-white-50 m-0 pt-3">What's new at SafeBlock.io ?</p>
+        </div>
+    </div>
+</div>
 <div id="wrapper">
     <main id="main">
-        <div class="text-center pt-5 pb-5">
-            
-            <h1>Erreur 404</h1>
-            <p class="lead">Cette page est introuvable :(</p>
-        </div>
+        <section class="pt-5" id="blog">
+            <div class="container">
+                <h3 class="text-danger">An error occurred while processing your request.</h3>
+
+                @if (Model.ShowRequestId)
+                {
+                    <p>
+                        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                    </p>
+                }
+
+                <h3>Development Mode</h3>
+                <p>
+                    Swapping to <strong>Development</strong> environment will display more detailed 
+                    information about the error that occurred.
+                </p>
+                <p>
+                    <strong>Development environment should not be enabled in deployed applications
+                    </strong>, as it can result in sensitive information from exceptions being 
+                    displayed to end users. For local debugging, development environment can be 
+                    enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment 
+                    variable to <strong>Development</strong>, and restarting the application.
+                </p>
+
+            </div>
+        </section>
     </main>
 </div>

@@ -20,6 +20,7 @@
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/slider.min.css" asp-append-version="true" />
     </environment>
     @RenderSection("Head", required: false)
 </head>
@@ -102,7 +103,7 @@
                   <hr class="w-100 clearfix d-md-none">
                   <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                       <h6 class="text-uppercase mb-4 font-weight-bold">Services</h6>
-                      <p><a asp-controller="Home" asp-action="Services">All our Services</a></p>
+                      <p><a href="@(Context.Request.Path != "/" ? "/":"")#services">All our Services</a></p>
                       <p><a asp-controller="Home" asp-action="Status"><i class="fas fa-server"></i> Service Status</a></p>
                       <p><a asp-controller="Dashboard" asp-action="Index">My Account</a></p>
                       <p><a asp-controller="Support" asp-action="Index">Get Support</a></p>

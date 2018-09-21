@@ -18,6 +18,7 @@ using SafeBlock.io.Settings;
 using VaultSharp;
 using VaultSharp.V1.AuthMethods;
 using VaultSharp.V1.AuthMethods.Token;
+using VaultSharp.V1.SecretsEngines.PKI;
 
 namespace SafeBlock.io.Controllers
 {
@@ -42,7 +43,7 @@ namespace SafeBlock.io.Controllers
         }
 
         [Route("account/getting-started/{section?}")]
-        public IActionResult GettingStarted(string section)
+        public async Task<IActionResult> GettingStarted(string section)
         {
             // On redirige sur le tableau de bord si l'utilisateur est déja connecté
             if (User.Identity.IsAuthenticated)

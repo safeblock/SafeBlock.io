@@ -6,6 +6,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/css/slider.min.css",
+    "inputFiles": [
+      "wwwroot/css/slider.css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/css/dashboard.min.css",
     "inputFiles": [
       "wwwroot/css/dashboard.css"

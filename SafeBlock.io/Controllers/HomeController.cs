@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using RestSharp;
 using SafeBlock.io.Models;
@@ -62,7 +64,8 @@ namespace SafeBlock.io.Controllers
         [Route("error/{errorCode?}")]
         public IActionResult Error(int errorCode = 404) 
         {
-            return View(errorCode);
+            return View(new ErrorModel() 
+                { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
         [Route("change-language/{lang}")]
@@ -96,6 +99,20 @@ namespace SafeBlock.io.Controllers
             {
                 return Error();
             }
+        }
+    }
+    
+    public class ErrorModel : PageModel
+    {
+        public string RequestId { get; set; }
+
+        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, 
+            NoStore = true)]
+        public void OnGet()
+        {
+            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
     }
 }

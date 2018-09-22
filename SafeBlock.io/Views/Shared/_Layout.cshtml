@@ -142,22 +142,22 @@
     <script src="~/lib/toastr/toastr.min.js"></script>
     <script src="~/lib/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
     <script type="text/javascript" src="~/lib/master-slider/js/masterslider.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+    @RenderSection("Scripts", required: false)
     <environment include="Development">
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment exclude="Development">
         <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-    <partial name="_ValidationScriptsPartial" />
-    @RenderSection("Scripts", required: false)
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97451022-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-97451022-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
         
-        gtag('config', 'UA-97451022-1');
-    </script>
-    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="015b29c5-d995-4502-8940-80dcf48101c9";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+            gtag('config', 'UA-97451022-1');
+        </script>
+        <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="015b29c5-d995-4502-8940-80dcf48101c9";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    </environment>
 </body>
 </html>

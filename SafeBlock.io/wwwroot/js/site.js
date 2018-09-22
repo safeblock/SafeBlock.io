@@ -18,9 +18,10 @@ toastr.options = {
   "hideMethod": "fadeOut"
 }
 
-$(document).ready(function () {
+$(document).ready(function ()
+{
     NProgress.start();
-    NProgress.done();
+    
     $('.open-popup-link').magnificPopup({
         type: 'inline',
         midClick: true // allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source.
@@ -34,19 +35,20 @@ $(document).ready(function () {
     if(scroll >= 685)
     {
         $("#navbar").addClass("active");
-        $("#navbar").css("position", "fixed");
+        $("#navbar .container-fluid").removeClass("py-4").addClass("py-3");
         $(".logo").attr("src", "/static/logo-black.png");
         is_down = true;
     }
 
     var items = document.querySelectorAll(".accordion a");
+    items.forEach(item => item.addEventListener('click', toggleAccordion));
 
     function toggleAccordion() {
         this.classList.toggle('active');
         this.nextElementSibling.classList.toggle('active');
     }
-
-    items.forEach(item => item.addEventListener('click', toggleAccordion));
+    
+    NProgress.done();
 });
 
 $(window).scroll(function (event)
@@ -86,9 +88,8 @@ function FailedMessage()
 
 function SuccessfullySubscribed()
 {
-    $("#email-button-newsletter").html("<i class=\"fas fa-check\"></i> Suscribed !");
+    $("#email-button-newsletter").html("<i class=\"fas fa-check\"></i> Suscribed !").addClass("btn-success").addClass("disabled");
     $("#email-input-newsletter").prop('disabled', true);
-    $("#email-button-newsletter").addClass("btn-success").addClass("disabled");
     toastr.success('Thank you, you will informed every weeks. 📧')
 }
 

@@ -117,41 +117,23 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ActuallySafeBlockSupports" xml:space="preserve">
+  <data name="Actually SafeBlock.io supports this seven following currencies." xml:space="preserve">
     <value>Actuellement SafeBlock.io supporte ces 7 cryptomonnaies.</value>
   </data>
-  <data name="Become Affiliated" xml:space="preserve">
-    <value>Devenir Affilié</value>
-  </data>
-  <data name="CreateAccount" xml:space="preserve">
-    <value>Créer un Compte</value>
-  </data>
-  <data name="CreateWallet" xml:space="preserve">
+  <data name="Create a Wallet" xml:space="preserve">
     <value>Créer un Wallet</value>
   </data>
-  <data name="EnterEmail" xml:space="preserve">
-    <value>Entrer votre adresse email...</value>
+  <data name="With SafeBlock.io&lt;br /&gt;Keep all your Cryptos&lt;br /&gt;in a Perfect Security 💪" xml:space="preserve">
+    <value>Avec SafeBlock.io&lt;br /&gt; Gardez vos Cryptos &lt;br /&gt; en Parfaite Scurité 💪</value>
   </data>
-  <data name="FeelFree" xml:space="preserve">
-    <value>N'hésitez pas à créer votre portefeuille multi-devises maintenant et profitez de toutes les fonctionnalités comme l'échange, le mixage ...</value>
+  <data name="Feel free to create your multi-currency wallet now&lt;br /&gt;and enjoy all the features: exchange, mixing ..." xml:space="preserve">
+    <value>N'hésitez pas à créer votre portefeuille multi-devises&lt;br /&gt; et profitez de toutes nos fonctionnalités ...</value>
   </data>
-  <data name="GetUpdates" xml:space="preserve">
-    <value>Obtenez des informations à propos de SafeBlock.io et des news sur les cryptomonnaies.</value>
-  </data>
-  <data name="Git Repository" xml:space="preserve">
-    <value>Dépot Git</value>
-  </data>
-  <data name="KeepInSecurity" xml:space="preserve">
-    <value>Avec SafeBlock.io Gardez tous vos Cryptos dans une sécurité parfaite 💪</value>
-  </data>
-  <data name="Login" xml:space="preserve">
+  <data name="Log In" xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="MyAccount" xml:space="preserve">
     <value>Mon Compte</value>
-  </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Politique sur la vie privée</value>
   </data>
   <data name="ReadMoreAbout" xml:space="preserve">
     <value>Lisez comment nous utilisez vos données dans notre </value>
@@ -168,53 +150,43 @@
   <data name="Slider2" xml:space="preserve">
     <value>N'hésitez pas à créer votre portefeuille multi-devises&lt;br /&gt;maintenant et profitez de toutes nos fonctionnalités.</value>
   </data>
-  <data name="Subscribe" xml:space="preserve">
-    <value>Souscription !</value>
-  </data>
-  <data name="SubscribeToNewsletter" xml:space="preserve">
-    <value>Souscription à la Newsletter</value>
-  </data>
-  <data name="UsefulLinks" xml:space="preserve">
-    <value>Liens Utiles</value>
-  </data>
-  <data name="WeAreActually" xml:space="preserve">
+  <data name="We are actually one of the best solutions for keeping your coins safe." xml:space="preserve">
     <value>Nous sommes l'une des meilleures solutions pour garder vos cryptomonnaies en toute sécurité.</value>
   </data>
-  <data name="WhichCurrencies" xml:space="preserve">
+  <data name="Which Currencies are supported ?" xml:space="preserve">
     <value>Quelles Cryptomonnaies sont Supportés ?</value>
   </data>
-  <data name="WhyChooseSafeBlock" xml:space="preserve">
+  <data name="Why choose SafeBlock.io ?" xml:space="preserve">
     <value>Pourquoi choisir SafeBlock.io ?</value>
   </data>
-  <data name="GetDebitCard" xml:space="preserve">
+  <data name="Get a Beautiful Debit Card" xml:space="preserve">
     <value>Obtener une Carte de Débit Magnifique</value>
   </data>
-  <data name="GetDebitCardDesc" xml:space="preserve">
+  <data name="A beautiful card that works all the time and everywhere." xml:space="preserve">
     <value>Une belle carte qui fonctionne tout le temps et partout.</value>
   </data>
-  
-  <data name="CompleteSecurity" xml:space="preserve">
+  <data name="Complete Security" xml:space="preserve">
     <value>Une Complète Sécurité</value>
   </data>
-  <data name="CompleteSecurityDesc" xml:space="preserve">
+  <data name="SafeBlock.io use Cold Storage&lt;br /&gt; system for storing accounts." xml:space="preserve">
     <value>SafeBlock.io use Cold Storage&lt;br&gt; system for storing accounts.</value>
   </data>
-  <data name="SimpleToUseForEveryone" xml:space="preserve">
+  <data name="Simple to Use for Everyone" xml:space="preserve">
     <value>Facile à Utilisé pour Tous</value>
   </data>
-  <data name="SimpleToUseForEveryoneDesc" xml:space="preserve">
-    <value>We make it easy to understand the&lt;br&gt; technology behing each project</value>
+  <data name="We make it easy to understand the&lt;br /&gt; technology behing each project." xml:space="preserve">
+    <value>We make it easy to understand the&lt;br&gt; technology behing each project.</value>
   </data>
-  <data name="NoKycOrSurveillance" xml:space="preserve">
+  <data name="No KYC or Surveillance" xml:space="preserve">
     <value>Pas de KYC ou d'Espionnage</value>
   </data>
-  <data name="NoKycOrSurveillanceDesc" xml:space="preserve">
+  <data name="Our platform does not require KYC&lt;br /&gt; for creating a wallet." xml:space="preserve">
     <value>Our platform does not require KYC&lt;br&gt; for creating a wallet.</value>
   </data>
-  <data name="WeHaveDevelopedForEveryone" xml:space="preserve">
+  <data name="We have developed solutions for everyone." xml:space="preserve">
     <value>Nous avons développé des solutions pour tous</value>
   </data>
-  <data name="MuchMoreSolutions" xml:space="preserve">
+  <data name="and much more solutions..." xml:space="preserve">
     <value>et bien d'autres solutions...</value>
   </data>
   <data name="DebitCardPoint1" xml:space="preserve">

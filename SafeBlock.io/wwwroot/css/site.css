@@ -583,13 +583,22 @@ nav.navbar-expand-lg .nav-link {
     padding: 0px 0px 3px !important;
 }
 
+nav.navbar-expand-lg
+{
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    position: sticky;
+}
+
 nav.navbar-expand-lg.active
 {
     box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
-    position: fixed;
+    background-color: #ffffff !important;
+    top: 0px;
     z-index: 99;
     width: 100%;
-    background-color: #ffffff !important;
 }
 
 nav.navbar-expand-lg.active .nav-link {

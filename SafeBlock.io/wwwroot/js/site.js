@@ -57,18 +57,16 @@ $(window).scroll(function (event)
         if(!is_down)
         {
             $("#navbar").addClass("active");
-            $("#navbar").css("position", "fixed");
-            $("#navbar").css("top", "-120px").animate({top:0}, 500);
+            $("#navbar .container-fluid").removeClass("py-4").addClass("py-3");
             $(".logo").attr("src", "/static/logo-black.png");
             is_down = true;
         }
     }
-    else if (scroll <= 50)
+    else if (scroll <= 0)
     {
         if(is_down)
         {
-            $("#navbar").css("top", "120px").animate({top:0}, 300);
-            $("#navbar").css("position", "relative");
+            $("#navbar .container-fluid").removeClass("py-3").addClass("py-4");
             $("#navbar").removeClass("active");
             $(".logo").attr("src", "/static/logo.png");
             is_down = false;

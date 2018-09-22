@@ -24,15 +24,3 @@ SafeBlock.io use `Microsoft.Extensions.Caching.Redis` for adding a .Net Core abs
 ## HashiCorp Vault for Wallets Hosting
 SafeBlock.io use `vault` and `VaultSharp` library to store all his wallets.
 
-## Deployment on Archlinux
-Install all the needed softwares and update the distribution (in root) :
-```console
-pacman -Syu
-pacman -Sy dotnet-sdk dotnet-runtime dotnet-host redis postgresql vault consul bower tor arm git
-systemctl enable postgresql
-systemctl enable redis
-systemctl enable consul
-systemctl enable vault
-```
-
-

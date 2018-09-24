@@ -576,11 +576,9 @@ label,
     border: 1px solid #DEDEDE;
 }
 
-nav.navbar-expand-lg .nav-link {
-    margin: 8px;
-    color: #FFFFFF !important;
-    font-size: 13pt;
-    padding: 0px 0px 3px !important;
+#navbar
+{
+    position: sticky;
 }
 
 nav.navbar-expand-lg
@@ -589,7 +587,13 @@ nav.navbar-expand-lg
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    position: sticky;
+}
+
+nav.navbar-expand-lg .nav-link {
+    margin: 8px;
+    color: #FFFFFF !important;
+    font-size: 13pt;
+    padding: 0px 0px 3px !important;
 }
 
 nav.navbar-expand-lg.active

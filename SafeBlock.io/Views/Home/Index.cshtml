@@ -2,6 +2,10 @@
     ViewBag.Slider = true;
     ViewData["Title"] = "Keep your Cryptos. Safely.";
 }
+@section Head
+{
+    <link rel="stylesheet" href="~/lib/aos/dist/aos.css" />
+}
 <a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
     <i class="fab fa-twitter"></i>
 </a>
@@ -318,7 +322,7 @@
                 <p class="lead">@Localizer["We are actually one of the best solutions for keeping your coins safe."]</p>
                 <div class="separator"></div>
                 <div class="row pt-3">
-                    <div class="col-md-4 text-center" data-sr="enter top" data-scroll-reveal="enter bottom move 50px over 0.6s after 0.2s">
+                    <div class="col-md-4 text-center" data-aos="fade-up">
                         <img src="~/static/138368.svg" class="main" />
                         <img src="~/static/139732.svg" class="second" />
                         <h5 class="mt-5">@Localizer["Complete Security"]</h5>
@@ -326,7 +330,7 @@
                             @Localizer["SafeBlock.io use Cold Storage<br /> system for storing accounts."]
                         </p>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-4 text-center" data-aos="fade-up" data-aos-offset="100">
                         <img src="~/static/140992.svg" class="main" />
                         <img src="~/static/148767.svg" class="second" />
                         <h5 class="mt-5">@Localizer["Simple to Use for Everyone"]</h5>
@@ -334,7 +338,7 @@
                             @Localizer["We make it easy to understand the<br /> technology behing each project."]
                         </p>
                     </div>
-                    <div class="col-md-4 text-center">
+                    <div class="col-md-4 text-center" data-aos="fade-up" data-aos-offset="200">
                         <img src="~/static/139737.svg" class="main" />
                         <img src="~/static/148766.svg" class="second" />
                         <h5 class="mt-5">@Localizer["No KYC or Surveillance"]</h5>
@@ -349,7 +353,7 @@
             <div class="container">
                 <h3 class="text-center">@Localizer["We have developed solutions for everyone."]</h3>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912224.svg" class="icon" />
                             <h5>Merchant Solutions</h5>
@@ -359,7 +363,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912267.svg" class="icon" />
                             <h5>Escrow Platform</h5>
@@ -369,7 +373,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/1077869.svg" class="icon" />
                             <h5>Crypto Debit Card</h5>
@@ -381,7 +385,7 @@
                     </div>
                 </div>
                 <div class="row mt-3 pt-3">
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912223.svg" class="icon" />
                             <h5>Buying Cryptos</h5>
@@ -391,7 +395,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912252.svg" class="icon" />
                             <h5>Full Node Hosting</h5>
@@ -401,7 +405,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade-up">
                         <div class="block">
                             <img src="~/static/912226.svg" class="icon" />
                             <h5>24/7 Support</h5>
@@ -413,7 +417,7 @@
                     </div>
                 </div>
                 <div class="row mt-3 pt-3">
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/680940.svg" class="icon" />
                             <h5>Tor-Friendly Usage</h5>
@@ -423,7 +427,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/891500.svg" class="icon" />
                             <h5>Free-tu-Use Service</h5>
@@ -433,7 +437,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912238.svg" class="icon" />
                             <h5>Mobile Application</h5>
@@ -453,7 +457,7 @@
                 <p class="lead">@Localizer["A beautiful card that works all the time and everywhere."]</p>
                 <div class="separator mb-3"></div>
                 <div class="row pt-5">
-                    <div class="col-md-6 pt-5 mt-3">
+                    <div class="col-md-6 pt-5 mt-3" data-aos="fade-up">
                         <div style="width: 55px; float: left; height: 100%;">
                             <div class="elegant-point">✓</div>
                             <div class="elegant-point" style="margin-top: 107px;">✓</div>
@@ -467,7 +471,7 @@
                             @Localizer["DebitCardPoint2Desc"]
                         </p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6" data-aos="fade-up">
                         <img src="~/static/credit-card.png" style="width: 550px;" />
                     </div>
                 </div>
@@ -479,43 +483,43 @@
                 <p class="lead">@Localizer["Actually SafeBlock.io supports this seven following currencies."]</p>
                 <div class="separator mb-5"></div>
                 <div class="row pt-3">
-                    <div class="col-lg text-center">
+                    <div class="col-lg text-center" data-aos="fade-up">
                         <a href="https://bitcoin.org/fr/" target="_blank">
                             <img src="~/static/btc.png" alt="bitcoin" class="coin" />
                         </a>
                         <h4 class="mt-3 text-muted">Bitcoin</h4>
                     </div>
-                    <div class="col-lg text-center">
+                    <div class="col-lg text-center" data-aos="fade-up">
                         <a href="https://ethereum.org/" target="_blank">
                             <img src="~/static/eth.png" alt="ethereum" class="coin" />
                         </a>
                         <h4 class="mt-3 text-muted">Ethereum</h4>
                     </div>
-                    <div class="col-lg text-center">
+                    <div class="col-lg text-center" data-aos="fade-up">
                         <a href="https://litecoin.org/" target="_blank">
                             <img src="~/static/ltc.png" alt="litecoin" class="coin" />
                         </a>
                         <h4 class="mt-3 text-muted">Litecoin</h4>
                     </div>
-                    <div class="col-lg text-center">
+                    <div class="col-lg text-center" data-aos="fade-up">
                         <a href="https://stratisplatform.com/" target="_blank">
                             <img src="~/static/strat.png" alt="stratis" class="coin" />
                         </a>
                         <h3 class="mt-3 text-muted">Stratis</h3>
                     </div>
-                    <div class="col-lg text-center">
+                    <div class="col-lg text-center" data-aos="fade-up">
                         <a href="https://www.bitcoincash.org/" target="_blank">
                             <img src="~/static/bch.png" alt="bch" class="coin" />
                         </a>
                         <h4 class="mt-3 text-muted">Bitcoin Cash</h4>
                     </div>
-                    <div class="col-lg text-center">
+                    <div class="col-lg text-center" data-aos="fade-up">
                         <a href="https://www.dash.org/" target="_blank">
                             <img src="~/static/dash.png" alt="dash" class="coin" />
                         </a>
                         <h4 class="mt-3 text-muted">Dash</h4>
                     </div>
-                    <div class="col-lg text-center">
+                    <div class="col-lg text-center" data-aos="fade-up">
                         <a href="https://z.cash/" target="_blank">
                             <img src="~/static/zec.png" alt="zcash" class="coin" />
                         </a>
@@ -529,7 +533,7 @@
 </div>
 @section Scripts
 {
-    <script src="~/lib/scrollreveal/dist/scrollreveal.min.js"></script>
+    <script src="~/lib/aos/dist/aos.js"></script>
     <script type="text/javascript">
         $(document).on('click', 'a[href^="#"]', function (event) {
             event.preventDefault();
@@ -539,45 +543,46 @@
             }, 1000);
         });
         
-        $(document).ready(function() {
+        $(document).ready(function()
+        {
             var mastersliderHome = new MasterSlider();
             mastersliderHome.setup("masterslider",
-                {
-                    width: $(".container").width(),
-                    height: $("#landing").height(),
-                    minHeight: 0,
-                    space: 0,
-                    start: 1,
-                    grabCursor: true,
-                    swipe: true,
-                    mouse: true,
-                    keyboard: true,
-                    layout: "fullwidth",
-                    wheel: false,
-                    autoplay: false,
-                    instantStartLayers: true,
-                    loop: true,
-                    shuffle: false,
-                    preload: 0,
-                    heightLimit: true,
-                    autoHeight: false,
-                    smoothHeight: true,
-                    endPause: true,
-                    overPause: false,
-                    fillMode: "fill",
-                    centerControls: false,
-                    startOnAppear: false,
-                    layersMode: "center",
-                    autofillTarget: "",
-                    hideLayers: false,
-                    fullscreenMargin: 0,
-                    speed: 5,
-                    dir: "h",
-                    parallaxMode: 'swipe',
-                    view: "fade"
-                });
+            {
+                width: $(".container").width(),
+                height: $("#landing").height(),
+                minHeight: 0,
+                space: 0,
+                start: 1,
+                grabCursor: true,
+                swipe: true,
+                mouse: true,
+                keyboard: true,
+                layout: "fullwidth",
+                wheel: false,
+                autoplay: false,
+                instantStartLayers: true,
+                loop: true,
+                shuffle: false,
+                preload: 0,
+                heightLimit: true,
+                autoHeight: false,
+                smoothHeight: true,
+                endPause: true,
+                overPause: false,
+                fillMode: "fill",
+                centerControls: false,
+                startOnAppear: false,
+                layersMode: "center",
+                autofillTarget: "",
+                hideLayers: false,
+                fullscreenMargin: 0,
+                speed: 5,
+                dir: "h",
+                parallaxMode: 'swipe',
+                view: "fade"
+            });
             
-            window.scrollReveal = new scrollReveal();
+            AOS.init();
 
             /*$(".launch-slider").hover(function() {
                 $("#carteSoudCtrl")[0].play();

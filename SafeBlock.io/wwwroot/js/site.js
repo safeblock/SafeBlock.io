@@ -21,6 +21,8 @@ toastr.options = {
 $(document).ready(function ()
 {
     NProgress.start();
+
+    AOS.init();
     
     $('.open-popup-link').magnificPopup({
         type: 'inline',

@@ -2,10 +2,6 @@
     ViewBag.Slider = true;
     ViewData["Title"] = "Keep your Cryptos. Safely.";
 }
-@section Head
-{
-    <link rel="stylesheet" href="~/lib/aos/dist/aos.css" />
-}
 <a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
     <i class="fab fa-twitter"></i>
 </a>
@@ -356,30 +352,27 @@
                     <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912224.svg" class="icon" />
-                            <h5>Merchant Solutions</h5>
+                            <h5>@Localizer["Merchant Solutions"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["Provide payment solutions for small and large businesses."]
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912267.svg" class="icon" />
-                            <h5>Escrow Platform</h5>
+                            <h5>@Localizer["Escrow Platform"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["Manage secure transactions between buyer and seller or three parties."]
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/1077869.svg" class="icon" />
-                            <h5>Crypto Debit Card</h5>
+                            <h5>@Localizer["Crypto Debit Card"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["Get a reloadable debit card directly from your account."]
                             </p>
                         </div>
                     </div>
@@ -388,30 +381,27 @@
                     <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912223.svg" class="icon" />
-                            <h5>Buying Cryptos</h5>
+                            <h5>@Localizer["Buying Cryptos"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["Buy cryptocurrencies quickly and without limits. No KYC required for small amounts."]
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912252.svg" class="icon" />
-                            <h5>Full Node Hosting</h5>
+                            <h5>@Localizer["Full Node Hosting"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["Deploy a cryptocurrency node to stake or host your coins."]
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4" >
                         <div class="block">
                             <img src="~/static/912226.svg" class="icon" />
-                            <h5>24/7 Support</h5>
+                            <h5>@Localizer["24/7 Support"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["You have a question ? we respond at any time of the day or the night."]
                             </p>
                         </div>
                     </div>
@@ -420,30 +410,27 @@
                     <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/680940.svg" class="icon" />
-                            <h5>Tor-Friendly Usage</h5>
+                            <h5>@Localizer["Tor-Friendly Usage"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["Use Tor to create or manage your wallet, stay anonymous."]
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/891500.svg" class="icon" />
-                            <h5>Free-tu-Use Service</h5>
+                            <h5>@Localizer["Free-to-Use Service"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["The entire use of our platform is free, only some premium services are paid."]
                             </p>
                         </div>
                     </div>
                     <div class="col-md-4" data-aos="fade">
                         <div class="block">
                             <img src="~/static/912238.svg" class="icon" />
-                            <h5>Mobile Application</h5>
+                            <h5>@Localizer["Mobile Application"]</h5>
                             <p>
-                                Lorem ipsum dolor sit amet,
-                                sapien etiam, nunc amet.
+                                @Localizer["Download our iOS or Android app to manage your wallet more easily."]
                             </p>
                         </div>
                     </div>
@@ -533,13 +520,12 @@
 </div>
 @section Scripts
 {
-    <script src="~/lib/aos/dist/aos.js"></script>
     <script type="text/javascript">
         $(document).on('click', 'a[href^="#"]', function (event) {
             event.preventDefault();
 
             $('html, body').animate({
-                scrollTop: $($.attr(this, 'href')).offset().top - 80
+                scrollTop: $($.attr(this, 'href')).offset().top - 180
             }, 1000);
         });
         
@@ -582,8 +568,6 @@
                 view: "fade"
             });
             
-            AOS.init();
-
             /*$(".launch-slider").hover(function() {
                 $("#carteSoudCtrl")[0].play();
             });*/

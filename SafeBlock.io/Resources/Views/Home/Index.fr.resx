@@ -203,4 +203,59 @@ people are drawn together.</value>
     <value>Welcome to Artech, Sydney's specialist office leas&lt;br&gt;
 people are drawn together.</value>
   </data>
+  <data name="Merchant Solutions" xml:space="preserve">
+    <value>Solutions Marchande</value>
+  </data>
+  <data name="Escrow Platform" xml:space="preserve">
+    <value>Plateforme d'Escrow</value>
+  </data>
+  <data name="Crypto Debit Card" xml:space="preserve">
+    <value>Carte de Débit Bitcoin</value>
+  </data>
+  <data name="Buying Cryptos" xml:space="preserve">
+    <value>Achetat de Cryptos</value>
+  </data>
+  <data name="Full Node Hosting" xml:space="preserve">
+    <value>Hébergement de Noeud</value>
+  </data>
+  <data name="24/7 Support" xml:space="preserve">
+    <value>Support 24h/24</value>
+  </data>
+  <data name="Tor-Friendly Usage" xml:space="preserve">
+    <value>Accessible depuis Tor</value>
+  </data>
+  <data name="Free-to-Use Service" xml:space="preserve">
+    <value>Utilisation Gratuite</value>
+  </data>
+  <data name="Mobile Application" xml:space="preserve">
+    <value>Application Mobile</value>
+  </data>
+  
+  <data name="Provide payment solutions for small and large businesses." xml:space="preserve">
+    <value>Fournit des solutions de paiement pour les petites et grandes entreprises.</value>
+  </data>
+  <data name="Manage secure transactions between buyer and seller or three parties." xml:space="preserve">
+    <value>Gérer des transactions sécurisées entre acheteur et vendeur ou trois parties.</value>
+  </data>
+  <data name="Get a reloadable debit card directly from your account." xml:space="preserve">
+    <value>Obtenez une carte de débit rechargeable directement depuis votre compte.</value>
+  </data>
+  <data name="Buy cryptocurrencies quickly and without limits. No KYC required for small amounts." xml:space="preserve">
+    <value>Achetez des crypto-monnaies rapidement et sans limites. Aucun KYC requis pour les petites sommes.</value>
+  </data>
+  <data name="Deploy a cryptocurrency node to stake or host your coins." xml:space="preserve">
+    <value>Déployez un nœud de crypto-monnaie pour staker ou héberger vos coins.</value>
+  </data>
+  <data name="You have a question ? we respond at any time of the day or the night." xml:space="preserve">
+    <value>Vous avez une question ? nous répondons à tout moment de la journée ou de la nuit.</value>
+  </data>
+  <data name="Use Tor to create or manage your wallet, stay anonymous." xml:space="preserve">
+    <value>Utilisez Tor pour créer ou gérer votre portefeuille, restez anonyme.</value>
+  </data>
+  <data name="The entire use of our platform is free, only some premium services are paid." xml:space="preserve">
+    <value>L'utilisation complète de notre plate-forme est gratuite, seuls quelques services premium sont payants.</value>
+  </data>
+  <data name="Download our iOS or Android app to manage your wallet more easily." xml:space="preserve">
+    <value>Téléchargez notre application iOS ou Android pour gérer votre portefeuille plus facilement.</value>
+  </data>
 </root>

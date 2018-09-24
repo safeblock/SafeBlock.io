@@ -32,12 +32,6 @@ namespace SafeBlock.io.Controllers
         {
             return View();
         }
-        
-        [Route("services")]
-        public IActionResult Services()
-        {
-            return View();
-        }
 
         [Route("status")]
         [Route("service-status")]

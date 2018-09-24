@@ -7,16 +7,16 @@
 <div id="wave-header">
     <div class="container">
         <div class="offset-md-2 col-md-8 text-center">
-            <h1 class="text-white mb-4 pb-2">Search in KnowledgeBase</h1>
+            <h1 class="text-white mb-4 pb-2">@Localizer["Search in KnowledgeBase"]</h1>
             <form method="post" asp-controller="Support" asp-action="SearchKnowledgebase">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control form-control-lg search" asp-for="Query" placeholder="Search help on our knowledge database." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control form-control-lg search" asp-for="Query" placeholder="@Localizer["Search help on our knowledge database."]" aria-label="Recipient's username" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                         <button class="btn btn-transparent normal pl-4 pr-4" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </form>
-            <p class="text-white-50 m-0 pt-3">Live support is available from your dashboard.</p>
+            <p class="text-white-50 m-0 pt-3">@Localizer["Live support is available from your dashboard."]</p>
         </div>
     </div>
 </div>
@@ -26,13 +26,13 @@
             <div class="container">
                 <ul class="nav tabs justify-content-center" id="myTab" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link active" id="knowledgebase-tab" data-toggle="tab" href="#knowledgebase" role="tab" aria-controls="knowledgebase" aria-selected="true">KnowledgeBase</a>
+                        <a class="nav-link active" id="knowledgebase-tab" data-toggle="tab" href="#knowledgebase" role="tab" aria-controls="knowledgebase" aria-selected="true">@Localizer["KnowledgeBase"]</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="faq-tab" data-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false">FAQ</a>
+                        <a class="nav-link" id="faq-tab" data-toggle="tab" href="#faq" role="tab" aria-controls="faq" aria-selected="false">@Localizer["FAQ"]</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact Us</a>
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">@Localizer["Contact Us"]</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">

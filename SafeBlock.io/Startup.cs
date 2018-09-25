@@ -42,8 +42,9 @@ namespace SafeBlock.io
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<VaultSettings>(Configuration.GetSection("Vault"));
+            services.Configure<GlobalSettings>(Configuration.GetSection("Global"));
             services.Configure<PostgreSQLSettings>(Configuration.GetSection("PostgreSQL"));
+            services.Configure<VaultSettings>(Configuration.GetSection("Vault"));
             services.Configure<MailingSettings>(Configuration.GetSection("Mailing"));
             
             services.AddEntityFrameworkNpgsql().AddDbContext<SafeBlockContext>(options =>
@@ -76,7 +77,7 @@ namespace SafeBlock.io
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options =>
             {
-                options.Cookie.Domain = "safeblock.io";
+                //options.Cookie.Domain = "safeblock.io";
                 options.LoginPath = "/account/getting-started/login";
                 options.LogoutPath = "/account/logout";
                 options.AccessDeniedPath = "/account/getting-started/register";
@@ -142,6 +143,7 @@ namespace SafeBlock.io
             else
             {
                 app.UseStatusCodePagesWithRedirects("/error/{0}"); 
+                app.UseHttpsRedirection();
             }
 
             // Définit les entêtes de sécurité

@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using SafeBlock.io.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using SafeBlock.io.Services;
 using SafeBlock.io.Settings;
@@ -28,17 +29,19 @@ namespace SafeBlock.io.Controllers
         private readonly IHostingEnvironment _env;
         private readonly IVaultClient _vaultClient;
         private readonly IUsers _users;
-        private readonly IOptions<VaultSettings> _vaultSettings;
+        private readonly IOptions<GlobalSettings> _globalSettings;
+        private readonly IConfiguration _configuration;
 
-        public AccountController(IHostingEnvironment env, IOptions<VaultSettings> vaultSettings, SafeBlockContext context, IUsers users)
+        public AccountController(IHostingEnvironment env, IConfiguration configuration, IOptions<GlobalSettings> globalSettings, SafeBlockContext context, IUsers users)
         {
             _env = env;
+            _configuration = configuration;
             _context = context;
             _users = users;
-            _vaultSettings = vaultSettings;
+            _globalSettings = globalSettings;
 
-            var authMethod = new TokenAuthMethodInfo(_vaultSettings.Value.Token);
-            var vaultClientSettings = new VaultClientSettings(_vaultSettings.Value.ConnectionString, authMethod);
+            var authMethod = new TokenAuthMethodInfo(configuration.GetValue<string>("VaultToken"));
+            var vaultClientSettings = new VaultClientSettings(configuration.GetConnectionString("Vault"), authMethod);
             _vaultClient = new VaultClient(vaultClientSettings); 
         }
 
@@ -94,7 +97,7 @@ namespace SafeBlock.io.Controllers
                     _users.AddUser(newUser);
                     
                     // Chiffrement du token (avec la passphrase du site et le mot de passe utilisateur)
-                    var firstCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(_vaultSettings.Value.AESPassphrase, SecurityToken));
+                    var firstCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(_globalSettings.Value.AesPassphrase, SecurityToken));
                     var secondCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(loginSystem.RegisterModel.Password, firstCrypt));
 
                     // Création du token dans le vault
@@ -106,7 +109,11 @@ namespace SafeBlock.io.Controllers
                     });
 
                     // Connexion de l'utilisateur
-                    SignInUser(loginSystem.RegisterModel.Mail);
+                    
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, AuthenticationUsing.Principal(loginSystem.RegisterModel.Mail), new AuthenticationProperties
+                    {
+                        IsPersistent = loginSystem.LoginModel.KeepSession
+                    });
 
                     //TODO : changer le systeme d'envoi de mail
                     // Envoi du mail de confirmation
@@ -127,19 +134,6 @@ namespace SafeBlock.io.Controllers
             return View("GettingStarted", loginSystem);
         }
 
-        // Routine de connexion
-        private void SignInUser(string mail, string role = "User", bool persistent = false)
-        {
-            var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-            identity.AddClaim(new Claim(ClaimTypes.Name, mail));
-            identity.AddClaim(new Claim(ClaimTypes.Role, role));
-            var principal = new ClaimsPrincipal(identity);
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
-            {
-                IsPersistent = persistent
-            });
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("account/getting-started/login")]
@@ -158,7 +152,7 @@ namespace SafeBlock.io.Controllers
                     {
                         var fullyCryptedToken = await _vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(loginSystem.LoginModel.Mail)}");
                         var halfCryptedToken = Aes.Decrypt(loginSystem.LoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data.Data["token"].ToString()));
-                        token = Aes.Decrypt(_vaultSettings.Value.AESPassphrase, SecurityUsing.HexToBytes(halfCryptedToken));
+                        token = Aes.Decrypt(_globalSettings.Value.AesPassphrase, SecurityUsing.HexToBytes(halfCryptedToken));
                     }
                     catch
                     {
@@ -168,7 +162,10 @@ namespace SafeBlock.io.Controllers
                     var user = _users.GetUserByMail(loginSystem.LoginModel.Mail);
                     if (token.ToLower().Equals(user.Token))
                     {
-                        SignInUser(user.Mail, user.Role, loginSystem.LoginModel.KeepSession);
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, AuthenticationUsing.Principal(user.Mail, user.Role), new AuthenticationProperties
+                        {
+                            IsPersistent = loginSystem.LoginModel.KeepSession
+                        });
 
                         return RedirectToAction("Index", "Dashboard");
                     }

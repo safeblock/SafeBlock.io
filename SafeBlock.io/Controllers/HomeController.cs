@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Net;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
 using RestSharp;
 using SafeBlock.io.Models;
@@ -15,14 +15,21 @@ namespace SafeBlock.io.Controllers
     public class HomeController : Controller
     {
         private IStringLocalizer<HomeController> _localizer;
+        
+        private ISupport _support;
+        private IBlog _blog;
 
-        public HomeController(IStringLocalizer<HomeController> localizer)
+        public HomeController(IStringLocalizer<HomeController> localizer, ISupport support, IBlog blog)
         {
             _localizer = localizer;
+            _support = support;
+            _blog = blog;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            HttpContext.Session.SetString("salut", "fuck");
+            await HttpContext.Session.CommitAsync();
             ViewBag.Test = _localizer["Test"];
             return View();
         }
@@ -37,6 +44,7 @@ namespace SafeBlock.io.Controllers
         [Route("service-status")]
         public IActionResult Status()
         {
+            return Content(HttpContext.Session.GetString("salut"));
             try
             {
                 using (var consulLookup = new WebClient())
@@ -93,20 +101,6 @@ namespace SafeBlock.io.Controllers
             {
                 return Error();
             }
-        }
-    }
-    
-    public class ErrorModel : PageModel
-    {
-        public string RequestId { get; set; }
-
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, 
-            NoStore = true)]
-        public void OnGet()
-        {
-            RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
         }
     }
 }

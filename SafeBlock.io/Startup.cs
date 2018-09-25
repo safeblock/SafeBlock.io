@@ -185,6 +185,7 @@ namespace SafeBlock.io
             });
             
             app.UseCookiePolicy();
+            
             app.UseStaticFiles(new StaticFileOptions()
             {
                 ContentTypeProvider = new FileExtensionContentTypeProvider()
@@ -192,9 +193,10 @@ namespace SafeBlock.io
                     Mappings = { new KeyValuePair<string, string>(".asc", "text/plain") }
                 }
             });
+            
+            app.UseWebMarkupMin();
             app.UseSession();
             app.UseAuthentication();
-            app.UseWebMarkupMin();
 
             app.UseMvc(routes =>
             {

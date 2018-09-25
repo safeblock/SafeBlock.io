@@ -26,6 +26,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace SafeBlock.io
 {
@@ -44,7 +45,6 @@ namespace SafeBlock.io
         {
             services.Configure<GlobalSettings>(Configuration.GetSection("Global"));
             services.Configure<PostgreSQLSettings>(Configuration.GetSection("PostgreSQL"));
-            services.Configure<VaultSettings>(Configuration.GetSection("Vault"));
             services.Configure<MailingSettings>(Configuration.GetSection("Mailing"));
             
             services.AddEntityFrameworkNpgsql().AddDbContext<SafeBlockContext>(options =>
@@ -184,19 +184,24 @@ namespace SafeBlock.io
                 DefaultFilesOptions = { DefaultFileNames = {"index.html"}}
             });
             
-            var defaultFilesOptions = new DefaultFilesOptions();
-            defaultFilesOptions.DefaultFileNames.Clear();
-            defaultFilesOptions.DefaultFileNames.Add("robots.txt");
-            defaultFilesOptions.DefaultFileNames.Add("safeblock-pgp-key.asc");
-            
-            app.UseDefaultFiles(defaultFilesOptions);
             app.UseCookiePolicy();
-            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                ContentTypeProvider = new FileExtensionContentTypeProvider()
+                {
+                    Mappings = { new KeyValuePair<string, string>(".asc", "text/plain") }
+                }
+            });
             app.UseSession();
             app.UseAuthentication();
             app.UseWebMarkupMin();
 
-            app.UseMvc(routes => routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}"));
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

@@ -35,7 +35,14 @@ namespace SafeBlock.io
                     var env = hostingContext.HostingEnvironment;
                     config.SetBasePath(Directory.GetCurrentDirectory());
 
-                    if (!env.IsDevelopment())
+                    if (env.IsDevelopment())
+                    {
+                        config.AddInMemoryCollection(new Dictionary<string, string>
+                        {
+                            {"VaultToken", "4c759944-4814-e1da-37fa-18bb38a82b18"}
+                        });
+                    }
+                    else
                     {
                         Console.Write("Please enter the Vault Token: ");
                         string vaultToken = CliUsing.ReadPassword();

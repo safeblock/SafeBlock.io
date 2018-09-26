@@ -1022,3 +1022,14 @@ nav.navbar-expand-lg .nav-link.active::after {
     font-weight: 200;
     margin-bottom: 30px;
 }
+
+#at4-share, #at4-soc
+{
+    position: absolute;
+    z-index: 9;
+}
+
+.ms-bullets.ms-dir-v
+{
+    margin-top: -160px !important;
+}

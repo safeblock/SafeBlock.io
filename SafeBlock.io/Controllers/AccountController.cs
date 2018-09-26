@@ -25,12 +25,12 @@ namespace SafeBlock.io.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IConfiguration _configuration;
+        private readonly IOptions<GlobalSettings> _globalSettings;
         private readonly SafeBlockContext _context;
         private readonly IHostingEnvironment _env;
         private readonly IVaultClient _vaultClient;
         private readonly IUsers _users;
-        private readonly IOptions<GlobalSettings> _globalSettings;
-        private readonly IConfiguration _configuration;
 
         public AccountController(IHostingEnvironment env, IConfiguration configuration, IOptions<GlobalSettings> globalSettings, SafeBlockContext context, IUsers users)
         {

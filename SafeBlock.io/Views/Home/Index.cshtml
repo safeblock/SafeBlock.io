@@ -2,9 +2,9 @@
     ViewBag.Slider = true;
     ViewData["Title"] = "Keep your Cryptos. Safely.";
 }
-<a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
+@*<a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
     <i class="fab fa-twitter"></i>
-</a>
+</a>*@
 <audio id="carteSoudCtrl">
     <source src="~/sounds/beep-22.mp3" type="audio/mpeg">
 </audio>
@@ -12,7 +12,122 @@
 <div id="landing">
     <div class="container">
         <div id="P_masterslider" class="master-slider-parent ms-parent-id-62">
-            <div id="masterslider" class="master-slider ms-skin-default">
+            <div id="masterslider" class="master-slider ms-skin-metro">
+                <div class="ms-slide" data-delay="1" data-fill-mode="fill">
+                    <div class="ms-layer ms-title"
+                         style=""
+                         data-effect="top(long,false)"
+                         data-duration="1000"
+                         data-delay="0"
+                         data-hide-effect="fade"
+                         data-ease="easeOutQuint"
+                         data-parallax="1"
+                         data-offset-x="0"
+                         data-offset-y="-170"
+                         data-origin="ml"
+                         data-position="normal">@Localizer["With SafeBlock.io<br />Keep all your Cryptos<br />in a Perfect Security 👌"]</div>
+                    <div class="ms-layer ms-subtitle"
+                         style=""
+                         data-effect="left(long)"
+                         data-duration="500"
+                         data-delay="0"
+                         data-offset-x="0"
+                         data-offset-y="-20"
+                         data-origin="ml"
+                         data-position="normal">@Localizer["Feel free to create your multi-currency wallet now<br />and enjoy all the features: exchange, mixing ..."]</div>
+                    <div class="ms-layer ms-subtitle"
+                         style=""
+                         data-effect="bottom(long,false)"
+                         data-duration="300"
+                         data-delay="500"
+                         data-offset-x="0"
+                         data-offset-y="80"
+                         data-origin="ml"
+                         data-position="normal">
+                        <a asp-controller="Account" asp-action="Login" class="btn btn-success">@Localizer["Log In"]</a>
+                    </div>
+                    <div class="ms-layer ms-subtitle"
+                         style=""
+                         data-effect="bottom(long,false)"
+                         data-duration="300"
+                         data-delay="500"
+                         data-offset-x="165"
+                         data-offset-y="80"
+                         data-origin="ml"
+                         data-position="normal">
+                        <a asp-controller="Account" asp-action="Register" class="btn btn-primary">@Localizer["Create a Wallet"]</a>
+                    </div>
+                    <img class="ms-layer"
+                         src="static/blank.gif"
+                         data-src="/static/play-halo1.png"
+                         alt=""
+                         data-effect="fade"
+                         data-duration="300"
+                         data-delay="800"
+                         data-parallax="2"
+                         data-type="image"
+                         data-offset-x="230"
+                         data-offset-y="-30"
+                         data-origin="mr"
+                         data-position="normal" />
+                    <img class="ms-layer"
+                         src="static/blank.gif"
+                         data-src="/static/play-halo2.png"
+                         alt=""
+                         data-effect="fade"
+                         data-duration="300"
+                         data-delay="1200"
+                         data-parallax="1"
+                         data-type="image"
+                         data-offset-x="230"
+                         data-offset-y="-30"
+                         data-origin="mr"
+                         data-position="normal" />
+                    <div class="ms-layer blink play"
+                         style=""
+                         data-effect="fade"
+                         data-duration="500"
+                         data-delay="500"
+                         data-parallax="5"
+                         data-offset-x="290"
+                         data-offset-y="-30"
+                         data-origin="mr"
+                         data-position="normal">
+                        <a href="#" class="launch-slider">
+                            <img src="/static/play.png" alt="" />
+                        </a>
+                    </div>
+                    <img class="ms-layer ms-wheel"
+                         src="/static/blank.gif"
+                         data-src="/static/mouse-scroll-b-icon-w.png"
+                         alt=""
+                         style=""
+                         data-effect="t(true,n,50,n,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-duration="1500"
+                         data-delay="200"
+                         data-ease="easeOutQuint"
+                         data-type="image"
+                         data-action="scrollToEnd"
+                         data-offset-x="0"
+                         data-offset-y="70"
+                         data-origin="bc"
+                         data-position="normal" />
+                    <img class="ms-layer ms-wheel-icon"
+                         src="/static/blank.gif"
+                         data-src="/static/mouse-scroll-w-icon-w.png"
+                         alt=""
+                         style=""
+                         data-effect="t(true,n,55,-666,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-duration="1500"
+                         data-delay="200"
+                         data-ease="easeOutQuint"
+                         data-type="image"
+                         data-action="scrollToEnd"
+                         data-offset-x="0"
+                         data-offset-y="70"
+                         data-origin="bc"
+                         data-position="normal" />
+                </div>
                 <div class="ms-slide" data-delay="1" data-fill-mode="fill">
                     <div class="ms-layer ms-title"
                          style=""
@@ -57,47 +172,7 @@
                          data-position="normal">
                         <a asp-controller="Account" asp-action="Register" class="btn btn-primary">@Localizer["Create a Wallet"]</a>
                     </div>
-                    <img class="ms-layer"
-                         src="static/blank.gif"
-                         data-src="/static/play-halo1.png"
-                         alt=""
-                         data-effect="fade"
-                         data-duration="300"
-                         data-delay="800"
-                         data-parallax="2"
-                         data-type="image"
-                         data-offset-x="250"
-                         data-offset-y="0"
-                         data-origin="mr"
-                         data-position="normal" />
-                    <img class="ms-layer"
-                         src="static/blank.gif"
-                         data-src="/static/play-halo2.png"
-                         alt=""
-                         data-effect="fade"
-                         data-duration="300"
-                         data-delay="1200"
-                         data-parallax="1"
-                         data-type="image"
-                         data-offset-x="250"
-                         data-offset-y="0"
-                         data-origin="mr"
-                         data-position="normal" />
-                    <div class="ms-layer blink play"
-                         style=""
-                         data-effect="fade"
-                         data-duration="500"
-                         data-delay="500"
-                         data-parallax="5"
-                         data-offset-x="310"
-                         data-offset-y="0"
-                         data-origin="mr"
-                         data-position="normal">
-                        <a href="#" class="launch-slider">
-                            <img src="/static/play.png" alt="" />
-                        </a>
-                    </div>
-                    <img class="ms-layer ms-wheel"
+                    @*<img class="ms-layer ms-wheel"
                          src="/static/blank.gif"
                          data-src="/static/mouse-scroll-b-icon-w.png"
                          alt=""
@@ -109,7 +184,7 @@
                          data-type="image"
                          data-action="scrollToEnd"
                          data-offset-x="0"
-                         data-offset-y="35"
+                         data-offset-y="50"
                          data-origin="bc"
                          data-position="normal" />
                     <img class="ms-layer ms-wheel-icon"
@@ -124,9 +199,9 @@
                          data-type="image"
                          data-action="scrollToEnd"
                          data-offset-x="0"
-                         data-offset-y="35"
+                         data-offset-y="50"
                          data-origin="bc"
-                         data-position="normal" />
+                         data-position="normal" />*@
                 </div>
 
                 <div class="ms-slide" data-delay="1" data-fill-mode="fill">
@@ -532,41 +607,51 @@
         $(document).ready(function()
         {
             var mastersliderHome = new MasterSlider();
+            mastersliderHome.control('bullets',
+                {
+                    autohide: false,
+                    overVideo: true,
+                    dir: 'v',
+                    align: 'right',
+                    space: 20,
+                    margin: 70
+                }
+            );
             mastersliderHome.setup("masterslider",
-            {
-                width: $(".container").width(),
-                height: $("#landing").height(),
-                minHeight: 0,
-                space: 0,
-                start: 1,
-                grabCursor: true,
-                swipe: true,
-                mouse: true,
-                keyboard: true,
-                layout: "fullwidth",
-                wheel: false,
-                autoplay: false,
-                instantStartLayers: true,
-                loop: true,
-                shuffle: false,
-                preload: 0,
-                heightLimit: true,
-                autoHeight: false,
-                smoothHeight: true,
-                endPause: true,
-                overPause: false,
-                fillMode: "fill",
-                centerControls: false,
-                startOnAppear: false,
-                layersMode: "center",
-                autofillTarget: "",
-                hideLayers: false,
-                fullscreenMargin: 0,
-                speed: 5,
-                dir: "h",
-                parallaxMode: 'swipe',
-                view: "fade"
-            });
+                {
+                    width: $(".container").width(),
+                    height: $("#landing").height(),
+                    minHeight: 0,
+                    space: 0,
+                    start: 1,
+                    grabCursor: true,
+                    swipe: true,
+                    mouse: true,
+                    keyboard: true,
+                    layout: "fullwidth",
+                    wheel: false,
+                    autoplay: false,
+                    instantStartLayers: true,
+                    loop: true,
+                    shuffle: false,
+                    preload: 0,
+                    heightLimit: true,
+                    autoHeight: false,
+                    smoothHeight: true,
+                    endPause: true,
+                    overPause: false,
+                    fillMode: "fill",
+                    centerControls: false,
+                    startOnAppear: false,
+                    layersMode: "center",
+                    autofillTarget: "",
+                    hideLayers: false,
+                    fullscreenMargin: 0,
+                    speed: 5,
+                    dir: "h",
+                    parallaxMode: 'swipe',
+                    view: "fade"
+                });
             
             /*$(".launch-slider").hover(function() {
                 $("#carteSoudCtrl")[0].play();
@@ -577,4 +662,5 @@
             });
         });
     </script>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5b9fbae6ad340d93"></script>
 }

@@ -101,7 +101,6 @@ namespace SafeBlock.io.Controllers
                     var secondCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(loginSystem.RegisterModel.Password, firstCrypt));
 
                     // Création du token dans le vault
-                    //await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync(null, null, )
                     await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(loginSystem.RegisterModel.Mail)}", new Dictionary<string, object>
                     {
                         {"token", secondCrypt},

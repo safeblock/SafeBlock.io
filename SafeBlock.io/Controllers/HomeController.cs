@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Localization;
 using Newtonsoft.Json;
 using RestSharp;
 using SafeBlock.io.Models;
+using SafeBlock.io.Services;
 
 namespace SafeBlock.io.Controllers
 {
@@ -28,9 +29,6 @@ namespace SafeBlock.io.Controllers
 
         public async Task<IActionResult> Index()
         {
-            HttpContext.Session.SetString("salut", "fuck");
-            await HttpContext.Session.CommitAsync();
-            ViewBag.Test = _localizer["Test"];
             return View();
         }
         
@@ -44,7 +42,6 @@ namespace SafeBlock.io.Controllers
         [Route("service-status")]
         public IActionResult Status()
         {
-            return Content(HttpContext.Session.GetString("salut"));
             try
             {
                 using (var consulLookup = new WebClient())

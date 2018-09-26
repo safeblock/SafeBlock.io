@@ -27,15 +27,17 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Redis;
 
 namespace SafeBlock.io
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        
+
         private const string DefaultCulture = "en";
-        
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -46,30 +48,33 @@ namespace SafeBlock.io
             services.Configure<GlobalSettings>(Configuration.GetSection("Global"));
             services.Configure<PostgreSQLSettings>(Configuration.GetSection("PostgreSQL"));
             services.Configure<MailingSettings>(Configuration.GetSection("Mailing"));
-            
+            services.AddSingleton<IConfiguration>(Configuration);
+
             services.AddEntityFrameworkNpgsql().AddDbContext<SafeBlockContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLDefault"));
             });
-            
+
             services.AddDbContext<SafeBlockContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));
-            
+
             services.AddTransient<IUsers, Users>();
             services.AddTransient<IBlog, Blog>();
             services.AddTransient<ISupport, Support>();
-            
+
             services.AddDistributedRedisCache(options =>
             {
                 options.InstanceName = "SecuredSession";
                 options.Configuration = Configuration.GetConnectionString("Redis");
             });
-            
+            services.AddSingleton<IDistributedCache, RedisCache>();
+
             services.AddSession(options =>
             {
+                options.Cookie.IsEssential = true;
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
-            
+
             services.AddAuthentication(options =>
             {
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -88,13 +93,12 @@ namespace SafeBlock.io
                 options.ResourcesPath = "Resources";
             });
 
-            // Configuration
             services.AddRecaptcha(new RecaptchaOptions
             {
                 SiteKey = Configuration["Recaptcha:SiteKey"],
                 SecretKey = Configuration["Recaptcha:SecretKey"]
             });
-            
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 options.CheckConsentNeeded = context => true;
@@ -113,7 +117,7 @@ namespace SafeBlock.io
                 options.SupportedCultures = supportedCultures;
                 options.SupportedUICultures = supportedCultures;
             });
-            
+
             services.AddWebMarkupMin(options =>
                 {
                     options.AllowMinificationInDevelopmentEnvironment = true;
@@ -142,7 +146,7 @@ namespace SafeBlock.io
             }
             else
             {
-                app.UseStatusCodePagesWithRedirects("/error/{0}"); 
+                app.UseStatusCodePagesWithRedirects("/error/{0}");
                 app.UseHttpsRedirection();
             }
 
@@ -160,7 +164,7 @@ namespace SafeBlock.io
                     builder.AddFormAction().Self();
                     builder.AddFrameAncestors().None();
                 }));*/
-            
+
             var supportedCultures = new[]
             {
                 new CultureInfo(DefaultCulture),
@@ -173,7 +177,7 @@ namespace SafeBlock.io
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
-            
+
             // Fournit un accès à la documentation generé par mkdocs
             app.UseFileServer(new FileServerOptions
             {
@@ -183,9 +187,9 @@ namespace SafeBlock.io
                 EnableDefaultFiles = true,
                 DefaultFilesOptions = { DefaultFileNames = {"index.html"}}
             });
-            
+
             app.UseCookiePolicy();
-            
+
             app.UseStaticFiles(new StaticFileOptions()
             {
                 ContentTypeProvider = new FileExtensionContentTypeProvider()
@@ -193,7 +197,7 @@ namespace SafeBlock.io
                     Mappings = { new KeyValuePair<string, string>(".asc", "text/plain") }
                 }
             });
-            
+
             app.UseWebMarkupMin();
             app.UseSession();
             app.UseAuthentication();

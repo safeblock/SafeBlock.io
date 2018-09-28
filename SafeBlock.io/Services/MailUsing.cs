@@ -1,32 +1,37 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.IO;
 using System.Net.Mail;
+using Microsoft.Extensions.Configuration;
+using RestSharp;
+using SafeBlock.io.Settings;
 
 namespace SafeBlock.io.Services
 {
     public static class MailUsing
     {
-        public static void SendConfirmationMail(string mailAddress, string templateFile, string activationLink, string certificateFile)
-        {
-            var smtpServer = new SmtpClient("mail.privateemail.com")
-            {
-                Port = 587,
-                Credentials = new System.Net.NetworkCredential("contact@SafeBlock.io", "xxxx"),
-                EnableSsl = true,
-            };
-            var mail = new MailMessage()
-            {
-                From = new MailAddress("contact@SafeBlock.io"),
-                Subject = "🔑 [SafeBlock.io] Confirmate your wallet creation.",
-                Body = System.IO.File.ReadAllText(templateFile)
-                    .Replace("{link}", activationLink),
-                IsBodyHtml = true
-                
-            };
-            mail.To.Add(mailAddress);
-            smtpServer.Send(mail);
-        }
+        public static IConfigurationRoot Configuration { get; set; }
         
+        public static bool SendConfirmationEmail(string emailAddress, string activationLink, string certificateFile)
+        {
+            //TODO: create logs of SendInBlue Response
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.Development.json", optional: true, reloadOnChange: true);
+            Configuration = builder.Build();
+            
+            var client = new RestClient("https://api.sendinblue.com/v3/smtp/email");
+            var sendInBlueRequest = new RestRequest(Method.POST);
+            sendInBlueRequest.AddHeader("api-key", Configuration.GetSection("SendInBlue").GetValue<string>("ApiKey"));
+            sendInBlueRequest.AddHeader("Accept", "application/json");
+            sendInBlueRequest.AddHeader("Content-Type", "application/json");
+            sendInBlueRequest.AddParameter("undefined", $"{{\"tags\":[\"Activate account for {{emailAddress}}\"],\"sender\":{{\"email\":\"contact@safeblock.io\",\"name\":\"SafeBlock.io\"}},\"htmlContent\":\"\",\"replyTo\":{{\"email\":\"contact@safeblock.io\",\"name\":\"SafeBlock.io Support\"}},\"templateId\":2,\"to\":[{{\"email\":\"{emailAddress}\",\"name\":\"{emailAddress}\"}}],\"params\":{{\"ActivationLink\":\"{activationLink}\"}}}}", ParameterType.RequestBody);
+            var sendInBlueResponse = client.Execute(sendInBlueRequest);
+            return sendInBlueResponse.IsSuccessful;
+        }
+
         /// Verifie si le mail est valide ou pas
         public static bool IsValidMail(string mail)
         {

@@ -14,6 +14,7 @@ using SafeBlock.io.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using RestSharp;
 using SafeBlock.io.Services;
 using SafeBlock.io.Settings;
 using VaultSharp;
@@ -114,11 +115,10 @@ namespace SafeBlock.io.Controllers
                         IsPersistent = loginSystem.LoginModel.KeepSession
                     });
 
-                    //TODO : changer le systeme d'envoi de mail
                     // Envoi du mail de confirmation
                     if (!_env.IsDevelopment())
                     {
-                        MailUsing.SendConfirmationMail(loginSystem.RegisterModel.Mail, Path.Combine(_env.ContentRootPath, "Datas", "CreateAccountMail.html"), $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.io\robots.txt");
+                        MailUsing.SendConfirmationEmail(loginSystem.RegisterModel.Mail, $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/account/activate/{SecurityUsing.Sha512(SecurityToken)}", @"F:\SafeBlock.io\Backup\unx\SafeBlock.io\robots.txt");
                     }
 
                     return RedirectToAction("Index", "Dashboard", new {firstLogin=true});

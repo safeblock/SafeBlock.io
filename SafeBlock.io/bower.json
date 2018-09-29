@@ -31,6 +31,7 @@
     "magnific-popup": "^1.1.0",
     "Microsoft.jQuery.Unobtrusive.Ajax": "^3.2.3",
     "popper.js": "^1.14.4",
-    "aos": "^2.3.3"
+    "aos": "^2.3.3",
+    "signalr": "^2.3.0"
   }
 }

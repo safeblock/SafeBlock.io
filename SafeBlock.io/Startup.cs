@@ -134,6 +134,8 @@ namespace SafeBlock.io
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+            
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -202,6 +204,11 @@ namespace SafeBlock.io
             app.UseSession();
             app.UseAuthentication();
 
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<NotificationHub>("/chatHub");
+            });
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.AspNetCore.Localization;
 using Newtonsoft.Json;
-using RestSharp;
 using SafeBlock.io.Models;
 using SafeBlock.io.Services;
+using RestSharp;
 
 namespace SafeBlock.io.Controllers
 {

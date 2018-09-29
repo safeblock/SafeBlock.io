@@ -3,7 +3,7 @@ This is the official repository of safeblock.io a multicurrencies wallet with lo
 
 ![](https://img.shields.io/badge/netcore-v2.1-brightgreen.svg?longCache=true) ![](https://img.shields.io/badge/bootstrap-4.1.1-blue.svg?longCache=true) ![](https://img.shields.io/badge/nbitcoin-4.1.1.7-lightgray.svg?longCache=true) ![](https://img.shields.io/badge/BCrypt.Net--Next-2.1.3-lightgray.svg?longCache=true)
 
-![](https://pix.watch/_NDYc1/L2lmib.png)
+![](https://cdn-images-1.medium.com/max/2000/1*eujMWgT83mDixNbLWT7QQQ.png)
 
 # What does SafeBlock.io Offer ?
 

@@ -907,7 +907,7 @@ nav.navbar-expand-lg .nav-link.active::after {
     height: 60px;
 }
 
-#blog p {
+#blog p.m-0 {
     color: #888888;
     font-size: 15px;
     line-height: 1.6;
@@ -1016,11 +1016,27 @@ nav.navbar-expand-lg .nav-link.active::after {
     font-size: 20pt;
 }
 
+.markdown h3
+{
+    font-size: 15pt;
+}
+
 .markdown p
 {
     font-size: 12pt;
     font-weight: 200;
     margin-bottom: 30px;
+}
+
+.markdown a
+{
+    color: #003366;
+}
+
+.markdown blockquote
+{
+    border-left: 5px solid lightgray;
+    padding-left: 10px;
 }
 
 #at4-share, #at4-soc

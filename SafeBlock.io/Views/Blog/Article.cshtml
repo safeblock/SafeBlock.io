@@ -23,7 +23,9 @@
                                         </h6>
                                         <h2><a asp-action="Article" asp-route-article="@Model.SeoTitle" class="inherit">@Model.Title</a></h2>
                                         <p class="date text-center text-muted mb-5">@Model.WriteDate.Value.ToString("D")</p>
-                                        @Html.Raw(Markdown.Parse(Model.Content))
+                                        <div class="markdown">
+                                            @Html.Raw(Markdown.Parse(Model.Content))
+                                        </div>
                                         
                                         <!-- Go to www.addthis.com/dashboard to customize your tools -->
                                         <div class="addthis_relatedposts_inline"></div>

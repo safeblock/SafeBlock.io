@@ -37,6 +37,7 @@ namespace SafeBlock.io
 
                     if (env.IsDevelopment())
                     {
+                        // Development Environement Token
                         config.AddInMemoryCollection(new Dictionary<string, string>
                         {
                             {"VaultToken", "4c759944-4814-e1da-37fa-18bb38a82b18"}

@@ -7,6 +7,7 @@ namespace SafeBlock.io.Models
         public int Id { get; set; }
         public string Mail { get; set; }
         public string Token { get; set; }
+        public string AccountType { get; set; }
         public string Role { get; set; }
         public DateTime? RegisterDate { get; set; }
         public bool? HasUsingTor { get; set; }

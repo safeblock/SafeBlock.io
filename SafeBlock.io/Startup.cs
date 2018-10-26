@@ -118,7 +118,7 @@ namespace SafeBlock.io
                 options.SupportedUICultures = supportedCultures;
             });
 
-            services.AddWebMarkupMin(options =>
+            /*services.AddWebMarkupMin(options =>
                 {
                     options.AllowMinificationInDevelopmentEnvironment = true;
                     options.AllowCompressionInDevelopmentEnvironment = true;
@@ -129,7 +129,7 @@ namespace SafeBlock.io
                     options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
                     options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
                 })
-                .AddHttpCompression();
+                .AddHttpCompression();*/
 
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
@@ -144,7 +144,6 @@ namespace SafeBlock.io
             {
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();
-                //app.UseBrowserLink();
             }
             else
             {
@@ -179,7 +178,7 @@ namespace SafeBlock.io
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
-
+            
             // Fournit un accès à la documentation generé par mkdocs
             app.UseFileServer(new FileServerOptions
             {
@@ -189,9 +188,8 @@ namespace SafeBlock.io
                 EnableDefaultFiles = true,
                 DefaultFilesOptions = { DefaultFileNames = {"index.html"}}
             });
-
-            app.UseCookiePolicy();
-
+            
+            
             app.UseStaticFiles(new StaticFileOptions()
             {
                 ContentTypeProvider = new FileExtensionContentTypeProvider()
@@ -199,14 +197,20 @@ namespace SafeBlock.io
                     Mappings = { new KeyValuePair<string, string>(".asc", "text/plain") }
                 }
             });
-
-            app.UseWebMarkupMin();
+            
+            app.UseCookiePolicy();
+            //app.UseWebMarkupMin();
             app.UseSession();
             app.UseAuthentication();
-
-            app.UseSignalR(routes =>
+            
+            app.UseSignalR(routes => routes.MapHub<NotificationHub>("/notification"));
+            
+            app.UseStaticFiles(new StaticFileOptions
             {
-                routes.MapHub<NotificationHub>("/chatHub");
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "node_modules")
+                ),
+                RequestPath = "/npm"
             });
             
             app.UseMvc(routes =>

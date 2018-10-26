@@ -90,7 +90,7 @@ namespace SafeBlock.io.Controllers
                         RegisterDate = DateTime.Now,
                         HasUsingTor = SecurityUsing.IsTorVisitor(HttpContext.Connection.RemoteIpAddress.ToString()),
                         RegisterIp = HttpContext.Connection.RemoteIpAddress.ToString(),
-                        RegisterContext = JsonConvert.SerializeObject(HttpContext.Request.Headers),
+                        RegisterContext = JsonConvert.SerializeObject(HttpContext.Request.Headers, Formatting.Indented),
                         IsAllowed = true,
                         IsMailChecked = false,
                         TwoFactorPolicy = "None"
@@ -102,7 +102,7 @@ namespace SafeBlock.io.Controllers
                     var secondCrypt = SecurityUsing.BytesToHex(Aes.Encrypt(loginSystem.RegisterModel.Password, firstCrypt));
 
                     // Création du token dans le vault
-                    await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(loginSystem.RegisterModel.Mail)}", new Dictionary<string, object>
+                    await _vaultClient.V1.Secrets.KeyValue.V2.WriteSecretAsync($"safeblock/io/tokens/{SecurityUsing.Sha1(loginSystem.RegisterModel.Mail)}", new Dictionary<string, object>
                     {
                         {"token", secondCrypt},
                         {"timestamp", DateTimeOffset.Now.ToUnixTimeSeconds()}
@@ -149,7 +149,7 @@ namespace SafeBlock.io.Controllers
 
                     try
                     {
-                        var fullyCryptedToken = await _vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync($"cubbyhole/safeblock/io/{SecurityUsing.Sha1(loginSystem.LoginModel.Mail)}");
+                        var fullyCryptedToken = await _vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync($"safeblock/io/tokens/{SecurityUsing.Sha1(loginSystem.LoginModel.Mail)}");
                         var halfCryptedToken = Aes.Decrypt(loginSystem.LoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data.Data["token"].ToString()));
                         token = Aes.Decrypt(_globalSettings.Value.AesPassphrase, SecurityUsing.HexToBytes(halfCryptedToken));
                     }

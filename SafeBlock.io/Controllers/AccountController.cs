@@ -181,7 +181,7 @@ namespace SafeBlock.io.Controllers
         public async Task<IActionResult> Activate(string token)
         {
             //TODO : add expiration date
-            _context.Users.First(x => SecurityUsing.Sha512(x.Token).Equals(token)).IsMailChecked = true;
+            //_context.Users.First(x => SecurityUsing.Sha512(x.Token).Equals(token)).IsMailChecked = true;
             await _context.SaveChangesAsync();
             return View();
         }

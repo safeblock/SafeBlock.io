@@ -24,11 +24,14 @@ using React.AspNet;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Redis;
+using SafeBlock.io.HostedServices;
+using SafeBlock.io.Models.DatabaseModels;
 
 namespace SafeBlock.io
 {
@@ -48,15 +51,29 @@ namespace SafeBlock.io
             services.Configure<GlobalSettings>(Configuration.GetSection("Global"));
             services.Configure<PostgreSQLSettings>(Configuration.GetSection("PostgreSQL"));
             services.Configure<MailingSettings>(Configuration.GetSection("Mailing"));
-            services.AddSingleton<IConfiguration>(Configuration);
-
+            services.AddSingleton(Configuration);
+            
             services.AddEntityFrameworkNpgsql().AddDbContext<SafeBlockContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+            });
+            
+            services.AddDbContext<SafeBlockContext>(options =>
+            {
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection"));
+            });
+            
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<SafeBlockContext>()  
+                .AddDefaultTokenProviders();
+
+            /*services.AddEntityFrameworkNpgsql().AddDbContext<SafeBlockContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLDefault"));
             });
 
             services.AddDbContext<SafeBlockContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));*/
 
             services.AddTransient<IUsers, Users>();
             services.AddTransient<IBlog, Blog>();
@@ -68,8 +85,41 @@ namespace SafeBlock.io
                 options.Configuration = Configuration.GetConnectionString("Redis");
             });
             services.AddSingleton<IDistributedCache, RedisCache>();
-
+            
             services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+            
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+                options.User.RequireUniqueEmail = false;
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                //options.Lockout.MaxFailedAccessAttempts = 5;
+                //options.Lockout.AllowedForNewUsers = true;
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+            });
+            
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.IsEssential = true;
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromHours(1);
+                options.LoginPath = "/account/getting-started/login";
+                options.AccessDeniedPath = "/account/getting-started";
+                options.LogoutPath = "/account/getting-started/logout";
+                options.SlidingExpiration = true;
+            });
+
+            /*services.AddSession(options =>
             {
                 options.Cookie.IsEssential = true;
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -86,7 +136,7 @@ namespace SafeBlock.io
                 options.LoginPath = "/account/getting-started/login";
                 options.LogoutPath = "/account/logout";
                 options.AccessDeniedPath = "/account/getting-started/register";
-            });
+            });*/
 
             services.AddLocalization(options =>
             {
@@ -118,7 +168,8 @@ namespace SafeBlock.io
                 options.SupportedUICultures = supportedCultures;
             });
 
-            /*services.AddWebMarkupMin(options =>
+            // Compresse la sortie HTML
+            services.AddWebMarkupMin(options =>
                 {
                     options.AllowMinificationInDevelopmentEnvironment = true;
                     options.AllowCompressionInDevelopmentEnvironment = true;
@@ -129,12 +180,15 @@ namespace SafeBlock.io
                     options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
                     options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
                 })
-                .AddHttpCompression();*/
+                .AddHttpCompression();
+
+            services.AddHostedService<PriceTickerService>();
 
             services.AddMvc()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
             
+            // Ajoute SignalR
             services.AddSignalR();
         }
 
@@ -199,7 +253,7 @@ namespace SafeBlock.io
             });
             
             app.UseCookiePolicy();
-            //app.UseWebMarkupMin();
+            app.UseWebMarkupMin();
             app.UseSession();
             app.UseAuthentication();
             

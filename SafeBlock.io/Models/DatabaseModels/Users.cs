@@ -9,7 +9,7 @@ namespace SafeBlock.io.Models
 {
     public class Users : IUsers
     {
-        private readonly SafeBlockContext _context = null;
+        private readonly SafeBlockContext _context;
 
         public Users(DbContextOptions options)
         {
@@ -18,23 +18,26 @@ namespace SafeBlock.io.Models
 
         public List<User> GetAllUsers()
         {
-            return _context.Users.ToList();
+            return null;
+            //return _context.Users.ToList();
         }
 
         public User GetUserByMail(string mail)
         {
-            return _context.Users.Where(x => x.Mail.Equals(mail.ToLower())).SingleOrDefault();
+            return null;
+            //return _context.Users.SingleOrDefault(x => x.Mail.Equals(mail.ToLower()));
         }
 
         public bool IsUserByMail(string mail)
         {
-            return _context.Users.Any(x => x.Mail.Equals(mail.ToLower()));
+            return false;
+            //return _context.Users.Any(x => x.Mail.Equals(mail.ToLower()));
         }
 
         public void AddUser(User newUser)
         {
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
+            /*_context.Users.Add(newUser);
+            _context.SaveChanges();*/
         }
     }
 }

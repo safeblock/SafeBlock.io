@@ -1,13 +1,13 @@
 ﻿using System;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using SafeBlock.io.Models;
+using SafeBlock.io.Models.DatabaseModels;
 
 namespace SafeBlock.io.Models
 {
-    public sealed partial class SafeBlockContext : DbContext
+    public class SafeBlockContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
         public DbSet<Article> Blog { get; set; }
         public DbSet<SupportArticle> Support { get; set; }
         
@@ -25,7 +25,10 @@ namespace SafeBlock.io.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>(entity =>
+            base.OnModelCreating(modelBuilder);
+            
+            //modelBuilder.Entity<ApplicationUser>().Property(p => p.Id).UseNpgsqlIdentityColumn();
+            /*modelBuilder.Entity<User>(entity =>
             {
                 entity.ForNpgsqlHasComment("Contain all users informations.");
 
@@ -66,7 +69,7 @@ namespace SafeBlock.io.Models
                 entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.WriteDate).HasColumnType("date");
-            });
+            });*/
         }
     }
 }

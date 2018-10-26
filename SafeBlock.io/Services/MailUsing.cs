@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Net.Mail;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using RestSharp;
 using SafeBlock.io.Settings;
@@ -11,9 +12,9 @@ namespace SafeBlock.io.Services
 {
     public static class MailUsing
     {
-        public static IConfigurationRoot Configuration { get; set; }
+        private static IConfigurationRoot Configuration { get; set; }
         
-        public static bool SendConfirmationEmail(string emailAddress, string activationLink, string certificateFile)
+        public static async Task<bool> SendConfirmationEmail(string emailAddress, string activationLink, string certificateFile)
         {
             //TODO: create logs of SendInBlue Response
             var builder = new ConfigurationBuilder()
@@ -28,7 +29,7 @@ namespace SafeBlock.io.Services
             sendInBlueRequest.AddHeader("Accept", "application/json");
             sendInBlueRequest.AddHeader("Content-Type", "application/json");
             sendInBlueRequest.AddParameter("undefined", $"{{\"tags\":[\"Activate account for {{emailAddress}}\"],\"sender\":{{\"email\":\"contact@safeblock.io\",\"name\":\"SafeBlock.io\"}},\"htmlContent\":\"\",\"replyTo\":{{\"email\":\"contact@safeblock.io\",\"name\":\"SafeBlock.io Support\"}},\"templateId\":2,\"to\":[{{\"email\":\"{emailAddress}\",\"name\":\"{emailAddress}\"}}],\"params\":{{\"ActivationLink\":\"{activationLink}\"}}}}", ParameterType.RequestBody);
-            var sendInBlueResponse = client.Execute(sendInBlueRequest);
+            var sendInBlueResponse = await client.ExecuteTaskAsync(sendInBlueRequest);
             return sendInBlueResponse.IsSuccessful;
         }
 

@@ -2,7 +2,7 @@
   "name": "safeblock.io",
   "version": "1.0.0",
   "description": "A multicurrencies and secure wallet.",
-  "main": "index.js",
+  "main": "Program.cs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,12 +23,13 @@
     "zec"
   ],
   "author": "Clint Mourlevat",
-  "license": "ISC",
+  "license": "GPL",
   "dependencies": {
     "@aspnet/signalr": "^1.1.0-preview3-35497",
     "@mdi/font": "^3.0.39",
     "aos": "^2.3.4",
     "bootstrap": "^4.1.3",
+    "chart.js": "^2.7.3",
     "jquery": "^3.3.1",
     "jquery-ajax-unobtrusive": "^3.2.6",
     "jquery-validation": "^1.18.0",

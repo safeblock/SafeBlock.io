@@ -729,8 +729,8 @@ nav.navbar-expand-lg .nav-link.active::after {
     width: 90px;
     height: 20px;
     position: absolute;
-    left: calc(50% - 40px);
-    top: calc(50% - 30px);
+    left: calc(50% - 45px);
+    top: calc(50% - 10px);
 }
 
 .hollow-dots-spinner, .hollow-dots-spinner * {

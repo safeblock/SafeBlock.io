@@ -141,6 +141,12 @@
   <data name="Register" xml:space="preserve">
     <value>Inscription</value>
   </data>
+  <data name="Log Out Me" xml:space="preserve">
+    <value>Me Déconnecter</value>
+  </data>
+  <data name="Go to Dashboard" xml:space="preserve">
+    <value>Tableau de Bord</value>
+  </data>
   <data name="See the Blog" xml:space="preserve">
     <value>Voir le Blog</value>
   </data>

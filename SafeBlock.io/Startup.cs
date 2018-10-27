@@ -190,6 +190,7 @@ namespace SafeBlock.io
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
                 app.UseStatusCodePages();
             }
             else

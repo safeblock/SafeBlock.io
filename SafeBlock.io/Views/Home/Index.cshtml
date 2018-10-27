@@ -2,9 +2,6 @@
     ViewBag.Slider = true;
     ViewData["Title"] = "Keep your Cryptos. Safely.";
 }
-@*<a href="https://twitter.com/safeblock_io" target="_blank" class="twitter">
-    <i class="fab fa-twitter"></i>
-</a>*@
 <audio id="carteSoudCtrl">
     <source src="~/sounds/beep-22.mp3" type="audio/mpeg">
 </audio>
@@ -35,28 +32,56 @@
                          data-offset-y="-20"
                          data-origin="ml"
                          data-position="normal">@Localizer["Feel free to create your multi-currency wallet now<br />and enjoy all the features: exchange, mixing ..."]</div>
-                    <div class="ms-layer ms-subtitle"
-                         style=""
-                         data-effect="bottom(long,false)"
-                         data-duration="300"
-                         data-delay="500"
-                         data-offset-x="0"
-                         data-offset-y="80"
-                         data-origin="ml"
-                         data-position="normal">
-                        <a asp-controller="Account" asp-action="Login" class="btn btn-success">@Localizer["Log In"]</a>
-                    </div>
-                    <div class="ms-layer ms-subtitle"
-                         style=""
-                         data-effect="bottom(long,false)"
-                         data-duration="300"
-                         data-delay="500"
-                         data-offset-x="165"
-                         data-offset-y="80"
-                         data-origin="ml"
-                         data-position="normal">
-                        <a asp-controller="Account" asp-action="Register" class="btn btn-primary">@Localizer["Create a Wallet"]</a>
-                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="ms-layer ms-subtitle"
+                             style=""
+                             data-effect="bottom(long,false)"
+                             data-duration="300"
+                             data-delay="500"
+                             data-offset-x="0"
+                             data-offset-y="80"
+                             data-origin="ml"
+                             data-position="normal">
+                            <a asp-controller="Dashboard" asp-action="Index" class="btn btn-primary">@Localizer["Go to Dashboard"]</a>
+                        </div>
+                        <div class="ms-layer ms-subtitle"
+                             style=""
+                             data-effect="bottom(long,false)"
+                             data-duration="300"
+                             data-delay="500"
+                             data-offset-x="250"
+                             data-offset-y="80"
+                             data-origin="ml"
+                             data-position="normal">
+                            <a asp-controller="Account" asp-action="Logout" class="btn btn-danger">@Localizer["Log Out Me"]</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="ms-layer ms-subtitle"
+                             style=""
+                             data-effect="bottom(long,false)"
+                             data-duration="300"
+                             data-delay="500"
+                             data-offset-x="0"
+                             data-offset-y="80"
+                             data-origin="ml"
+                             data-position="normal">
+                            <a asp-controller="Account" asp-action="Login" class="btn btn-success">@Localizer["Log In"]</a>
+                        </div>
+                        <div class="ms-layer ms-subtitle"
+                             style=""
+                             data-effect="bottom(long,false)"
+                             data-duration="300"
+                             data-delay="500"
+                             data-offset-x="165"
+                             data-offset-y="80"
+                             data-origin="ml"
+                             data-position="normal">
+                            <a asp-controller="Account" asp-action="Register" class="btn btn-primary">@Localizer["Create a Wallet"]</a>
+                        </div>
+                    }
                     <img class="ms-layer"
                          src="static/blank.gif"
                          data-src="/static/play-halo1.png"

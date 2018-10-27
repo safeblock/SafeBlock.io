@@ -12,8 +12,6 @@ namespace SafeBlock.io.Controllers
             return View();
         }
 
-        /*
-
         [Route("dashboard/choose-wallet")]
         public IActionResult ChooseWallet()
         {
@@ -35,19 +33,19 @@ namespace SafeBlock.io.Controllers
         [Route("dashboard/vault")]
         public IActionResult Vault()
         {
-            return View();
+            return Content("");
         }
 
         [Route("dashboard/escrow")]
         public IActionResult Escrow()
         {
-            return View();
+            return Content("");
         }
 
         [Route("dashboard/full-node")]
         public IActionResult FullNode()
         {
-            return View();
+            return Content("");
         }
 
         [Route("dashboard/support")]
@@ -56,15 +54,15 @@ namespace SafeBlock.io.Controllers
             return View();
         }
 
-        [Route("dashboard/version")]
-        public IActionResult Version()
+        [Route("dashboard/changelog")]
+        public IActionResult Changelog()
         {
-            return View();
+            return Content("");
         }
 
         public IActionResult MyAccount()
         {
             return Content("");
-        }*/
+        }
     }
 }

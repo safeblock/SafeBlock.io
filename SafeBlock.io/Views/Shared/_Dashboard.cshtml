@@ -4,14 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SafeBlock.io | @ViewBag.Title</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/font-awesome/web-fonts-with-css/css/fontawesome-all.min.css" />
-    <link rel="stylesheet" href="~/lib/mdi/css/materialdesignicons.min.css" />
-    <link rel="stylesheet" href="~/lib/glidejs/dist/css/glide.core.min.css" />
-    <link rel="stylesheet" href="~/lib/glidejs/dist/css/glide.theme.min.css" />
-    <link rel="stylesheet" href="~/lib/toastr/toastr.min.css" />
-    <link rel="stylesheet" href="~/lib/magnific-popup/dist/magnific-popup.css" />
-    <link rel="stylesheet" href="~/lib/nprogress/nprogress.css" />
+    <link rel="stylesheet" href="~/npm/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/npm/pixeden-stroke-7-icon/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css" />
+    <link rel="stylesheet" href="~/npm/@@fortawesome/fontawesome-free/css/all.min.css" />
+    <link rel="stylesheet" href="~/npm/@@mdi/font/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="~/npm/glidejs/dist/css/glide.core.min.css" />
+    <link rel="stylesheet" href="~/npm/glidejs/dist/css/glide.theme.min.css" />
+    <link rel="stylesheet" href="~/npm/toastr/toastr.min.css" />
+    <link rel="stylesheet" href="~/npm/magnific-popup/dist/magnific-popup.css" />
+    <link rel="stylesheet" href="~/npm/toastr/build/toastr.min.css" />
     <environment include="Development">
         <link rel="stylesheet" href="~/css/dashboard.css" />
     </environment>
@@ -81,11 +82,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">
-                        <i class="mdi mdi-settings"></i> Settings
+                        <i class="mdi mdi-settings"></i> Parameters
                     </a>
                 </li>
             </ul>
-            <a asp-action="Version" class="navbar-text ml-auto mr-3 inherit text-muted small" data-toggle="tooltip" data-placement="left" title="Tooltip on top">
+            <a asp-action="Changelog" asp-controller="Dashboard" class="navbar-text ml-auto mr-3 inherit text-muted small" data-toggle="tooltip" data-placement="left" title="Tooltip on top">
                 <i class="fas fa-info-circle"></i> Version 2.1.0
             </a>
         </div>
@@ -140,14 +141,14 @@
     <div id="wrapper">
         @RenderBody()
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/npm/jquery/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/lib/particles.js/particles.min.js"></script>
-    <script src="~/lib/nprogress/nprogress.js"></script>
-    <script src="~/lib/toastr/toastr.min.js"></script>
-    <script src="~/lib/chart.js/dist/Chart.min.js"></script>
-    <script src="~/lib/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+    <script src="~/npm/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/npm/particles.js/particles.min.js"></script>
+    <script src="~/npm/nprogress/nprogress.js"></script>
+    <script src="~/npm/toastr/toastr.min.js"></script>
+    <script src="~/npm/chart.js/dist/Chart.min.js"></script>
+    <script src="~/npm/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
     <environment include="Development">
         <script src="~/js/dashboard.js" asp-append-version="true"></script>
     </environment>

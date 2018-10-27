@@ -30,6 +30,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Redis;
+using SafeBlock.io.Extensions;
 using SafeBlock.io.HostedServices;
 using SafeBlock.io.Models.DatabaseModels;
 
@@ -67,17 +68,9 @@ namespace SafeBlock.io
                 .AddEntityFrameworkStores<SafeBlockContext>()  
                 .AddDefaultTokenProviders();
 
-            /*services.AddEntityFrameworkNpgsql().AddDbContext<SafeBlockContext>(options =>
-            {
-                options.UseNpgsql(Configuration.GetConnectionString("PostgreSQLDefault"));
-            });
-
-            services.AddDbContext<SafeBlockContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SafeBlockContext")));*/
-
-            services.AddTransient<IUsers, Users>();
             services.AddTransient<IBlog, Blog>();
             services.AddTransient<ISupport, Support>();
+            services.AddSingleton<IPasswordHasher<ApplicationUser>, BCryptPasswordHasher>();
 
             services.AddDistributedRedisCache(options =>
             {

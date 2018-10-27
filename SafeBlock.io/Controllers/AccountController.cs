@@ -100,7 +100,7 @@ namespace SafeBlock.io.Controllers
                         TwoFactorPolicy = "None"
                     };
                     
-                    var creationResult = await _userManager.CreateAsync(newUser);
+                    var creationResult = await _userManager.CreateAsync(newUser, securityToken);
                     if (creationResult.Succeeded)
                     {
                         if (!_env.IsDevelopment())
@@ -142,6 +142,7 @@ namespace SafeBlock.io.Controllers
             if (ModelState.IsValid)
             {
                 var getUser = await _userManager.FindByEmailAsync(loginSystem.LoginModel.Mail);
+                //ModelState.AddModelError("LoginModel.Mail", "This account does not exists.");
                 
                 try
                 {
@@ -151,62 +152,29 @@ namespace SafeBlock.io.Controllers
 
                     if (getUser.Token.Equals(token))
                     {
-                        await _signInManager.SignInAsync(getUser, loginSystem.LoginModel.KeepSession);
-                        return RedirectToAction("Index", "Dashboard");
+                        var loginResult = await _signInManager.PasswordSignInAsync(getUser, token, loginSystem.LoginModel.KeepSession, true);
+                        if (loginResult.Succeeded)
+                        {
+                            return RedirectToAction("Index", "Dashboard");
+                        }
+                        if (loginResult.RequiresTwoFactor)
+                        {
+                            //TODO: redirect to 2FA
+                        }
+                        if (loginResult.IsLockedOut)
+                        {
+                            //TODO: redirect to lockout
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        }
                     }
                 }
                 catch
                 {
                     ModelState.AddModelError("LoginModel.Mail", "Unable to decrypt your account.");
                 }
-                
-                /*var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-                if (result.Succeeded)
-                {
-                    return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    //return to 2FA
-                }
-                if (result.IsLockedOut)
-                {
-                    // return  to lockout
-                }*/
-
-                /*ModelState.AddModelError("LoginModel.Mail", "Unable to decrypt your account.");
-
-                var userPresence = _users.IsUserByMail(loginSystem.LoginModel.Mail);
-                if (userPresence)
-                {
-                    var token = string.Empty;
-
-                    try
-                    {
-                        var fullyCryptedToken = await _vaultClient.V1.Secrets.KeyValue.V2.ReadSecretAsync($"safeblock/io/tokens/{SecurityUsing.Sha1(loginSystem.LoginModel.Mail)}");
-                        var halfCryptedToken = Aes.Decrypt(loginSystem.LoginModel.Password, SecurityUsing.HexToBytes(fullyCryptedToken.Data.Data["token"].ToString()));
-                        token = Aes.Decrypt(_globalSettings.Value.AesPassphrase, SecurityUsing.HexToBytes(halfCryptedToken));
-                    }
-                    catch
-                    {
-                        ModelState.AddModelError("LoginModel.Mail", "Unable to decrypt your account.");
-                    }
-
-                    var user = _users.GetUserByMail(loginSystem.LoginModel.Mail);
-                    if (token.ToLower().Equals(user.Token))
-                    {
-                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, AuthenticationUsing.Principal(user.Mail, user.Role), new AuthenticationProperties
-                        {
-                            IsPersistent = loginSystem.LoginModel.KeepSession
-                        });
-
-                        return RedirectToAction("Index", "Dashboard");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("LoginModel.Mail", "This account does not exists.");
-                }*/
             }
             return View("GettingStarted", loginSystem);
         }

@@ -92,6 +92,7 @@ namespace SafeBlock.io.Controllers
                         UserName = loginSystem.RegisterModel.Mail.ToLower(),
                         Email = loginSystem.RegisterModel.Mail.ToLower(),
                         Token = securityToken,
+                        AccountType = "User",
                         RegisterDate = DateTime.Now,
                         HasUsingTor = SecurityUsing.IsTorVisitor(HttpContext.Connection.RemoteIpAddress.ToString()),
                         RegisterIp = HttpContext.Connection.RemoteIpAddress.ToString(),
@@ -170,9 +171,15 @@ namespace SafeBlock.io.Controllers
                             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                         }
                     }
+                    else
+                    {
+                        ModelState.AddModelError("LoginModel.Mail", "Invalid login attempt.");
+                    }
                 }
-                catch
+                catch(Exception e)
                 {
+                    getUser.AccessFailedCount++;
+                    await _userManager.UpdateAsync(getUser);
                     ModelState.AddModelError("LoginModel.Mail", "Unable to decrypt your account.");
                 }
             }
